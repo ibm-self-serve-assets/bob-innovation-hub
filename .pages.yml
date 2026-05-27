@@ -1,0 +1,55 @@
+content:
+  - name: modes
+    label: "🤖 Bob Modes"
+    type: collection
+    path: _modes
+    fields:
+      - name: title
+        label: "Mode Name"
+        type: string
+      - name: industry
+        label: "Industry"
+        type: select
+        options:
+          values: ["AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
+          placeholder: "Select Industry"
+          multiple: true
+      - name: body
+        label: "Mode Description"
+        type: rich-text
+      - name: link
+        label: "Mode Github Link"
+        type: string
+  - name: labs
+    label: "🤖 Bob Labs"
+    type: collection
+    path: _labs
+    fields:
+      - name: title
+        label: "Lab Title"
+        type: string
+      - name: industry
+        label: "Industry"
+        type: select
+        options:
+          values: ["AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
+          placeholder: "Select Industry"
+          multiple: true
+      - name: Language
+        label: "Language"
+        type: select
+        options:
+         values: ["Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Other"]
+         multiple: false
+         placeholder: "Select Programming language"
+      - name: duration
+        label: "Estimated Time (e.g., 45 mins)"
+        type: string
+      - name: body
+        label: "Lab Description"
+        type: rich-text
+      - name: link
+        label: "Lab Link"
+        type: string
+
+# Made with Bob
