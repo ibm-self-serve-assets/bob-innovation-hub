@@ -11,7 +11,7 @@ content:
         label: "Industry"
         type: select
         options:
-          values: ["AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
+          values: ["Cross","AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
           placeholder: "Select Industry"
           multiple: true
       - name: body
