@@ -56,9 +56,8 @@ title: Bobathon Hub
 
   /* 1. CRITICAL FIX: Break out of the theme's narrow right-side layout wrapper */
   body {
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 40px 20px !important;
+    margin: 0 !important;
+    padding: 0 !important;
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
     background-color: var(--bg-primary) !important;
     color: var(--text-primary) !important;
@@ -69,13 +68,91 @@ title: Bobathon Hub
     width: 100% !important;
     float: none !important;
     position: static !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 0 !important;
   }
 
   section#main_content {
     width: 100% !important;
     float: none !important;
     padding: 0 !important;
+  }
+
+  /* Main Layout Container */
+  .main-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Left Sidebar Navigation */
+  .sidebar {
+    width: 280px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-primary);
+    padding: 2rem 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-header {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--border-primary);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .sidebar-nav {
+    padding: 0 1rem;
+  }
+
+  .sidebar-button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-button:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+
+  .sidebar-button.active {
+    background: var(--accent-primary);
+    color: #ffffff;
+  }
+
+  .sidebar-button .icon {
+    font-size: 1.25rem;
+  }
+
+  /* Main Content Area */
+  .main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2.5rem;
+    transition: margin-left 0.3s ease;
   }
 
   /* 2. Modern Banner Component */
@@ -171,69 +248,11 @@ title: Bobathon Hub
     color: #959da5;
   }
 
-  .tab-container {
-    margin-bottom: 2rem;
-  }
-
-  .tab-nav {
-    display: flex;
-    gap: 0.5rem;
-    border-bottom: 2px solid var(--border-primary);
-    margin-bottom: 2rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-primary) transparent;
-  }
-
-  .tab-nav::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .tab-nav::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .tab-nav::-webkit-scrollbar-thumb {
-    background: var(--border-primary);
-    border-radius: 3px;
-  }
-
-  .tab-nav::-webkit-scrollbar-thumb:hover {
-    background: var(--border-secondary);
-  }
-
-  .tab-button {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: 'IBM Plex Sans', sans-serif;
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-bottom: -2px;
-  }
-
-  .tab-button:hover {
-    color: var(--text-primary);
-    background: var(--bg-secondary);
-  }
-
-  .tab-button.active {
-    color: var(--accent-primary);
-    border-bottom-color: var(--accent-primary);
-  }
-
-  .tab-content {
+  .content-section {
     display: none;
   }
 
-  .tab-content.active {
+  .content-section.active {
     display: block;
   }
 
@@ -380,9 +399,28 @@ title: Bobathon Hub
   }
 
   /* 9. Responsive Design */
+  @media(max-width: 1024px) {
+    .sidebar {
+      width: 240px;
+    }
+
+    .main-content {
+      margin-left: 240px;
+    }
+  }
+
   @media(max-width: 767px) {
-    body {
-      padding: 20px 15px !important;
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-right: none;
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .main-content {
+      margin-left: 0;
+      padding: 1.5rem;
     }
 
     .theme-toggle-container {
@@ -409,11 +447,6 @@ title: Bobathon Hub
 
     .bobathon-banner p {
       font-size: 1rem;
-    }
-
-    .tab-button {
-      padding: 0.75rem 1rem;
-      font-size: 0.9rem;
     }
 
     .asset-card {
@@ -464,22 +497,8 @@ title: Bobathon Hub
   >
 </div>
 
-<!-- Tab Navigation -->
-<div class="tab-container">
-  <div class="tab-nav" role="tablist">
-    <button class="tab-button active" data-tab="introduction" role="tab" aria-selected="true">
-      📖 Introduction
-    </button>
-    <button class="tab-button" data-tab="labs" role="tab" aria-selected="false">
-      🚀 Hands-on Labs
-    </button>
-    <button class="tab-button" data-tab="modes" role="tab" aria-selected="false">
-      🤖 Bob Modes
-    </button>
-  </div>
-
-  <!-- Introduction Tab Content -->
-  <div id="introduction-tab" class="tab-content active" role="tabpanel">
+<!-- Introduction Section -->
+<div id="introduction-section" class="content-section active">
     <div class="cards-grid">
       <div class="asset-card" style="grid-column: 1 / -1;">
         <h3>Welcome to the Bobathon Innovation Hub! 🎉</h3>
@@ -504,12 +523,13 @@ title: Bobathon Hub
           </p>
         </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <!-- Labs Tab Content -->
-  <div id="labs-tab" class="tab-content" role="tabpanel">
-    <div id="labs-container" class="cards-grid">
+<!-- Labs Section -->
+<div id="labs-section" class="content-section">
+  <h2 class="section-title">🚀 Hands-on Labs</h2>
+  <div id="labs-container" class="cards-grid">
       {% for lab in site.labs %}
         <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-industry="{{ lab.industry | join: ' ' | downcase }}" data-language="{{ lab.Language | downcase }}">
           <h3>{{ lab.title }}</h3>
@@ -545,13 +565,14 @@ title: Bobathon Hub
           <p>No active labs found. Add new labs from your Pages CMS manager to populate this deck.</p>
         </div>
       {% endfor %}
+      </div>
+      <div id="labs-pagination" class="pagination"></div>
     </div>
-    <div id="labs-pagination" class="pagination"></div>
-  </div>
 
-  <!-- Modes Tab Content -->
-  <div id="modes-tab" class="tab-content" role="tabpanel">
-    <div id="modes-container" class="cards-grid">
+    <!-- Modes Section -->
+    <div id="modes-section" class="content-section">
+      <h2 class="section-title">🤖 Bob Modes</h2>
+      <div id="modes-container" class="cards-grid">
       {% for mode in site.modes %}
         <div class="asset-card" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
           <h3>{{ mode.title }}</h3>
@@ -581,9 +602,10 @@ title: Bobathon Hub
           <p>No application presets compiled. Use Pages CMS to add initial configurations.</p>
         </div>
       {% endfor %}
+      </div>
+      <div id="modes-pagination" class="pagination"></div>
     </div>
-    <div id="modes-pagination" class="pagination"></div>
-  </div>
+  </main>
 </div>
 
 <script>
@@ -617,31 +639,29 @@ title: Bobathon Hub
     }
   }
 
-  // Tab Switching
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
+  // Sidebar Navigation
+  const sidebarButtons = document.querySelectorAll('.sidebar-button');
+  const contentSections = document.querySelectorAll('.content-section');
   
-  tabButtons.forEach(button => {
+  sidebarButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const targetTab = button.dataset.tab;
+      const targetSection = button.dataset.section;
       
       // Update buttons
-      tabButtons.forEach(btn => {
+      sidebarButtons.forEach(btn => {
         btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
       });
       button.classList.add('active');
-      button.setAttribute('aria-selected', 'true');
       
       // Update content
-      tabContents.forEach(content => {
-        content.classList.remove('active');
+      contentSections.forEach(section => {
+        section.classList.remove('active');
       });
-      document.getElementById(`${targetTab}-tab`).classList.add('active');
+      document.getElementById(`${targetSection}-section`).classList.add('active');
       
-      // Reset search and pagination for new tab
+      // Reset search and pagination for new section
       document.getElementById('searchBar').value = '';
-      filterAndPaginate(targetTab);
+      filterAndPaginate(targetSection);
     });
   });
 
@@ -652,8 +672,8 @@ title: Bobathon Hub
   searchBar.addEventListener('input', (e) => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
-      const activeTab = document.querySelector('.tab-button.active').dataset.tab;
-      filterAndPaginate(activeTab);
+      const activeSection = document.querySelector('.sidebar-button.active').dataset.section;
+      filterAndPaginate(activeSection);
     }, 300);
   });
 
@@ -664,9 +684,9 @@ title: Bobathon Hub
     modes: 1
   };
 
-  function filterAndPaginate(tab) {
+  function filterAndPaginate(section) {
     const searchTerm = searchBar.value.toLowerCase().trim();
-    const container = document.getElementById(`${tab}-container`);
+    const container = document.getElementById(`${section}-container`);
     const cards = Array.from(container.querySelectorAll('.asset-card'));
     const emptyState = container.querySelector('.empty-state');
     
@@ -685,7 +705,7 @@ title: Bobathon Hub
 
     // Reset to page 1 when searching
     if (searchTerm) {
-      currentPage[tab] = 1;
+      currentPage[section] = 1;
     }
 
     // Hide all cards first
@@ -710,7 +730,7 @@ title: Bobathon Hub
 
     // Calculate pagination
     const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
-    const startIndex = (currentPage[tab] - 1) * ITEMS_PER_PAGE;
+    const startIndex = (currentPage[section] - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
 
     // Show cards for current page
@@ -719,11 +739,11 @@ title: Bobathon Hub
     });
 
     // Update pagination
-    updatePagination(tab, currentPage[tab], totalPages, visibleCards.length);
+    updatePagination(section, currentPage[section], totalPages, visibleCards.length);
   }
 
-  function updatePagination(tab, page, totalPages, totalItems) {
-    const paginationContainer = document.getElementById(`${tab}-pagination`);
+  function updatePagination(section, page, totalPages, totalItems) {
+    const paginationContainer = document.getElementById(`${section}-pagination`);
     
     if (totalPages <= 1) {
       paginationContainer.innerHTML = '';
@@ -734,7 +754,7 @@ title: Bobathon Hub
     
     // Previous button
     paginationHTML += `
-      <button class="pagination-button" onclick="changePage('${tab}', ${page - 1})" ${page === 1 ? 'disabled' : ''}>
+      <button class="pagination-button" onclick="changePage('${section}', ${page - 1})" ${page === 1 ? 'disabled' : ''}>
         ← Previous
       </button>
     `;
@@ -749,7 +769,7 @@ title: Bobathon Hub
     }
 
     if (startPage > 1) {
-      paginationHTML += `<button class="pagination-button" onclick="changePage('${tab}', 1)">1</button>`;
+      paginationHTML += `<button class="pagination-button" onclick="changePage('${section}', 1)">1</button>`;
       if (startPage > 2) {
         paginationHTML += `<span class="pagination-info">...</span>`;
       }
@@ -757,7 +777,7 @@ title: Bobathon Hub
 
     for (let i = startPage; i <= endPage; i++) {
       paginationHTML += `
-        <button class="pagination-button ${i === page ? 'active' : ''}" onclick="changePage('${tab}', ${i})">
+        <button class="pagination-button ${i === page ? 'active' : ''}" onclick="changePage('${section}', ${i})">
           ${i}
         </button>
       `;
@@ -767,12 +787,12 @@ title: Bobathon Hub
       if (endPage < totalPages - 1) {
         paginationHTML += `<span class="pagination-info">...</span>`;
       }
-      paginationHTML += `<button class="pagination-button" onclick="changePage('${tab}', ${totalPages})">${totalPages}</button>`;
+      paginationHTML += `<button class="pagination-button" onclick="changePage('${section}', ${totalPages})">${totalPages}</button>`;
     }
 
     // Next button
     paginationHTML += `
-      <button class="pagination-button" onclick="changePage('${tab}', ${page + 1})" ${page === totalPages ? 'disabled' : ''}>
+      <button class="pagination-button" onclick="changePage('${section}', ${page + 1})" ${page === totalPages ? 'disabled' : ''}>
         Next →
       </button>
     `;
@@ -789,12 +809,12 @@ title: Bobathon Hub
     paginationContainer.innerHTML = paginationHTML;
   }
 
-  function changePage(tab, newPage) {
-    currentPage[tab] = newPage;
-    filterAndPaginate(tab);
+  function changePage(section, newPage) {
+    currentPage[section] = newPage;
+    filterAndPaginate(section);
     
     // Scroll to top of content
-    document.getElementById(`${tab}-tab`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById(`${section}-section`).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Initialize pagination on page load
