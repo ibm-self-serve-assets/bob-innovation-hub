@@ -180,7 +180,29 @@ title: Bobathon Hub
     gap: 0.5rem;
     border-bottom: 2px solid var(--border-primary);
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-primary) transparent;
+  }
+
+  .tab-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .tab-nav::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .tab-nav::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 3px;
+  }
+
+  .tab-nav::-webkit-scrollbar-thumb:hover {
+    background: var(--border-secondary);
   }
 
   .tab-button {
@@ -445,7 +467,10 @@ title: Bobathon Hub
 <!-- Tab Navigation -->
 <div class="tab-container">
   <div class="tab-nav" role="tablist">
-    <button class="tab-button active" data-tab="labs" role="tab" aria-selected="true">
+    <button class="tab-button active" data-tab="introduction" role="tab" aria-selected="true">
+      📖 Introduction
+    </button>
+    <button class="tab-button" data-tab="labs" role="tab" aria-selected="false">
       🚀 Hands-on Labs
     </button>
     <button class="tab-button" data-tab="modes" role="tab" aria-selected="false">
@@ -453,8 +478,37 @@ title: Bobathon Hub
     </button>
   </div>
 
+  <!-- Introduction Tab Content -->
+  <div id="introduction-tab" class="tab-content active" role="tabpanel">
+    <div class="cards-grid">
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <h3>Welcome to the Bobathon Innovation Hub! 🎉</h3>
+        <div class="card-body">
+          <p style="margin-bottom: 1rem;">
+            This platform is your gateway to exploring cutting-edge hands-on labs and Bob AI modes designed to accelerate innovation and learning.
+          </p>
+          <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; font-size: 1.1rem; font-weight: 600;">What You'll Find Here:</h4>
+          <ul style="margin: 0.5rem 0 1rem 1.5rem; line-height: 1.8;">
+            <li><strong>🚀 Hands-on Labs:</strong> Interactive coding exercises and tutorials covering various programming languages, frameworks, and industry-specific scenarios.</li>
+            <li><strong>🤖 Bob Modes:</strong> Pre-configured AI assistant modes tailored for specific tasks, industries, and development workflows.</li>
+          </ul>
+          <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; font-size: 1.1rem; font-weight: 600;">Getting Started:</h4>
+          <ol style="margin: 0.5rem 0 1rem 1.5rem; line-height: 1.8;">
+            <li>Use the tabs above to navigate between Introduction, Labs, and Modes</li>
+            <li>Use the search bar to find specific content by keywords, industry, or language</li>
+            <li>Click on any card to explore detailed information and access resources</li>
+            <li>Toggle between light and dark themes using the button in the top-right corner</li>
+          </ol>
+          <p style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent-primary);">
+            <strong>💡 Pro Tip:</strong> Bookmark this page and check back regularly for new labs and modes as we continuously expand our collection!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Labs Tab Content -->
-  <div id="labs-tab" class="tab-content active" role="tabpanel">
+  <div id="labs-tab" class="tab-content" role="tabpanel">
     <div id="labs-container" class="cards-grid">
       {% for lab in site.labs %}
         <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-industry="{{ lab.industry | join: ' ' | downcase }}" data-language="{{ lab.Language | downcase }}">
@@ -745,6 +799,7 @@ title: Bobathon Hub
 
   // Initialize pagination on page load
   document.addEventListener('DOMContentLoaded', () => {
+    filterAndPaginate('introduction');
     filterAndPaginate('labs');
     filterAndPaginate('modes');
   });
