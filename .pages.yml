@@ -28,20 +28,14 @@ content:
       - name: title
         label: "Lab Title"
         type: string
-      - name: industry
-        label: "Industry"
+      - name: domain
+        label: "Domain"
         type: select
         options:
-          values: ["AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
-          placeholder: "Select Industry"
-          multiple: true
-      - name: Language
-        label: "Language"
-        type: select
-        options:
-         values: ["Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Other"]
+         values: ["Data", "Automation"]
          multiple: false
          placeholder: "Select Programming language"
+         creatable: true
       - name: duration
         label: "Estimated Time (e.g., 45 mins)"
         type: string
