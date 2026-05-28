@@ -1,7 +1,3 @@
-title: Bob Innovation Hub
-description: Central hub for Bobathon content, labs, and configurations.
-
-
 collections:
   labs:
     output: true
