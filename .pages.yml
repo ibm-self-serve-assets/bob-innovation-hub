@@ -7,9 +7,11 @@ content:
       - name: title
         label: "Mode Name"
         type: string
+        required: true
       - name: industry
         label: "Industry"
         type: select
+        required: true
         options:
           values: ["Cross","AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
           placeholder: "Select Industry"
@@ -17,9 +19,11 @@ content:
       - name: body
         label: "Mode Description"
         type: rich-text
+        required: true
       - name: link
         label: "Mode Github Link"
         type: string
+        required: true
   - name: labs
     label: "🤖 Bob Labs"
     type: collection
@@ -28,22 +32,26 @@ content:
       - name: title
         label: "Lab Title"
         type: string
+        required: true
       - name: domain
         label: "Domain"
         type: select
+        required: true
         options:
          values: ["Data", "Automation"]
          multiple: false
-         placeholder: "Select Programming language"
-         creatable: true
+         placeholder: "Select Domain"
       - name: duration
         label: "Estimated Time (e.g., 45 mins)"
         type: string
+        required: true
       - name: body
         label: "Lab Description"
         type: rich-text
+        required: true
       - name: link
         label: "Lab Link"
         type: string
+        required: true
 
 # Made with Bob
