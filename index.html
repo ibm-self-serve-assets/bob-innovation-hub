@@ -625,13 +625,10 @@ title: Bobathon Hub
         <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-industry="{{ lab.industry | join: ' ' | downcase }}" data-language="{{ lab.Language | downcase }}">
           <h3>{{ lab.title }}</h3>
           <div class="badge-container">
-            {% if lab.industry %}
+            {% if lab.domain %}
               {% for ind in lab.industry %}
                 <span class="badge badge-blue">🏢 {{ ind }}</span>
               {% endfor %}
-            {% endif %}
-            {% if lab.Language %}
-              <span class="badge badge-orange">💻 {{ lab.Language }}</span>
             {% endif %}
             {% if lab.duration %}
               <span class="badge badge-green">⏱️ {{ lab.duration }}</span>
