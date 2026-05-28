@@ -626,7 +626,7 @@ title: Bobathon Hub
           <h3>{{ lab.title }}</h3>
           <div class="badge-container">
             {% if lab.domain %}
-              {% for ind in lab.industry %}
+              {% for ind in lab.domain %}
                 <span class="badge badge-blue">🏢 {{ ind }}</span>
               {% endfor %}
             {% endif %}
