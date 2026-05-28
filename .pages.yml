@@ -38,7 +38,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Data", "Automation"]
+         values: ["Data", "Automation", "Security"]
          multiple: false
          placeholder: "Select Domain"
       - name: duration
