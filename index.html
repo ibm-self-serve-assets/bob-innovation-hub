@@ -51,81 +51,10 @@ title: Bobathon Hub
     {% include introduction-section.html %}
 
     <!-- Labs Section -->
-    <div id="labs-section" class="content-section">
-      <h2 class="section-title">🚀 Hands-on Labs</h2>
-      <div id="labs-container" class="cards-grid">
-        {% for lab in site.labs %}
-          <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-industry="{{ lab.industry | join: ' ' | downcase }}" data-language="{{ lab.Language | downcase }}">
-            <h3>{{ lab.title }}</h3>
-            <div class="badge-container">
-              {% if lab.domain %}
-                {% for ind in lab.domain %}
-                  <span class="badge badge-blue">🏢 {{ ind }}</span>
-                {% endfor %}
-              {% endif %}
-              {% if lab.duration %}
-                <span class="badge badge-green">⏱️ {{ lab.duration }}</span>
-              {% endif %}
-            </div>
-            <div class="card-body">
-              {{ lab.content }}
-            </div>
-            {% if lab.link %}
-              <div style="margin-top: 1rem;">
-                <a href="{{ lab.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View Lab
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
-                    <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            {% endif %}
-          </div>
-        {% else %}
-          <div class="empty-state">
-            <p>No active labs found. Add new labs from your Pages CMS manager to populate this deck.</p>
-          </div>
-        {% endfor %}
-      </div>
-      <div id="labs-pagination" class="pagination"></div>
-    </div>
+    {% include labs-section.html %}
 
     <!-- Modes Section -->
-    <div id="modes-section" class="content-section">
-      <h2 class="section-title">🤖 Bob Modes</h2>
-      <div id="modes-container" class="cards-grid">
-        {% for mode in site.modes %}
-          <div class="asset-card" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
-            <h3>{{ mode.title }}</h3>
-            <div class="badge-container">
-              {% if mode.industry %}
-                {% for ind in mode.industry %}
-                  <span class="badge badge-blue">🏢 {{ ind }}</span>
-                {% endfor %}
-              {% endif %}
-            </div>
-            <div class="card-body">
-              {{ mode.content }}
-            </div>
-            {% if mode.link %}
-              <div style="margin-top: 1rem;">
-                <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View on GitHub
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
-                    <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            {% endif %}
-          </div>
-        {% else %}
-          <div class="empty-state">
-            <p>No application presets compiled. Use Pages CMS to add initial configurations.</p>
-          </div>
-        {% endfor %}
-      </div>
-      <div id="modes-pagination" class="pagination"></div>
-    </div>
+    {% include modes-section.html %}
 
   </main>
 </div>

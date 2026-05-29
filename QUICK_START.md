@@ -1,6 +1,6 @@
 # Quick Start Guide: Adding New Sections
 
-## 🎯 5-Step Process to Add a New Section
+## 🎯 Simple Process to Add a New Section
 
 ### Example: Adding a "Use Cases" Section
 
@@ -52,8 +52,8 @@ sections:
     icon: 📋
 ```
 
-#### Step 4: Add Section HTML to `index.html`
-Copy an existing section (Labs or Modes) and customize it. Add before the closing `</main>` tag:
+#### Step 4: Create Section Include File
+Create `_includes/usecases-section.html` (copy from `labs-section.html` as a template):
 
 ```html
 <!-- Use Cases Section -->
@@ -98,7 +98,15 @@ Copy an existing section (Labs or Modes) and customize it. Add before the closin
 </div>
 ```
 
-#### Step 5: Update JavaScript in `assets/js/main.js`
+#### Step 5: Add Include to `index.html`
+Add the include statement before the closing `</main>` tag:
+
+```html
+<!-- Use Cases Section -->
+{% include usecases-section.html %}
+```
+
+#### Step 6: Update JavaScript in `assets/js/main.js`
 
 Add your section to the `currentPage` object (around line 82):
 ```javascript
@@ -119,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-#### Step 6: Rebuild Jekyll
+#### Step 7: Rebuild Jekyll
 ```bash
 bundle exec jekyll serve
 ```
@@ -131,9 +139,9 @@ bundle exec jekyll serve
 - ✅ Responsive cards
 - ✅ Theme support
 
-## 📋 Section HTML Template
+## 📋 Section Include Template
 
-Use this template when adding a new section to `index.html`:
+Save this as `_includes/[section-id]-section.html`:
 
 ```html
 <!-- [Section Name] Section -->
@@ -217,38 +225,49 @@ const ITEMS_PER_PAGE = 6;  // Change to 9, 12, etc.
 Reorder sections in `_data/sections.yml` - they appear in the sidebar in the order listed.
 
 ### Add Custom Badges
-In your section HTML, add custom badge types:
+In your section include file, add custom badge types:
 ```html
 {% if item.status %}
   <span class="badge badge-orange">⚡ {{ item.status }}</span>
 {% endif %}
 ```
 
-### Hide Search for Introduction
-The search bar is automatically hidden for the introduction section via JavaScript.
+### Customize Link Text
+Change the link text in your section include file:
+```html
+🔗 View Details  <!-- Instead of "View Lab" or "View on GitHub" -->
+```
 
-## 📊 File Size Comparison
+## 📊 File Structure
 
-**Before Modularization:**
-- `index.html`: 926 lines (everything in one file)
+**Current Structure:**
+```
+_includes/
+├── introduction-section.html  (87 lines)
+├── labs-section.html          (40 lines)
+└── modes-section.html         (38 lines)
 
-**After Modularization:**
-- `index.html`: 141 lines (85% reduction!)
-- `assets/css/styles.css`: 485 lines
-- `assets/js/main.js`: 237 lines
-- `_includes/introduction-section.html`: 87 lines
-- `_data/sections.yml`: 37 lines
+index.html                     (61 lines - just includes!)
+```
 
-**Total**: Much better organized and easier to maintain!
+**When you add a new section:**
+```
+_includes/
+├── introduction-section.html
+├── labs-section.html
+├── modes-section.html
+└── usecases-section.html      (your new file)
+
+index.html                     (63 lines - added 2 lines)
+```
 
 ## 💡 Pro Tips
 
-- Keep section IDs lowercase and hyphenated
-- Use descriptive icons that match your content
-- Test search functionality with various terms
-- Ensure all markdown files have proper front matter
-- Use consistent badge types across similar content
-- Always rebuild Jekyll after making changes
+- **Copy existing files**: Use `labs-section.html` or `modes-section.html` as templates
+- **Keep IDs consistent**: Use the same ID in sections.yml, include filename, and HTML
+- **Test locally first**: Always test with `bundle exec jekyll serve` before deploying
+- **One file per section**: Each section gets its own include file for easy maintenance
+- **Update JavaScript**: Don't forget to add your section to both places in `main.js`
 
 ## 🚀 Testing Your Changes
 
@@ -259,6 +278,18 @@ The search bar is automatically hidden for the introduction section via JavaScri
 5. Test pagination
 6. Test theme toggle
 7. Test responsive design (resize browser)
+
+## 📁 Files You'll Edit
+
+When adding a new section, you'll edit these files:
+
+1. ✏️ `_config.yml` - Add collection
+2. ✏️ `_data/sections.yml` - Add section metadata
+3. ➕ `_includes/[section-id]-section.html` - Create new file
+4. ✏️ `index.html` - Add include statement
+5. ✏️ `assets/js/main.js` - Add to currentPage and DOMContentLoaded
+
+That's only 5 files to touch, and most changes are just 1-2 lines!
 
 ---
 

@@ -8,6 +8,24 @@ sections:
     show_search: false
     type: custom
     include_file: introduction-section.html
+
+  - id: modes
+    title: Bob Modes
+    icon: 🤖
+    show_search: true
+    type: collection
+    collection: modes
+    link_text: View on GitHub
+    empty_message: No application presets compiled. Use Pages CMS to add initial configurations.
+    
+  - id: demos
+    title: Demos
+    icon: 💻
+    show_search: true
+    type: collection
+    collection: Demos
+    link_text: View Demos
+    empty_message: No demos found. Add new demos from your Pages CMS manager to populate this deck.
     
   - id: labs
     title: Hands-on Labs
@@ -17,15 +35,16 @@ sections:
     collection: labs
     link_text: View Lab
     empty_message: No active labs found. Add new labs from your Pages CMS manager to populate this deck.
-    
-  - id: modes
-    title: Bob Modes
-    icon: 🤖
+
+  - id: use-cases
+    title: Use Cases
+    icon: ⚙️
     show_search: true
     type: collection
-    collection: modes
-    link_text: View on GitHub
-    empty_message: No application presets compiled. Use Pages CMS to add initial configurations.
+    collection: use-cases
+    link_text: View Use Case
+    empty_message: No use cases found. Add new use cases from your Pages CMS manager to populate this deck.
+
 
 # To add a new section, copy the template below and customize:
 #
