@@ -1,0 +1,57 @@
+<!-- Reusable Section Template -->
+<!-- Usage: {% include section-template.html section_id="section-name" section_title="Section Title" section_icon="🚀" collection=site.collection_name %} -->
+
+<div id="{{ include.section_id }}-section" class="content-section">
+  <h2 class="section-title">{{ include.section_icon }} {{ include.section_title }}</h2>
+  <div id="{{ include.section_id }}-container" class="cards-grid">
+    {% for item in include.collection %}
+      <div class="asset-card" 
+           data-title="{{ item.title | downcase }}" 
+           data-content="{{ item.content | strip_html | downcase }}" 
+           data-industry="{{ item.industry | join: ' ' | downcase }}" 
+           data-language="{{ item.Language | downcase }}">
+        <h3>{{ item.title }}</h3>
+        
+        <!-- Badges -->
+        <div class="badge-container">
+          {% if item.domain %}
+            {% for domain_item in item.domain %}
+              <span class="badge badge-blue">🏢 {{ domain_item }}</span>
+            {% endfor %}
+          {% endif %}
+          {% if item.industry %}
+            {% for ind in item.industry %}
+              <span class="badge badge-blue">🏢 {{ ind }}</span>
+            {% endfor %}
+          {% endif %}
+          {% if item.duration %}
+            <span class="badge badge-green">⏱️ {{ item.duration }}</span>
+          {% endif %}
+        </div>
+        
+        <!-- Content -->
+        <div class="card-body">
+          {{ item.content }}
+        </div>
+        
+        <!-- Link -->
+        {% if item.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" 
+               style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              🔗 {{ include.link_text | default: "View" }}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
+                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>{{ include.empty_message | default: "No items found. Add new items to populate this section." }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="{{ include.section_id }}-pagination" class="pagination"></div>
+</div>

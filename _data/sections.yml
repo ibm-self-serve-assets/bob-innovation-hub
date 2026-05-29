@@ -1,0 +1,41 @@
+# Section Configuration for Bob Innovation Hub
+# Add new sections here to automatically include them in the navigation and content areas
+
+sections:
+  - id: introduction
+    title: Introduction
+    icon: 📖
+    show_search: false
+    type: custom
+    include_file: introduction-section.html
+    
+  - id: labs
+    title: Hands-on Labs
+    icon: 🚀
+    show_search: true
+    type: collection
+    collection: labs
+    link_text: View Lab
+    empty_message: No active labs found. Add new labs from your Pages CMS manager to populate this deck.
+    
+  - id: modes
+    title: Bob Modes
+    icon: 🤖
+    show_search: true
+    type: collection
+    collection: modes
+    link_text: View on GitHub
+    empty_message: No application presets compiled. Use Pages CMS to add initial configurations.
+
+# To add a new section, copy the template below and customize:
+#
+#  - id: your-section-id
+#    title: Your Section Title
+#    icon: 🎯
+#    show_search: true
+#    type: collection
+#    collection: your_collection_name
+#    link_text: View Item
+#    empty_message: No items found. Add items to populate this section.
+
+# Made with Bob
