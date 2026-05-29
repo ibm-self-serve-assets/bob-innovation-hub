@@ -1,6 +1,6 @@
 # Quick Start Guide: Adding New Sections
 
-## 🎯 3-Step Process to Add a New Section
+## 🎯 5-Step Process to Add a New Section
 
 ### Example: Adding a "Use Cases" Section
 
@@ -32,44 +32,163 @@ collections:
 ```
 
 #### Step 3: Update `_data/sections.yml`
-Add your section configuration:
+Add your section metadata:
 ```yaml
-  - id: usecases
+sections:
+  - id: introduction
+    title: Introduction
+    icon: 📖
+    
+  - id: labs
+    title: Hands-on Labs
+    icon: 🚀
+    
+  - id: modes
+    title: Bob Modes
+    icon: 🤖
+    
+  - id: usecases     # ← Add this
     title: Use Cases
     icon: 📋
-    show_search: true
-    type: collection
-    collection: usecases
-    link_text: View Use Case
-    empty_message: No use cases found. Add use cases to populate this section.
 ```
 
-#### Step 4: Rebuild Jekyll
+#### Step 4: Add Section HTML to `index.html`
+Copy an existing section (Labs or Modes) and customize it. Add before the closing `</main>` tag:
+
+```html
+<!-- Use Cases Section -->
+<div id="usecases-section" class="content-section">
+  <h2 class="section-title">📋 Use Cases</h2>
+  <div id="usecases-container" class="cards-grid">
+    {% for usecase in site.usecases %}
+      <div class="asset-card" 
+           data-title="{{ usecase.title | downcase }}" 
+           data-content="{{ usecase.content | strip_html | downcase }}" 
+           data-industry="{{ usecase.industry | join: ' ' | downcase }}">
+        <h3>{{ usecase.title }}</h3>
+        <div class="badge-container">
+          {% if usecase.industry %}
+            {% for ind in usecase.industry %}
+              <span class="badge badge-blue">🏢 {{ ind }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {{ usecase.content }}
+        </div>
+        {% if usecase.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer" 
+               style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              🔗 View Use Case
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
+                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>No use cases found. Add use cases to populate this section.</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="usecases-pagination" class="pagination"></div>
+</div>
+```
+
+#### Step 5: Update JavaScript in `assets/js/main.js`
+
+Add your section to the `currentPage` object (around line 82):
+```javascript
+let currentPage = {
+  labs: 1,
+  modes: 1,
+  usecases: 1  // ← Add this
+};
+```
+
+Add initialization in the `DOMContentLoaded` event (around line 221):
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+  filterAndPaginate('introduction');
+  filterAndPaginate('labs');
+  filterAndPaginate('modes');
+  filterAndPaginate('usecases');  // ← Add this
+});
+```
+
+#### Step 6: Rebuild Jekyll
 ```bash
 bundle exec jekyll serve
 ```
 
 **That's it!** Your new section will automatically have:
-- ✅ Navigation button in sidebar
+- ✅ Navigation button in sidebar (from sections.yml)
 - ✅ Search functionality
 - ✅ Pagination
 - ✅ Responsive cards
 - ✅ Theme support
 
-## 📋 Section Configuration Template
+## 📋 Section HTML Template
 
-Copy and customize this template in `_data/sections.yml`:
+Use this template when adding a new section to `index.html`:
 
-```yaml
-  - id: your-section-id           # Unique ID (lowercase, no spaces)
-    title: Your Section Title     # Display name
-    icon: 🎯                      # Emoji icon
-    show_search: true             # Enable search (true/false)
-    type: collection              # 'collection' or 'custom'
-    collection: your_collection   # Collection name from _config.yml
-    link_text: View Item          # Link button text
-    empty_message: No items found. # Message when empty
+```html
+<!-- [Section Name] Section -->
+<div id="[section-id]-section" class="content-section">
+  <h2 class="section-title">[icon] [Section Title]</h2>
+  <div id="[section-id]-container" class="cards-grid">
+    {% for item in site.[collection-name] %}
+      <div class="asset-card" 
+           data-title="{{ item.title | downcase }}" 
+           data-content="{{ item.content | strip_html | downcase }}" 
+           data-industry="{{ item.industry | join: ' ' | downcase }}">
+        <h3>{{ item.title }}</h3>
+        <div class="badge-container">
+          {% if item.industry %}
+            {% for ind in item.industry %}
+              <span class="badge badge-blue">🏢 {{ ind }}</span>
+            {% endfor %}
+          {% endif %}
+          {% if item.duration %}
+            <span class="badge badge-green">⏱️ {{ item.duration }}</span>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {{ item.content }}
+        </div>
+        {% if item.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" 
+               style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              🔗 [Link Text]
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
+                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>[Empty message]</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="[section-id]-pagination" class="pagination"></div>
+</div>
 ```
+
+Replace:
+- `[Section Name]` - Human-readable name (e.g., "Use Cases")
+- `[section-id]` - Lowercase ID (e.g., "usecases")
+- `[icon]` - Emoji icon (e.g., "📋")
+- `[Section Title]` - Display title (e.g., "Use Cases")
+- `[collection-name]` - Jekyll collection name (e.g., "usecases")
+- `[Link Text]` - Link button text (e.g., "View Use Case")
+- `[Empty message]` - Message when no items (e.g., "No use cases found.")
 
 ## 🎨 Customizing Card Display
 
@@ -95,35 +214,32 @@ const ITEMS_PER_PAGE = 6;  // Change to 9, 12, etc.
 ```
 
 ### Change Section Order
-Reorder sections in `_data/sections.yml` - they appear in the order listed.
+Reorder sections in `_data/sections.yml` - they appear in the sidebar in the order listed.
 
-### Hide Search for a Section
-Set `show_search: false` in the section configuration.
+### Add Custom Badges
+In your section HTML, add custom badge types:
+```html
+{% if item.status %}
+  <span class="badge badge-orange">⚡ {{ item.status }}</span>
+{% endif %}
+```
 
-### Custom Section Layout
-For non-standard layouts:
-1. Create `_includes/your-custom-section.html`
-2. Use `type: custom` and `include_file: your-custom-section.html`
+### Hide Search for Introduction
+The search bar is automatically hidden for the introduction section via JavaScript.
 
 ## 📊 File Size Comparison
 
 **Before Modularization:**
-- `index.html`: 926 lines
+- `index.html`: 926 lines (everything in one file)
 
 **After Modularization:**
-- `index.html`: 73 lines (92% reduction!)
+- `index.html`: 141 lines (85% reduction!)
 - `assets/css/styles.css`: 485 lines
 - `assets/js/main.js`: 237 lines
-- `_includes/section-template.html`: 54 lines
+- `_includes/introduction-section.html`: 87 lines
 - `_data/sections.yml`: 37 lines
 
-**Total**: Better organized, easier to maintain!
-
-## 🚀 Next Steps
-
-1. Test your changes locally: `bundle exec jekyll serve`
-2. View at: `http://localhost:4000`
-3. Commit and push to deploy
+**Total**: Much better organized and easier to maintain!
 
 ## 💡 Pro Tips
 
@@ -132,6 +248,17 @@ For non-standard layouts:
 - Test search functionality with various terms
 - Ensure all markdown files have proper front matter
 - Use consistent badge types across similar content
+- Always rebuild Jekyll after making changes
+
+## 🚀 Testing Your Changes
+
+1. Start Jekyll locally: `bundle exec jekyll serve`
+2. View at: `http://localhost:4000`
+3. Test navigation between sections
+4. Test search functionality
+5. Test pagination
+6. Test theme toggle
+7. Test responsive design (resize browser)
 
 ---
 
