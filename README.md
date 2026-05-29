@@ -92,14 +92,15 @@ sections:
 Create a new file `_includes/usecases-section.html` (copy from labs-section.html or modes-section.html as a template):
 
 ```html
+{% raw %}
 <!-- Use Cases Section -->
 <div id="usecases-section" class="content-section">
   <h2 class="section-title">📋 Use Cases</h2>
   <div id="usecases-container" class="cards-grid">
     {% for usecase in site.usecases %}
-      <div class="asset-card" 
-           data-title="{{ usecase.title | downcase }}" 
-           data-content="{{ usecase.content | strip_html | downcase }}" 
+      <div class="asset-card"
+           data-title="{{ usecase.title | downcase }}"
+           data-content="{{ usecase.content | strip_html | downcase }}"
            data-industry="{{ usecase.industry | join: ' ' | downcase }}">
         <h3>{{ usecase.title }}</h3>
         <div class="badge-container">
@@ -114,7 +115,7 @@ Create a new file `_includes/usecases-section.html` (copy from labs-section.html
         </div>
         {% if usecase.link %}
           <div style="margin-top: 1rem;">
-            <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer" 
+            <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer"
                style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
               🔗 View Use Case
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
@@ -132,6 +133,7 @@ Create a new file `_includes/usecases-section.html` (copy from labs-section.html
   </div>
   <div id="usecases-pagination" class="pagination"></div>
 </div>
+{% endraw %}
 ```
 
 ### Step 5: Add Include to index.html
@@ -140,7 +142,7 @@ Add the include statement in `index.html` before the closing `</main>` tag:
 
 ```html
 <!-- Use Cases Section -->
-{% include usecases-section.html %}
+{% raw %}{% include usecases-section.html %}{% endraw %}
 ```
 
 ### Step 6: Update JavaScript
@@ -184,14 +186,15 @@ bundle exec jekyll serve
 Use this template when creating a new section file in `_includes/`:
 
 ```html
+{% raw %}
 <!-- [Section Name] Section -->
 <div id="[section-id]-section" class="content-section">
   <h2 class="section-title">[icon] [Section Title]</h2>
   <div id="[section-id]-container" class="cards-grid">
     {% for item in site.[collection-name] %}
-      <div class="asset-card" 
-           data-title="{{ item.title | downcase }}" 
-           data-content="{{ item.content | strip_html | downcase }}" 
+      <div class="asset-card"
+           data-title="{{ item.title | downcase }}"
+           data-content="{{ item.content | strip_html | downcase }}"
            data-industry="{{ item.industry | join: ' ' | downcase }}">
         <h3>{{ item.title }}</h3>
         <div class="badge-container">
@@ -209,7 +212,7 @@ Use this template when creating a new section file in `_includes/`:
         </div>
         {% if item.link %}
           <div style="margin-top: 1rem;">
-            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" 
+            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer"
                style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
               🔗 [Link Text]
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
@@ -227,6 +230,7 @@ Use this template when creating a new section file in `_includes/`:
   </div>
   <div id="[section-id]-pagination" class="pagination"></div>
 </div>
+{% endraw %}
 ```
 
 Replace:
