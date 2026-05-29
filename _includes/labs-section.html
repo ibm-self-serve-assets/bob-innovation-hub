@@ -3,13 +3,11 @@
   <h2 class="section-title">🚀 Hands-on Labs</h2>
   <div id="labs-container" class="cards-grid">
     {% for lab in site.labs %}
-      <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-industry="{{ lab.industry | join: ' ' | downcase }}" data-language="{{ lab.Language | downcase }}">
+      <div class="asset-card" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-domain="{{ lab.domain | downcase }}">
         <h3>{{ lab.title }}</h3>
         <div class="badge-container">
           {% if lab.domain %}
-            {% for ind in lab.domain %}
-              <span class="badge badge-blue">🏢 {{ ind }}</span>
-            {% endfor %}
+            <span class="badge badge-blue">🔧 {{ lab.domain }}</span>
           {% endif %}
           {% if lab.duration %}
             <span class="badge badge-green">⏱️ {{ lab.duration }}</span>

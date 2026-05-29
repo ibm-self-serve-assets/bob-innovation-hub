@@ -24,6 +24,14 @@ content:
         label: "Mode Github Link"
         type: string
         required: true
+      - name : demo
+        label: "Mode Demo Link"
+        type: string
+        required: false
+      - name: lab
+        label: "Mode Lab Link"
+        type: string
+        required: false
   - name: labs
     label: "🤖 Bob Labs"
     type: collection
@@ -51,6 +59,56 @@ content:
         required: true
       - name: link
         label: "Lab Link"
+        type: string
+        required: true
+  - name: demos
+    label: "💻 Bob Demos"
+    type: collection
+    path: _demos
+    fields:
+      - name: title
+        label: "Demo Name"
+        type: string
+        required: true
+      - name: domain
+        label: "Domain"
+        type: select
+        required: true
+        options:
+         values: ["Data", "Automation", "Security"]
+         multiple: false
+         placeholder: "Select Domain"
+      - name: body
+        label: "Demo Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Demo Link"
+        type: string
+        required: true
+  - name: use-cases
+    label: "📋 Bob Usecases"
+    type: collection
+    path: _use-cases
+    fields:
+      - name: title
+        label: "Use-case Title"
+        type: string
+        required: true
+      - name: domain
+        label: "Domain"
+        type: select
+        required: true
+        options:
+         values: ["Data", "Automation", "Security"]
+         multiple: false
+         placeholder: "Select Domain"
+      - name: body
+        label: "Use-case Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Use-case Link"
         type: string
         required: true
 

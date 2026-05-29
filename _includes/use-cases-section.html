@@ -3,18 +3,11 @@
   <h2 class="section-title">📋 Use Cases</h2>
   <div id="use-cases-container" class="cards-grid">
     {% for usecase in site.usecases %}
-      <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-industry="{{ usecase.industry | join: ' ' | downcase }}">
+      <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
         <h3>{{ usecase.title }}</h3>
         <div class="badge-container">
-          {% if usecase.industry %}
-            {% for ind in usecase.industry %}
-              <span class="badge badge-blue">🏢 {{ ind }}</span>
-            {% endfor %}
-          {% endif %}
           {% if usecase.domain %}
-            {% for domain_item in usecase.domain %}
-              <span class="badge badge-blue">🔧 {{ domain_item }}</span>
-            {% endfor %}
+            <span class="badge badge-blue">🔧 {{ usecase.domain }}</span>
           {% endif %}
         </div>
         <div class="card-body">

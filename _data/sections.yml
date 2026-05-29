@@ -38,7 +38,7 @@ sections:
 
   - id: use-cases
     title: Use Cases
-    icon: ⚙️
+    icon: 📋
     show_search: true
     type: collection
     collection: use-cases

@@ -3,18 +3,11 @@
   <h2 class="section-title">🎯 Demos</h2>
   <div id="demos-container" class="cards-grid">
     {% for demo in site.demos %}
-      <div class="asset-card" data-title="{{ demo.title | downcase }}" data-content="{{ demo.content | strip_html | downcase }}" data-industry="{{ demo.industry | join: ' ' | downcase }}">
+      <div class="asset-card" data-title="{{ demo.title | downcase }}" data-content="{{ demo.content | strip_html | downcase }}" data-domain="{{ demo.domain | downcase }}">
         <h3>{{ demo.title }}</h3>
         <div class="badge-container">
-          {% if demo.industry %}
-            {% for ind in demo.industry %}
-              <span class="badge badge-blue">🏢 {{ ind }}</span>
-            {% endfor %}
-          {% endif %}
-          {% if demo.technology %}
-            {% for tech in demo.technology %}
-              <span class="badge badge-orange">⚡ {{ tech }}</span>
-            {% endfor %}
+          {% if demo.domain %}
+            <span class="badge badge-blue">🔧 {{ demo.domain }}</span>
           {% endif %}
         </div>
         <div class="card-body">
