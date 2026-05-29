@@ -1,0 +1,41 @@
+<!-- Demos Section -->
+<div id="demos-section" class="content-section">
+  <h2 class="section-title">🎯 Demos</h2>
+  <div id="demos-container" class="cards-grid">
+    {% for demo in site.demos %}
+      <div class="asset-card" data-title="{{ demo.title | downcase }}" data-content="{{ demo.content | strip_html | downcase }}" data-industry="{{ demo.industry | join: ' ' | downcase }}">
+        <h3>{{ demo.title }}</h3>
+        <div class="badge-container">
+          {% if demo.industry %}
+            {% for ind in demo.industry %}
+              <span class="badge badge-blue">🏢 {{ ind }}</span>
+            {% endfor %}
+          {% endif %}
+          {% if demo.technology %}
+            {% for tech in demo.technology %}
+              <span class="badge badge-orange">⚡ {{ tech }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {{ demo.content }}
+        </div>
+        {% if demo.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ demo.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              🔗 View Demo
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
+                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>No demos found. Add demos to populate this section.</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="demos-pagination" class="pagination"></div>
+</div>

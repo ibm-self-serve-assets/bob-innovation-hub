@@ -1,0 +1,41 @@
+<!-- Use Cases Section -->
+<div id="use-cases-section" class="content-section">
+  <h2 class="section-title">📋 Use Cases</h2>
+  <div id="use-cases-container" class="cards-grid">
+    {% for usecase in site.usecases %}
+      <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-industry="{{ usecase.industry | join: ' ' | downcase }}">
+        <h3>{{ usecase.title }}</h3>
+        <div class="badge-container">
+          {% if usecase.industry %}
+            {% for ind in usecase.industry %}
+              <span class="badge badge-blue">🏢 {{ ind }}</span>
+            {% endfor %}
+          {% endif %}
+          {% if usecase.domain %}
+            {% for domain_item in usecase.domain %}
+              <span class="badge badge-blue">🔧 {{ domain_item }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {{ usecase.content }}
+        </div>
+        {% if usecase.link %}
+          <div style="margin-top: 1rem;">
+            <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+              🔗 View Use Case
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
+                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p>No use cases found. Add use cases to populate this section.</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="use-cases-pagination" class="pagination"></div>
+</div>
