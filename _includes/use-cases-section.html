@@ -2,7 +2,7 @@
 <div id="use-cases-section" class="content-section">
   <h2 class="section-title">📋 Use Cases</h2>
   <div id="use-cases-container" class="cards-grid">
-    {% for usecase in site.usecases %}
+    {% for usecase in site.use-cases %}
       <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
         <h3>{{ usecase.title }}</h3>
         <div class="badge-container">

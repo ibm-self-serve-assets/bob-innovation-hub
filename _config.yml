@@ -8,3 +8,9 @@ collections:
   modes:
     output: true
     permalink: /modes/:path/
+  use-cases:
+    output: true
+    permalink: /use-cases/:path/
+  demos:
+    output: true
+    permalink: /demos/:path/
