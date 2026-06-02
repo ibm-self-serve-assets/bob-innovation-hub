@@ -84,7 +84,9 @@ searchBar.addEventListener('input', (e) => {
 const ITEMS_PER_PAGE = 6;
 let currentPage = {
   labs: 1,
-  modes: 1
+  modes: 1,
+  demos: 1,
+  'use-cases': 1
 };
 
 function filterAndPaginate(section) {
@@ -225,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
   filterAndPaginate('introduction');
   filterAndPaginate('labs');
   filterAndPaginate('modes');
+  filterAndPaginate('demos');
+  filterAndPaginate('use-cases');
 });
 
 // Made with Bob
