@@ -1,5 +1,6 @@
 ---
-title: Retail Demo- IBM Bob + Confluent + watsonx Orchestrate
+title: Modernize Retail with dynamic pricing and offer optimization with IBM
+  Bob, Confluent and watsonx Orchestrate
 domain: Automation
 link: https://ibm.box.com/s/xgi4jng5nv8o4abspqmi335gvbi69h01
 ---
