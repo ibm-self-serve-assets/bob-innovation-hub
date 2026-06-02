@@ -41,7 +41,7 @@ sections:
     icon: 💻
     show_search: true
     type: collection
-    collection: Demos
+    collection: demos
     link_text: View Demos
     empty_message: No demos found. Add new demos from your Pages CMS manager to populate this deck.
 
