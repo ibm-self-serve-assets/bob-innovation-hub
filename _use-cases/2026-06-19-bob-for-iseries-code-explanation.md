@@ -1,6 +1,6 @@
 ---
-title: Bob for iseries UI Modernization with Carbon Design System
+title: Bob for iseries RLA to SQL conversion
 domain: Data
-link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab2-ui-modernization-react-carbon.md
+link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab3-dds-to-sql-rla-refactoring.md
 ---
-Use Bob to create a web application with Carbon Design to display articles from as400
+Use Bob to Convert article lookup from RLA to SQL with JOIN
