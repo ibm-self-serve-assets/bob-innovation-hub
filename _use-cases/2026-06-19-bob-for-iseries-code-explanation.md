@@ -1,6 +1,6 @@
 ---
-title: Bob for iseries code explanation
+title: Bob for iseries RPG Fixed-to-Free Conversion
 domain: Data
-link: http://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab0-rpg-project-introduction.md
+link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab1-rpg-documentation-fixed-to-free.md
 ---
-Use Bob as a discovery tool to understand legacy code before modernizing
+Use Bob to Convert the subfile load logic (s01lod) to modern RPG
