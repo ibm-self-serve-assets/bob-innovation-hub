@@ -127,5 +127,22 @@ content:
         label: "Mode Link"
         type: string
         required: false
+  - name: learning-content
+    label: "Bob Learning Content"
+    type: collection
+    path: _learning
+    fields:
+      - name: title
+        label: "Document Title"
+        type: string
+        required: true
+      - name: body
+        label: "Document Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Document Link"
+        type: string
+        required: true
 
 # Made with Bob
