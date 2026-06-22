@@ -1,5 +1,6 @@
 ---
 title: "ConcertDef SBOM "
+type: Custom
 industry:
   - Cross
 link: https://github.com/ibm-self-serve-assets/concert-bob-custom-mode
