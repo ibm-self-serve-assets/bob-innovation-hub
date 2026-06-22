@@ -95,6 +95,14 @@ content:
         label: "Use-case Title"
         type: string
         required: true
+      - name: type
+        label: "Type"
+        type: select
+        required: true
+        options:
+         values: ["Technical", "Business"]
+         multiple: false
+         placeholder: "Use-case Type"
       - name: domain
         label: "Domain"
         type: select
@@ -111,5 +119,13 @@ content:
         label: "Use-case Link"
         type: string
         required: true
+      - name: link
+        label: "Demo Link"
+        type: string
+        required: false
+      - name: link
+        label: "Mode Link"
+        type: string
+        required: false
 
 # Made with Bob
