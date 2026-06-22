@@ -1,5 +1,6 @@
 ---
 title: ibm-ace-bob-mode
+type: Custom
 industry:
   - Cross
 link: https://github.com/ibm-self-serve-assets/ibm-ace-bob-mode

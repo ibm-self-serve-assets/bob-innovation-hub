@@ -14,3 +14,6 @@ collections:
   demos:
     output: true
     permalink: /demos/:path/
+  learning:
+    output: true
+    permalink: /learning/:path/

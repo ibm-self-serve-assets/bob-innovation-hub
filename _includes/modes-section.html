@@ -1,52 +1,115 @@
-<!-- Modes Section -->
+<!-- Modes Section (tabbed: Premium Modes / Custom Modes) -->
 <div id="modes-section" class="content-section">
-  <h2 class="section-title">🤖 Bob Modes</h2>
-  <div id="modes-container" class="cards-grid">
-    {% for mode in site.modes %}
-      <div class="asset-card" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
-        <h3>{{ mode.title }}</h3>
-        <div class="badge-container">
-          {% if mode.industry %}
-            {% for ind in mode.industry %}
-              <span class="badge badge-blue">🏢 {{ ind }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-        <div class="card-body">
-          {{ mode.content }}
-        </div>
-        <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          {% if mode.link %}
-            <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              🔗 View on GitHub
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
-                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          {% endif %}
-          {% if mode.demo %}
-            <a href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              🎯 View Demo
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
-                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          {% endif %}
-          {% if mode.lab %}
-            <a href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-              🚀 View Lab
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;">
-                <path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          {% endif %}
-        </div>
-      </div>
-    {% else %}
-      <div class="empty-state">
-        <p>No application presets compiled. Use Pages CMS to add initial configurations.</p>
-      </div>
-    {% endfor %}
+  <h2 class="section-title">🤖 Modes</h2>
+
+  <!-- Sub-section tabs -->
+  <div class="sub-tabs" role="tablist">
+    <button class="sub-tab active" data-sub-section="premium-modes" role="tab" aria-selected="true">
+      ⭐ Premium Modes
+    </button>
+    <button class="sub-tab" data-sub-section="custom-modes" role="tab" aria-selected="false">
+      🤖 Custom Modes
+    </button>
   </div>
-  <div id="modes-pagination" class="pagination"></div>
+
+  <!-- Premium Modes -->
+  <div id="premium-modes-sub" class="sub-section active">
+    <div id="premium-modes-container" class="cards-grid">
+      {% assign premium_modes = site.modes | where: "type", "Premium" %}
+      {% if premium_modes.size > 0 %}
+        {% for mode in premium_modes %}
+          <div class="asset-card" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
+            <h3>{{ mode.title }}</h3>
+            <div class="badge-container">
+              <span class="badge badge-orange">⭐ Premium</span>
+              {% if mode.industry %}
+                {% for ind in mode.industry %}
+                  <span class="badge badge-blue">🏢 {{ ind }}</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="card-body">
+              {{ mode.content }}
+            </div>
+            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+              {% if mode.link %}
+                <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🔗 View on GitHub
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+              {% if mode.demo %}
+                <a href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🎯 View Demo
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+              {% if mode.lab %}
+                <a href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🚀 View Lab
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No premium modes available yet. Add modes with <code>type: Premium</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="premium-modes-pagination" class="pagination"></div>
+  </div>
+
+  <!-- Custom Modes -->
+  <div id="custom-modes-sub" class="sub-section">
+    <div id="custom-modes-container" class="cards-grid">
+      {% assign custom_modes = site.modes | where: "type", "Custom" %}
+      {% if custom_modes.size > 0 %}
+        {% for mode in custom_modes %}
+          <div class="asset-card" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
+            <h3>{{ mode.title }}</h3>
+            <div class="badge-container">
+              <span class="badge badge-green">🤖 Custom</span>
+              {% if mode.industry %}
+                {% for ind in mode.industry %}
+                  <span class="badge badge-blue">🏢 {{ ind }}</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="card-body">
+              {{ mode.content }}
+            </div>
+            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+              {% if mode.link %}
+                <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🔗 View on GitHub
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+              {% if mode.demo %}
+                <a href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🎯 View Demo
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+              {% if mode.lab %}
+                <a href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                  🚀 View Lab
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No custom modes found. Add modes with <code>type: Custom</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="custom-modes-pagination" class="pagination"></div>
+  </div>
+
 </div>

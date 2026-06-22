@@ -1,5 +1,6 @@
 ---
 title: vault-secure-coding-mode
+type: Custom
 industry:
   - Cross
 link: https://github.com/ibm-self-serve-assets/vault-secure-coding-mode

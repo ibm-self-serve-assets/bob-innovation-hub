@@ -1,5 +1,6 @@
 ---
 title: confluent-kafka-bob-mode
+type: Custom
 industry:
   - Cross
 link: https://github.com/ibm-self-serve-assets/confluent-kafka-bob-mode

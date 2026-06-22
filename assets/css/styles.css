@@ -271,6 +271,7 @@ section#main_content {
   gap: 1.5rem;
   margin-bottom: 2rem;
   width: 100%;
+  align-items: start;
 }
 
 @media(min-width: 768px) {
@@ -298,6 +299,13 @@ section#main_content {
   padding: 1.5rem;
   box-shadow: 0 4px 6px -1px var(--card-shadow);
   transition: all 0.2s ease;
+  height: 420px !important;
+  max-height: 420px !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
 }
 
 .asset-card:hover {
@@ -337,6 +345,17 @@ section#main_content {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  flex: 1 1 0 !important;
+  overflow-y: auto !important;
+  min-height: 0 !important;
+}
+
+.card-body > * {
+  margin-top: 0;
+}
+
+.card-body > *:last-child {
+  margin-bottom: 0;
 }
 
 .empty-state {
@@ -481,6 +500,61 @@ section#main_content {
 /* Hidden class for pagination */
 .hidden {
   display: none !important;
+}
+
+/* Full-width cards (e.g. landing/intro) should not be height-constrained */
+.asset-card[style*="grid-column"] {
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Sub-tabs (e.g. Use-Cases: Technical / Business) */
+.sub-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-primary);
+  padding-bottom: 0;
+}
+
+.sub-tab {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px 4px 0 0;
+}
+
+.sub-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.sub-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.sub-section {
+  display: none;
+}
+
+.sub-section.active {
+  display: block;
+}
+
+/* Sidebar sub-item indent (for future use) */
+.sidebar-button.sub-item {
+  padding-left: 2.25rem;
+  font-size: 0.9rem;
 }
 
 /* Made with Bob */
