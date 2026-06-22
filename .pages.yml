@@ -127,11 +127,11 @@ content:
         label: "Use-case Link"
         type: string
         required: true
-      - name: link
+      - name: demo
         label: "Demo Link"
         type: string
         required: false
-      - name: link
+      - name: mode
         label: "Mode Link"
         type: string
         required: false
