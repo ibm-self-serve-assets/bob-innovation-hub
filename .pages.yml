@@ -8,6 +8,14 @@ content:
         label: "Mode Name"
         type: string
         required: true
+      - name: type
+        label: "Type"
+        type: select
+        required: true
+        options:
+         values: ["Premium", "Custom"]
+         multiple: false
+         placeholder: "Use-case Type"
       - name: industry
         label: "Industry"
         type: select
