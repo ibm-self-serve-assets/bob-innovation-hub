@@ -4,8 +4,6 @@ domain: Data
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-2-build-a-simple-article-list
 ---
-As a member of the SAMCO development team, your mission is to modernize your application and development practices — from green screen to a collaborative Git / VS Code era with DevOps automation. Relax, IBM Bob is here to help.
-
 **Use Case**: Display articles in a web browser using Carbon Design System
 
 **What You'll Do:**
