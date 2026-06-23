@@ -152,5 +152,22 @@ content:
         label: "Document Link"
         type: string
         required: true
+  - name: bob101
+    label: "Bob 101"
+    type: collection
+    path: _learning
+    fields:
+      - name: title
+        label: "Document Title"
+        type: string
+        required: true
+      - name: body
+        label: "Document Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Document Link"
+        type: string
+        required: true
 
 # Made with Bob
