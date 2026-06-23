@@ -36,43 +36,118 @@ const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes'];
 // Sections with sub-tabs
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
 
+// Route map: URL path → { section, subSection? }
+// Sub-sections for tabbed sections get their own paths.
+const ROUTE_MAP = {
+  '/':                        { section: 'introduction' },
+  '/bob101':                  { section: 'bob101' },
+  '/learning-resources':      { section: 'learning-resources' },
+  '/use-cases':               { section: 'use-cases', subSection: 'technical-use-cases' },
+  '/use-cases/technical':     { section: 'use-cases', subSection: 'technical-use-cases' },
+  '/use-cases/business':      { section: 'use-cases', subSection: 'business-use-cases' },
+  '/demos':                   { section: 'demos' },
+  '/labs':                    { section: 'labs' },
+  '/modes':                   { section: 'modes', subSection: 'premium-modes' },
+  '/modes/premium':           { section: 'modes', subSection: 'premium-modes' },
+  '/modes/custom':            { section: 'modes', subSection: 'custom-modes' },
+  '/skills':                  { section: 'skills' },
+};
+
+// Reverse map: section (+ optional subSection) → canonical URL path
+const SECTION_TO_ROUTE = {
+  'introduction':         '/',
+  'bob101':               '/bob101',
+  'learning-resources':   '/learning-resources',
+  'use-cases':            '/use-cases',
+  'technical-use-cases':  '/use-cases/technical',
+  'business-use-cases':   '/use-cases/business',
+  'demos':                '/demos',
+  'labs':                 '/labs',
+  'modes':                '/modes',
+  'premium-modes':        '/modes/premium',
+  'custom-modes':         '/modes/custom',
+  'skills':               '/skills',
+};
+
 // Sidebar Navigation
 const sidebarButtons = document.querySelectorAll('.sidebar-button');
 const contentSections = document.querySelectorAll('.content-section');
 const searchBar = document.getElementById('searchBar');
 const searchContainer = document.querySelector('.search-container');
 
+function activateSection(sectionId, subSectionId, pushRoute) {
+  const sectionEl = document.getElementById(`${sectionId}-section`);
+  if (!sectionEl) return;
+
+  // Update sidebar buttons
+  sidebarButtons.forEach(btn => btn.classList.remove('active'));
+  const matchingBtn = document.querySelector(`.sidebar-button[data-section="${sectionId}"]`);
+  if (matchingBtn) matchingBtn.classList.add('active');
+
+  // Update content sections
+  contentSections.forEach(s => s.classList.remove('active'));
+  sectionEl.classList.add('active');
+
+  // Show/hide search bar
+  if (SEARCH_SECTIONS.includes(sectionId)) {
+    searchContainer.style.display = 'block';
+    searchBar.value = '';
+  } else {
+    searchContainer.style.display = 'none';
+  }
+
+  // Handle sub-tabs
+  if (subSectionId && SUB_TAB_SECTIONS.includes(sectionId)) {
+    sectionEl.querySelectorAll('.sub-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    const targetTab = sectionEl.querySelector(`.sub-tab[data-sub-section="${subSectionId}"]`);
+    if (targetTab) {
+      targetTab.classList.add('active');
+      targetTab.setAttribute('aria-selected', 'true');
+    }
+
+    sectionEl.querySelectorAll('.sub-section').forEach(p => p.classList.remove('active'));
+    const targetPanel = document.getElementById(`${subSectionId}-sub`);
+    if (targetPanel) targetPanel.classList.add('active');
+
+    filterAndPaginate(subSectionId);
+  } else if (SUB_TAB_SECTIONS.includes(sectionId)) {
+    // No sub-section specified — activate the first sub-tab
+    const firstTab = sectionEl.querySelector('.sub-tab');
+    if (firstTab) {
+      const firstSubSection = firstTab.dataset.subSection;
+      sectionEl.querySelectorAll('.sub-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      firstTab.classList.add('active');
+      firstTab.setAttribute('aria-selected', 'true');
+      sectionEl.querySelectorAll('.sub-section').forEach(p => p.classList.remove('active'));
+      const firstPanel = document.getElementById(`${firstSubSection}-sub`);
+      if (firstPanel) firstPanel.classList.add('active');
+      filterAndPaginate(firstSubSection);
+    }
+  } else if (SEARCH_SECTIONS.includes(sectionId)) {
+    filterAndPaginate(sectionId);
+  }
+
+  // Push URL to history
+  if (pushRoute) {
+    const routeKey = subSectionId
+      ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '/')
+      : (SECTION_TO_ROUTE[sectionId] || '/');
+    const url = window.location.pathname === routeKey ? null : routeKey;
+    if (url) history.pushState({ section: sectionId, subSection: subSectionId || null }, '', url);
+  }
+}
+
 sidebarButtons.forEach(button => {
   button.addEventListener('click', () => {
     const targetSection = button.dataset.section;
-
-    // Skip nav-link style buttons embedded in content (no section switch)
     if (!document.getElementById(`${targetSection}-section`)) return;
-
-    // Update sidebar buttons
-    sidebarButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    // Update content sections
-    contentSections.forEach(section => section.classList.remove('active'));
-    document.getElementById(`${targetSection}-section`).classList.add('active');
-
-    // Show/hide search bar
-    if (SEARCH_SECTIONS.includes(targetSection)) {
-      searchContainer.style.display = 'block';
-      searchBar.value = '';
-      // For tabbed sections, paginate the active sub-section
-      if (SUB_TAB_SECTIONS.includes(targetSection)) {
-        const activeSubTab = document.querySelector(`#${targetSection}-section .sub-tab.active`);
-        if (activeSubTab) {
-          filterAndPaginate(activeSubTab.dataset.subSection);
-        }
-      } else {
-        filterAndPaginate(targetSection);
-      }
-    } else {
-      searchContainer.style.display = 'none';
-    }
+    activateSection(targetSection, null, true);
   });
 });
 
@@ -82,11 +157,12 @@ if (document.querySelector('.sidebar-button.active') &&
   searchContainer.style.display = 'none';
 }
 
-// Sub-tab Navigation (Use-Cases: Technical / Business)
+// Sub-tab Navigation
 document.querySelectorAll('.sub-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     const subSection = tab.dataset.subSection;
     const parentSection = tab.closest('.content-section');
+    const sectionId = parentSection.id.replace('-section', '');
 
     // Update tab active state
     parentSection.querySelectorAll('.sub-tab').forEach(t => {
@@ -104,6 +180,12 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
     // Reset search and paginate the new sub-section
     searchBar.value = '';
     filterAndPaginate(subSection);
+
+    // Push route for the sub-tab
+    const routeKey = SECTION_TO_ROUTE[subSection] || SECTION_TO_ROUTE[sectionId] || '/';
+    if (window.location.pathname !== routeKey) {
+      history.pushState({ section: sectionId, subSection: subSection }, '', routeKey);
+    }
   });
 });
 
@@ -268,14 +350,36 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs', 'custom-modes', 'premium-modes', 'demos', 'technical-use-cases', 'business-use-cases', 'modes'];
+const ALL_PAGINATED_SECTIONS = ['labs', 'custom-modes', 'premium-modes', 'demos', 'technical-use-cases', 'business-use-cases', 'modes', 'bob101', 'skills'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
 }
 
-// Initialize pagination on page load
-document.addEventListener('DOMContentLoaded', repaginateAll);
+// Resolve the current URL path to a section + optional sub-section
+function resolveRoute(path) {
+  // Normalize trailing slash
+  const p = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+  return ROUTE_MAP[p] || ROUTE_MAP['/'];
+}
+
+// Initialize: activate correct section from URL, then paginate
+document.addEventListener('DOMContentLoaded', () => {
+  const { section, subSection } = resolveRoute(window.location.pathname);
+  activateSection(section, subSection || null, false);
+  repaginateAll();
+});
+
+// Handle browser back/forward
+window.addEventListener('popstate', (event) => {
+  const state = event.state;
+  if (state && state.section) {
+    activateSection(state.section, state.subSection || null, false);
+  } else {
+    const { section, subSection } = resolveRoute(window.location.pathname);
+    activateSection(section, subSection || null, false);
+  }
+});
 
 // Re-paginate when window is resized (switches between 6 and 8 per page)
 let resizeTimeout;

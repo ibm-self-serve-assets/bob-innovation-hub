@@ -3,23 +3,16 @@ description: Central hub for Bobathon content, labs, and configurations.
 
 collections:
   labs:
-    output: true
-    permalink: /labs/:path/
+    output: false
   modes:
-    output: true
-    permalink: /modes/:path/
+    output: false
   use-cases:
-    output: true
-    permalink: /use-cases/:path/
+    output: false
   demos:
-    output: true
-    permalink: /demos/:path/
+    output: false
   learning:
-    output: true
-    permalink: /learning/:path/
+    output: false
   bob101:
-    output: true
-    permalink: /bob101/:path/
+    output: false
   skills:
-    output: true
-    permalink: /skills/:path/
+    output: false
