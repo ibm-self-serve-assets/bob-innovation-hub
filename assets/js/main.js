@@ -159,6 +159,9 @@ if (document.querySelector('.sidebar-button.active') &&
   searchContainer.style.display = 'none';
 }
 
+// Active domain filter per sub-section: '' means "All"
+const activeDomainFilter = {};
+
 // Sub-tab Navigation
 document.querySelectorAll('.sub-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -179,8 +182,10 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
     const targetPanel = document.getElementById(`${subSection}-sub`);
     if (targetPanel) targetPanel.classList.add('active');
 
-    // Reset search and paginate the new sub-section
+    // Reset search, domain filter, and paginate the new sub-section
     searchBar.value = '';
+    activeDomainFilter[subSection] = '';
+    resetDomainPills(document.getElementById(`${subSection}-sub`));
     filterAndPaginate(subSection);
 
     // Update hash for the sub-tab
@@ -190,6 +195,16 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
     }
   });
 });
+
+
+function resetDomainPills(subPanel) {
+  if (!subPanel) return;
+  const bar = subPanel.querySelector('.domain-filter');
+  if (!bar) return;
+  bar.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+  const allPill = bar.querySelector('.domain-pill[data-domain=""]');
+  if (allPill) allPill.classList.add('active');
+}
 
 // Search Functionality
 let searchTimeout;
@@ -239,10 +254,11 @@ function filterAndPaginate(section) {
   if (!container) return;
 
   const searchTerm = searchBar.value.toLowerCase().trim();
+  const domainFilter = (activeDomainFilter[section] || '').toLowerCase();
   const cards = Array.from(container.querySelectorAll('.asset-card'));
   const emptyState = container.querySelector('.empty-state');
 
-  // Filter cards
+  // Filter cards by search term AND active domain
   let visibleCards = cards.filter(card => {
     if (emptyState && card === emptyState) return false;
     const title = card.dataset.title || '';
@@ -250,7 +266,9 @@ function filterAndPaginate(section) {
     const industry = card.dataset.industry || '';
     const language = card.dataset.language || '';
     const domain = card.dataset.domain || '';
-    return `${title} ${content} ${industry} ${language} ${domain}`.includes(searchTerm);
+    const matchesSearch = `${title} ${content} ${industry} ${language} ${domain}`.includes(searchTerm);
+    const matchesDomain = !domainFilter || domain === domainFilter;
+    return matchesSearch && matchesDomain;
   });
 
   // Reset to page 1 when searching
@@ -264,13 +282,15 @@ function filterAndPaginate(section) {
 
   // No-results message
   let noResultsDiv = container.querySelector('.no-results');
-  if (visibleCards.length === 0 && searchTerm) {
+  if (visibleCards.length === 0 && (searchTerm || domainFilter)) {
     if (!noResultsDiv) {
       noResultsDiv = document.createElement('div');
       noResultsDiv.className = 'no-results';
       container.appendChild(noResultsDiv);
     }
-    noResultsDiv.textContent = `No results found for "${searchBar.value}"`;
+    noResultsDiv.textContent = searchTerm
+      ? `No results found for "${searchBar.value}"${domainFilter ? ` in domain "${domainFilter}"` : ''}`
+      : `No use cases found for domain "${domainFilter}"`;
     noResultsDiv.classList.remove('hidden');
   } else if (noResultsDiv) {
     noResultsDiv.classList.add('hidden');
@@ -511,6 +531,24 @@ function fallbackCopy(text, callback) {
 
 // Initialize: activate correct section from hash, pre-fill search, then paginate
 document.addEventListener('DOMContentLoaded', () => {
+  // Wire up domain filter pills
+  document.querySelectorAll('.domain-filter').forEach(bar => {
+    bar.addEventListener('click', e => {
+      const pill = e.target.closest('.domain-pill');
+      if (!pill) return;
+
+      const subSection = bar.dataset.subSection;
+      const domain = pill.dataset.domain;
+
+      bar.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      activeDomainFilter[subSection] = domain;
+      currentPage[subSection] = 1;
+      filterAndPaginate(subSection);
+    });
+  });
+
   injectShareButtons();
   const { section, subSection, query } = resolveHash(window.location.hash);
   activateSection(section, subSection || null, false);

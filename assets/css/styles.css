@@ -591,6 +591,53 @@ section#main_content {
 }
 
 /* Sub-tabs (e.g. Use-Cases: Technical / Business) */
+/* Domain filter bar (use-cases) */
+.domain-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.domain-filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-right: 0.25rem;
+  white-space: nowrap;
+}
+
+.domain-pill {
+  padding: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.domain-pill:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.domain-pill.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
 .sub-tabs {
   display: flex;
   gap: 0.5rem;

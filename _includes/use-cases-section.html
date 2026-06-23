@@ -14,6 +14,17 @@
 
   <!-- Technical Use-cases -->
   <div id="technical-use-cases-sub" class="sub-section active">
+    <!-- Domain filter pills -->
+    <div class="domain-filter" data-sub-section="technical-use-cases" role="group" aria-label="Filter by domain">
+      <span class="domain-filter-label">Domain:</span>
+      <button class="domain-pill active" data-domain="">All</button>
+      {% assign tech_domains = site.use-cases | where: "type", "Technical" | map: "domain" | uniq | sort %}
+      {% for d in tech_domains %}
+        {% if d != "" and d != nil %}
+          <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
+        {% endif %}
+      {% endfor %}
+    </div>
     <div id="technical-use-cases-container" class="cards-grid">
       {% assign technical_cases = site.use-cases | where: "type", "Technical" %}
       {% if technical_cases.size > 0 %}
@@ -62,6 +73,17 @@
 
   <!-- Business Use-cases -->
   <div id="business-use-cases-sub" class="sub-section">
+    <!-- Domain filter pills -->
+    <div class="domain-filter" data-sub-section="business-use-cases" role="group" aria-label="Filter by domain">
+      <span class="domain-filter-label">Domain:</span>
+      <button class="domain-pill active" data-domain="">All</button>
+      {% assign biz_domains = site.use-cases | where: "type", "Business" | map: "domain" | uniq | sort %}
+      {% for d in biz_domains %}
+        {% if d != "" and d != nil %}
+          <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
+        {% endif %}
+      {% endfor %}
+    </div>
     <div id="business-use-cases-container" class="cards-grid">
       {% assign business_cases = site.use-cases | where: "type", "Business" %}
       {% if business_cases.size > 0 %}
