@@ -169,5 +169,30 @@ content:
         label: "Document Link"
         type: string
         required: true
+  - name: skills
+    label: "🤖 Bob Skills"
+    type: collection
+    path: _skills
+    fields:
+      - name: title
+        label: "Skill Name"
+        type: string
+        required: true
+      - name: industry
+        label: "Industry"
+        type: select
+        required: true
+        options:
+          values: ["Cross","AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
+          placeholder: "Select Industry"
+          multiple: true
+      - name: body
+        label: "Skill Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Skill Github Link"
+        type: string
+        required: true
 
 # Made with Bob
