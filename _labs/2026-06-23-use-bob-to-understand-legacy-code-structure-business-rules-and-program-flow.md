@@ -1,11 +1,13 @@
 ---
-title: Use Bob to understand legacy iSeries code structure, business rules, and
-  program flow
+title: "Bob for iSeries: Use Bob to understand legacy iSeries code structure,
+  business rules, and program flow"
 domain: Data
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-0-discover-the-samco-application
 ---
 As a member of the **SAMCO development team**, your mission is to modernize your application and development practices — from green screen to a collaborative **Git / VS Code era with DevOps automation**. Relax, IBM Bob is here to help.
+
+**Use Case**: Use Bob as a discovery tool to understand legacy code before modernizing
 
 **What You'll Do:**
 
@@ -14,4 +16,3 @@ As a member of the **SAMCO development team**, your mission is to modernize your
 - Learn the panel-step pattern used in interactive programs
 - Trace the complete order creation flow
 
-**Use Case**: Use Bob as a discovery tool to understand legacy code before modernizing
