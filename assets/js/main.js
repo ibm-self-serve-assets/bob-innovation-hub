@@ -416,8 +416,102 @@ function resolveHash(hash) {
   return { ...(ROUTE_MAP[path] || ROUTE_MAP['/']), query };
 }
 
+// ─── Share buttons ────────────────────────────────────────────────────────────
+
+const SHARE_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
+
+// Build the shareable URL for a given card element
+function buildShareUrl(card) {
+  const sectionEl = card.closest('.content-section');
+  const subPanel  = card.closest('.sub-section');
+  const sectionId    = sectionEl ? sectionEl.id.replace('-section', '') : null;
+  const subSectionId = subPanel  ? subPanel.id.replace('-sub', '')      : null;
+
+  const routeKey = subSectionId
+    ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
+    : (SECTION_TO_ROUTE[sectionId] || '#/');
+
+  // Use data-title (already lowercased) as the search query so the URL
+  // pre-fills the search box and surfaces exactly this asset.
+  const q = card.dataset.title || '';
+  const hash = buildHash(routeKey, q);
+  return window.location.origin + window.location.pathname + hash;
+}
+
+// Inject a share button into every card inside a search-enabled section
+function injectShareButtons() {
+  // Collect the containers that hold cards — for tabbed sections use each
+  // sub-section panel; for plain sections use the section element itself.
+  const containers = [];
+  SEARCH_SECTIONS.forEach(s => {
+    const sectionEl = document.getElementById(`${s}-section`);
+    if (!sectionEl) return;
+    const panels = sectionEl.querySelectorAll('.sub-section');
+    if (panels.length) {
+      panels.forEach(p => containers.push(p));
+    } else {
+      containers.push(sectionEl);
+    }
+  });
+
+  containers.forEach(container => {
+    container.querySelectorAll('.asset-card').forEach(card => {
+      if (!card.dataset.title) return;          // skip empty-state cards
+      if (card.querySelector('.card-share-btn')) return;  // already injected
+
+      const h3 = card.querySelector('h3');
+      if (!h3) return;
+
+      // Wrap the h3 in a flex row together with the share button
+      const header = document.createElement('div');
+      header.className = 'card-header';
+      h3.parentNode.insertBefore(header, h3);
+      header.appendChild(h3);
+
+      const btn = document.createElement('button');
+      btn.className = 'card-share-btn';
+      btn.setAttribute('aria-label', 'Copy link to this asset');
+      btn.innerHTML = SHARE_SVG + '<span class="card-share-tooltip">Copied to clipboard</span>';
+      header.appendChild(btn);
+
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const url = buildShareUrl(card);
+
+        const confirm = () => {
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.classList.remove('copied');
+          }, 2000);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(confirm).catch(() => fallbackCopy(url, confirm));
+        } else {
+          fallbackCopy(url, confirm);
+        }
+      });
+    });
+  });
+}
+
+function fallbackCopy(text, callback) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch (_) {}
+  document.body.removeChild(ta);
+  callback();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Initialize: activate correct section from hash, pre-fill search, then paginate
 document.addEventListener('DOMContentLoaded', () => {
+  injectShareButtons();
   const { section, subSection, query } = resolveHash(window.location.hash);
   activateSection(section, subSection || null, false);
   if (query) {
