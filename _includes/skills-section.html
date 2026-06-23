@@ -1,59 +1,40 @@
 <!-- Skills Section -->
 <div id="skills-section" class="content-section">
   <h2 class="section-title">🛠️ Skills</h2>
-  <div class="cards-grid">
+  <div id="skills-container" class="cards-grid">
 
-    <div class="asset-card" style="grid-column: 1 / -1;">
-      <h3>What are Bob Skills?</h3>
-      <div class="card-body">
-        <p style="margin-bottom: 1rem;">
-          Skills are reusable, composable capabilities that extend Bob beyond its default behaviour. A skill can be attached to any mode and teaches Bob a focused, specialist task — such as generating architecture diagrams, scaffolding a microservice, producing SBOM reports, or writing test plans.
-        </p>
-        <p style="margin-bottom: 1.5rem;">
-          Skills are defined in <code>SKILL.md</code> files and activated on demand. They follow a consistent frontmatter schema so they can be discovered, versioned, and shared across teams.
-        </p>
+    {% if site.skills.size > 0 %}
+      {% for skill in site.skills %}
+        <div class="asset-card" data-title="{{ skill.title | downcase }}" data-content="{{ skill.content | strip_html | downcase }}" data-industry="{{ skill.industry | join: ' ' | downcase }}">
+          <h3>{{ skill.title }}</h3>
+          <div class="badge-container">
+            {% if skill.industry %}
+              {% for ind in skill.industry %}
+                <span class="badge badge-blue">🏢 {{ ind }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="card-body">
+            {{ skill.content }}
+          </div>
+          {% if skill.link %}
+            <div style="margin-top: 1rem;">
+              <a href="{{ skill.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                🔗 View on GitHub
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No skills found. Add skills from your Pages CMS manager to populate this section.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="asset-card">
-      <h3>🔧 How to Use a Skill</h3>
-      <div class="card-body">
-        <ol style="margin-left: 1.25rem; line-height: 1.9;">
-          <li>Open a Bob session with your chosen Mode active</li>
-          <li>Type <code>use skill: &lt;skill-name&gt;</code> or activate via the sidebar</li>
-          <li>Bob loads the skill's instructions into context</li>
-          <li>Proceed with your task — Bob now has the skill's specialised knowledge</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="asset-card">
-      <h3>✏️ How to Create a Skill</h3>
-      <div class="card-body">
-        <ol style="margin-left: 1.25rem; line-height: 1.9;">
-          <li>Create a <code>SKILL.md</code> file in your project's <code>.bob/skills/</code> directory</li>
-          <li>Add the required frontmatter: <code>name</code>, <code>description</code>, <code>version</code></li>
-          <li>Write the skill body — clear, imperative instructions Bob will follow</li>
-          <li>Commit and share with your team or submit to this hub</li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="asset-card">
-      <h3>📦 Featured Skills</h3>
-      <div class="card-body">
-        <ul style="margin-left: 1.25rem; line-height: 1.9;">
-          <li><strong>SBOM Generator</strong> — Produce a Software Bill of Materials from any codebase</li>
-          <li><strong>Architecture Diagram</strong> — Generate Mermaid or PlantUML architecture diagrams</li>
-          <li><strong>Test Plan Writer</strong> — Scaffold structured test plans from feature descriptions</li>
-          <li><strong>Kafka Schema Advisor</strong> — Design Avro / Protobuf schemas for Kafka topics</li>
-          <li><strong>watsonx Prompt Builder</strong> — Craft and evaluate prompts for watsonx.ai models</li>
-        </ul>
-        <p style="margin-top: 1rem;">
-          <a href="https://github.com/ibm-self-serve-assets/bob-innovation-hub" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Browse all skills on GitHub →</a>
-        </p>
-      </div>
-    </div>
+    {% endif %}
 
   </div>
+  <div id="skills-pagination" class="pagination"></div>
 </div>

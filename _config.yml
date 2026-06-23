@@ -17,3 +17,9 @@ collections:
   learning:
     output: true
     permalink: /learning/:path/
+  bob101:
+    output: true
+    permalink: /bob101/:path/
+  skills:
+    output: true
+    permalink: /skills/:path/

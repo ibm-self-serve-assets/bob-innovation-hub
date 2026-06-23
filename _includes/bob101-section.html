@@ -1,52 +1,33 @@
 <!-- IBM Bob 101 Section -->
 <div id="bob101-section" class="content-section">
-  <div class="cards-grid">
-    <div class="asset-card" style="grid-column: 1 / -1;">
-      <h3>IBM Bob 101</h3>
-      <div class="card-body">
-        <p style="margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
-          Get Started with IBM Bob – Everything You Need to Know
-        </p>
-        <p style="margin-bottom: 1.5rem;">
-          IBM Bob is an AI-powered development assistant built on IBM technology. This section covers the fundamentals — what Bob is, how it works, and how to get the most out of it as an IBM Business Partner.
-        </p>
+  <h2 class="section-title">📚 Bob 101</h2>
+  <div id="bob101-container" class="cards-grid">
 
-        <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; font-size: 1.1rem; font-weight: 600;">What is IBM Bob?</h4>
-        <p style="margin-bottom: 1.5rem;">
-          Bob is a customizable AI coding and development assistant tailored for IBM technologies. It combines large language model capabilities with IBM-specific knowledge, tooling, and best practices to accelerate solution delivery across the IBM Data &amp; AI and Automation portfolios.
-        </p>
-
-        <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; font-size: 1.1rem; font-weight: 600;">Core Concepts</h4>
-        <div style="margin-bottom: 1rem;">
-          <p style="margin-bottom: 0.5rem;"><strong>🤖 Modes</strong></p>
-          <p style="margin-bottom: 1rem; margin-left: 1.5rem;">
-            Modes define Bob's persona, focus, and behaviour for a specific domain or task. Switch between modes to get contextually relevant assistance — from Carbon UI development to watsonx AI workflows.
-          </p>
-
-          <p style="margin-bottom: 0.5rem;"><strong>🛠️ Skills</strong></p>
-          <p style="margin-bottom: 1rem; margin-left: 1.5rem;">
-            Skills are reusable, composable capabilities that extend what Bob can do. Attach skills to any mode to unlock specialised actions such as generating test plans, scaffolding microservices, or producing architecture diagrams.
-          </p>
-
-          <p style="margin-bottom: 0.5rem;"><strong>🤝 SubAgents</strong></p>
-          <p style="margin-bottom: 1rem; margin-left: 1.5rem;">
-            SubAgents are autonomous task runners that Bob can orchestrate to handle long-running or parallel workloads — from running end-to-end tests to deploying to IBM Cloud environments.
-          </p>
+    {% if site.bob101.size > 0 %}
+      {% for item in site.bob101 %}
+        <div class="asset-card" data-title="{{ item.title | downcase }}" data-content="{{ item.content | strip_html | downcase }}">
+          <h3>{{ item.title }}</h3>
+          <div class="card-body">
+            {{ item.content }}
+          </div>
+          {% if item.link %}
+            <div style="margin-top: 1rem;">
+              <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
+                🔗 View Document
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          {% endif %}
         </div>
-
-        <h4 style="color: var(--text-primary); margin: 1.5rem 0 0.75rem 0; font-size: 1.1rem; font-weight: 600;">Quick-Start Checklist</h4>
-        <ul style="margin: 0.5rem 0 1.5rem 1.5rem; line-height: 1.8;">
-          <li>✅ Install the Bob extension or access Bob via your IBM workspace</li>
-          <li>✅ Select a Mode that matches your current task</li>
-          <li>✅ Browse Learning Resources to deepen your understanding</li>
-          <li>✅ Explore Use-Cases for real-world inspiration</li>
-          <li>✅ Run a Hands-on Lab to practise with guided exercises</li>
-        </ul>
-
-        <p style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent-primary); font-weight: 600; text-align: center;">
-          New to Bob? Start with IBM Bob 101 and you'll be productive in minutes.
-        </p>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No Bob 101 documents found. Add documents from your Pages CMS manager to populate this section.</p>
+        </div>
       </div>
-    </div>
+    {% endif %}
+
   </div>
+  <div id="bob101-pagination" class="pagination"></div>
 </div>
