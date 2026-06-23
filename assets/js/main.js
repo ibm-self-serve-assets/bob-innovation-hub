@@ -36,9 +36,9 @@ const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes'];
 // Sections with sub-tabs
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
 
-// Route map: URL path → { section, subSection? }
-// Sub-sections for tabbed sections get their own paths.
+// Hash route map: fragment (without leading #) → { section, subSection? }
 const ROUTE_MAP = {
+  '':                         { section: 'introduction' },
   '/':                        { section: 'introduction' },
   '/bob101':                  { section: 'bob101' },
   '/learning-resources':      { section: 'learning-resources' },
@@ -53,20 +53,20 @@ const ROUTE_MAP = {
   '/skills':                  { section: 'skills' },
 };
 
-// Reverse map: section (+ optional subSection) → canonical URL path
+// Reverse map: section (+ optional subSection) → canonical hash fragment
 const SECTION_TO_ROUTE = {
-  'introduction':         '/',
-  'bob101':               '/bob101',
-  'learning-resources':   '/learning-resources',
-  'use-cases':            '/use-cases',
-  'technical-use-cases':  '/use-cases/technical',
-  'business-use-cases':   '/use-cases/business',
-  'demos':                '/demos',
-  'labs':                 '/labs',
-  'modes':                '/modes',
-  'premium-modes':        '/modes/premium',
-  'custom-modes':         '/modes/custom',
-  'skills':               '/skills',
+  'introduction':         '#/',
+  'bob101':               '#/bob101',
+  'learning-resources':   '#/learning-resources',
+  'use-cases':            '#/use-cases',
+  'technical-use-cases':  '#/use-cases/technical',
+  'business-use-cases':   '#/use-cases/business',
+  'demos':                '#/demos',
+  'labs':                 '#/labs',
+  'modes':                '#/modes',
+  'premium-modes':        '#/modes/premium',
+  'custom-modes':         '#/modes/custom',
+  'skills':               '#/skills',
 };
 
 // Sidebar Navigation
@@ -133,13 +133,15 @@ function activateSection(sectionId, subSectionId, pushRoute) {
     filterAndPaginate(sectionId);
   }
 
-  // Push URL to history
+  // Update hash
   if (pushRoute) {
-    const routeKey = subSectionId
-      ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '/')
-      : (SECTION_TO_ROUTE[sectionId] || '/');
-    const url = window.location.pathname === routeKey ? null : routeKey;
-    if (url) history.pushState({ section: sectionId, subSection: subSectionId || null }, '', url);
+    const hash = subSectionId
+      ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
+      : (SECTION_TO_ROUTE[sectionId] || '#/');
+    if (window.location.hash !== hash) {
+      // Replace so the home→section→back button goes to home, not loops
+      history.pushState(null, '', hash);
+    }
   }
 }
 
@@ -181,10 +183,10 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
     searchBar.value = '';
     filterAndPaginate(subSection);
 
-    // Push route for the sub-tab
-    const routeKey = SECTION_TO_ROUTE[subSection] || SECTION_TO_ROUTE[sectionId] || '/';
-    if (window.location.pathname !== routeKey) {
-      history.pushState({ section: sectionId, subSection: subSection }, '', routeKey);
+    // Update hash for the sub-tab
+    const hash = SECTION_TO_ROUTE[subSection] || SECTION_TO_ROUTE[sectionId] || '#/';
+    if (window.location.hash !== hash) {
+      history.pushState(null, '', hash);
     }
   });
 });
@@ -356,29 +358,25 @@ function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
 }
 
-// Resolve the current URL path to a section + optional sub-section
-function resolveRoute(path) {
-  // Normalize trailing slash
-  const p = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
-  return ROUTE_MAP[p] || ROUTE_MAP['/'];
+// Resolve a hash string (e.g. "#/modes/premium" or "") to { section, subSection }
+function resolveHash(hash) {
+  // Strip leading '#', normalize trailing slash
+  let path = hash.replace(/^#/, '') || '/';
+  if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
+  return ROUTE_MAP[path] || ROUTE_MAP['/'];
 }
 
-// Initialize: activate correct section from URL, then paginate
+// Initialize: activate correct section from hash, then paginate
 document.addEventListener('DOMContentLoaded', () => {
-  const { section, subSection } = resolveRoute(window.location.pathname);
+  const { section, subSection } = resolveHash(window.location.hash);
   activateSection(section, subSection || null, false);
   repaginateAll();
 });
 
-// Handle browser back/forward
-window.addEventListener('popstate', (event) => {
-  const state = event.state;
-  if (state && state.section) {
-    activateSection(state.section, state.subSection || null, false);
-  } else {
-    const { section, subSection } = resolveRoute(window.location.pathname);
-    activateSection(section, subSection || null, false);
-  }
+// Handle browser back/forward and direct hash changes
+window.addEventListener('hashchange', () => {
+  const { section, subSection } = resolveHash(window.location.hash);
+  activateSection(section, subSection || null, false);
 });
 
 // Re-paginate when window is resized (switches between 6 and 8 per page)
