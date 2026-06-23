@@ -18,7 +18,7 @@
       {% assign technical_cases = site.use-cases | where: "type", "Technical" %}
       {% if technical_cases.size > 0 %}
         {% for usecase in technical_cases %}
-          <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
+          <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}
@@ -66,7 +66,7 @@
       {% assign business_cases = site.use-cases | where: "type", "Business" %}
       {% if business_cases.size > 0 %}
         {% for usecase in business_cases %}
-          <div class="asset-card" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
+          <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}">
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}

@@ -313,6 +313,12 @@ section#main_content {
   transform: translateY(-2px);
 }
 
+/* Card highlighted via ?q=<slug> deep link */
+.asset-card.card-highlight {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .asset-card h3 {
   margin: 0 0 0.75rem 0 !important;
   font-size: 1.3rem;

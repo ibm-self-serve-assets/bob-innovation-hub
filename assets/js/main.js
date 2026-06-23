@@ -209,6 +209,14 @@ searchBar.addEventListener('input', () => {
     } else {
       filterAndPaginate(activeSection);
     }
+
+    // Write search term into the hash as ?q= (replaceState — no extra history entries)
+    const q = searchBar.value.trim();
+    const routeKey = currentRouteKey();
+    const newHash = buildHash(routeKey, q);
+    if (window.location.hash !== newHash) {
+      history.replaceState(null, '', newHash);
+    }
   }, 300);
 });
 
@@ -358,25 +366,79 @@ function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
 }
 
-// Resolve a hash string (e.g. "#/modes/premium" or "") to { section, subSection }
-function resolveHash(hash) {
-  // Strip leading '#', normalize trailing slash
-  let path = hash.replace(/^#/, '') || '/';
+// Parse the hash fragment into { path, query }
+// e.g. "#/demos?q=retail" → { path: "/demos", query: "retail" }
+function parseHash(hash) {
+  const raw = hash.replace(/^#/, '') || '/';
+  const qIdx = raw.indexOf('?');
+  if (qIdx === -1) {
+    let path = raw;
+    if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
+    return { path, query: '' };
+  }
+  let path = raw.slice(0, qIdx);
   if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
-  return ROUTE_MAP[path] || ROUTE_MAP['/'];
+  const params = new URLSearchParams(raw.slice(qIdx + 1));
+  return { path, query: params.get('q') || '' };
 }
 
-// Initialize: activate correct section from hash, then paginate
+// Build a hash string from a route key and optional query
+function buildHash(routeKey, query) {
+  if (query) return routeKey + '?q=' + encodeURIComponent(query);
+  return routeKey;
+}
+
+// Get the current section's canonical hash key (without query)
+function currentRouteKey() {
+  const activeBtn = document.querySelector('.sidebar-button.active');
+  if (!activeBtn) return '#/';
+  const sectionId = activeBtn.dataset.section;
+  const activeSubTab = document.querySelector(`#${sectionId}-section .sub-tab.active`);
+  const subSectionId = activeSubTab ? activeSubTab.dataset.subSection : null;
+  return subSectionId
+    ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
+    : (SECTION_TO_ROUTE[sectionId] || '#/');
+}
+
+// Highlight a specific card by slug — scroll into view and briefly pulse it
+function highlightCard(slug) {
+  if (!slug) return;
+  const card = document.querySelector(`.asset-card[data-slug="${slug}"]`);
+  if (!card) return;
+  card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  card.classList.add('card-highlight');
+  setTimeout(() => card.classList.remove('card-highlight'), 2000);
+}
+
+// Resolve a parsed path to { section, subSection }
+function resolveHash(hash) {
+  const { path, query } = parseHash(hash);
+  return { ...(ROUTE_MAP[path] || ROUTE_MAP['/']), query };
+}
+
+// Initialize: activate correct section from hash, pre-fill search, then paginate
 document.addEventListener('DOMContentLoaded', () => {
-  const { section, subSection } = resolveHash(window.location.hash);
+  const { section, subSection, query } = resolveHash(window.location.hash);
   activateSection(section, subSection || null, false);
+  if (query) {
+    searchBar.value = query;
+  }
   repaginateAll();
+  // After pagination, highlight the card if the query exactly matches a slug
+  if (query) {
+    setTimeout(() => highlightCard(query), 50);
+  }
 });
 
 // Handle browser back/forward and direct hash changes
 window.addEventListener('hashchange', () => {
-  const { section, subSection } = resolveHash(window.location.hash);
+  const { section, subSection, query } = resolveHash(window.location.hash);
   activateSection(section, subSection || null, false);
+  searchBar.value = query || '';
+  repaginateAll();
+  if (query) {
+    setTimeout(() => highlightCard(query), 50);
+  }
 });
 
 // Re-paginate when window is resized (switches between 6 and 8 per page)
