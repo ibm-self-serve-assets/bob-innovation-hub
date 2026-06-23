@@ -11,6 +11,7 @@
   --text-tertiary: #959da5;
   --border-primary: #e1e4e8;
   --border-secondary: #d1d5da;
+  --accent-danger: #f94a4a;
   --accent-primary: #0366d6;
   --accent-hover: #0256c7;
   --card-bg: #ffffff;
@@ -35,6 +36,7 @@
   --border-primary: #30363d;
   --border-secondary: #21262d;
   --accent-primary: #58a6ff;
+  --accent-danger: #f94a4a;
   --accent-hover: #79b8ff;
   --card-bg: #161b22;
   --card-shadow: rgba(0, 0, 0, 0.3);

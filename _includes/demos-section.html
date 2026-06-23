@@ -1,6 +1,9 @@
 <!-- Demos Section -->
 <div id="demos-section" class="content-section">
   <h2 class="section-title">🎯 Demos</h2>
+  <p style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent-danger); font-weight: 600; text-align: center;">
+          Disclaimer : Some content may need IBM Partner ID to access.
+        </p>
   <div id="demos-container" class="cards-grid">
     {% for demo in site.demos %}
       <div class="asset-card" data-slug="{{ demo.slug }}" data-title="{{ demo.title | downcase }}" data-content="{{ demo.content | strip_html | downcase }}" data-domain="{{ demo.domain | downcase }}">
