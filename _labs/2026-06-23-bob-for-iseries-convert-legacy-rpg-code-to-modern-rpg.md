@@ -1,9 +1,11 @@
 ---
-title: Bob for iSeries Convert legacy RPG code to modern RPG
+title: "Bob for iSeries: Convert legacy RPG code to modern RPG"
 domain: Data
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-1-rpg-fixed-to-free-conversion
 ---
+As a member of the SAMCO development team, your mission is to modernize your application and development practices — from green screen to a collaborative Git / VS Code era with DevOps automation. Relax, IBM Bob is here to help
+
 **Use Case**: Convert the subfile load logic (s01lod) to modern RPG
 
 **What You'll Do:**
@@ -12,7 +14,7 @@ link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blo
 - Convert one subroutine from Fixed to Free format
 - Replace magic numbers with named constants
 
-What you'll Learn:
+**What You'll Learn:**
 
 - Understanding legacy RPG code
 - Fixed-to-Free format conversion
