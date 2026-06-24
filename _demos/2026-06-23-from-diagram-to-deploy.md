@@ -1,5 +1,6 @@
 ---
 title: From diagram to deploy
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=cXatmllOTac
 ---
