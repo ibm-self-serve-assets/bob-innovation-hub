@@ -1,5 +1,6 @@
 ---
 title: Insurance Claims Acceleration
+team: Service Engineering
 type: Business
 domain: Automation
 link: https://ibm.box.com/s/uycjpnfktvxtdi5wvxbl0vh3p28xz3ht
