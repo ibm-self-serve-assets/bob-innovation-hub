@@ -4,40 +4,40 @@
 sections:
   - id: introduction
     title: Introduction
-    icon: 🏠
+    icon: "" #🏠
     show_search: false
     type: custom
     include_file: introduction-section.html
 
   - id: bob101
-    title: IBM Bob 101
-    icon: 📘
-    show_search: false
+    title: Bob 101
+    icon: "" #📘
+    show_search: true
     type: custom
     include_file: bob101-section.html
 
   - id: learning-resources
     title: Learning Resources
-    icon: 🎓
-    show_search: false
+    icon: "" #🎓
+    show_search: true
     type: custom
     include_file: learning-resources-section.html
 
   - id: use-cases
     title: Use-Cases
-    icon: 📋
+    icon: "" #📋
     show_search: true
     type: collection-tabbed
     sub_sections:
       - id: technical-use-cases
         title: Technical Use-cases
-        icon: 🔧
+        icon: "" #🔧
         collection: use-cases
         filter_key: type
         filter_value: technical
       - id: business-use-cases
         title: Business Use-cases
-        icon: 💼
+        icon: "" #💼
         collection: use-cases
         filter_key: type
         filter_value: business
@@ -46,7 +46,7 @@ sections:
 
   - id: demos
     title: Demos
-    icon: 💻
+    icon: "" #💻
     show_search: true
     type: collection
     collection: demos
@@ -55,7 +55,7 @@ sections:
 
   - id: labs
     title: Labs
-    icon: 🚀
+    icon: "" #🚀
     show_search: true
     type: collection
     collection: labs
@@ -64,26 +64,26 @@ sections:
 
   - id: modes
     title: Modes
-    icon: 🤖
+    icon: "" #🤖
     show_search: true
     type: collection-tabbed
     sub_sections:
       - id: premium-modes
         title: Premium Modes
-        icon: ⭐
+        icon: "" #⭐
         collection: modes
         filter_key: premium
         filter_value: true
       - id: custom-modes
         title: Custom Modes
-        icon: 🤖
+        icon: "" #🤖
         collection: modes
     link_text: View on GitHub
     empty_message: No modes found. Use Pages CMS to add initial configurations.
 
   - id: skills
     title: Skills
-    icon: 🛠️
+    icon: "" #🛠️
     show_search: true
     type: custom
     include_file: skills-section.html
