@@ -55,6 +55,12 @@ content:
         label: "Mode Lab Link"
         type: string
         required: false
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: labs
     label: "🤖 Bob Labs"
     type: collection
@@ -92,6 +98,12 @@ content:
         label: "Lab Link"
         type: string
         required: true
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: demos
     label: "💻 Bob Demos"
     type: collection
@@ -125,6 +137,12 @@ content:
         label: "Demo Link"
         type: string
         required: true
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: use-cases
     label: "📋 Bob Usecases"
     type: collection
@@ -182,6 +200,12 @@ content:
           path: docs/slide_decks
           extensions: [pdf, PDF]
         required: false
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: learning-content
     label: "Bob Learning Content"
     type: collection
@@ -199,6 +223,12 @@ content:
         label: "Document Link"
         type: string
         required: true
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: bob101
     label: "Bob 101"
     type: collection
@@ -216,6 +246,12 @@ content:
         label: "Document Link"
         type: string
         required: true
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
   - name: skills
     label: "🤖 Bob Skills"
     type: collection
@@ -249,5 +285,11 @@ content:
         label: "Skill Github Link"
         type: string
         required: true
+      - name: featured
+        label: Featured(Skip this filed)
+        type: number
+        options:
+          min: 1
+          max: 8
 
 # Made with Bob
