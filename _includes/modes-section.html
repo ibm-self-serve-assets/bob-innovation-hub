@@ -15,7 +15,10 @@
   <!-- Premium Modes -->
   <div id="premium-modes-sub" class="sub-section active">
     <div id="premium-modes-container" class="cards-grid">
-      {% assign premium_modes = site.modes | where: "type", "Premium" %}
+      {% assign _pm_all = site.modes | where: "type", "Premium" %}
+      {% assign _pm_feat = _pm_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _pm_unfeat = _pm_all | where_exp: "item", "item.featured == nil" %}
+      {% assign premium_modes = _pm_feat | concat: _pm_unfeat %}
       {% if premium_modes.size > 0 %}
         {% for mode in premium_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
@@ -65,7 +68,10 @@
   <!-- Custom Modes -->
   <div id="custom-modes-sub" class="sub-section">
     <div id="custom-modes-container" class="cards-grid">
-      {% assign custom_modes = site.modes | where: "type", "Custom" %}
+      {% assign _cm_all = site.modes | where: "type", "Custom" %}
+      {% assign _cm_feat = _cm_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _cm_unfeat = _cm_all | where_exp: "item", "item.featured == nil" %}
+      {% assign custom_modes = _cm_feat | concat: _cm_unfeat %}
       {% if custom_modes.size > 0 %}
         {% for mode in custom_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">

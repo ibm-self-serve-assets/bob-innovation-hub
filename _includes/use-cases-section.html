@@ -26,7 +26,10 @@
       {% endfor %}
     </div>
     <div id="technical-use-cases-container" class="cards-grid">
-      {% assign technical_cases = site.use-cases | where: "type", "Technical" %}
+      {% assign _tc_all = site.use-cases | where: "type", "Technical" %}
+      {% assign _tc_feat = _tc_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _tc_unfeat = _tc_all | where_exp: "item", "item.featured == nil" %}
+      {% assign technical_cases = _tc_feat | concat: _tc_unfeat %}
       {% if technical_cases.size > 0 %}
         {% for usecase in technical_cases %}
           <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
@@ -91,7 +94,10 @@
       {% endfor %}
     </div>
     <div id="business-use-cases-container" class="cards-grid">
-      {% assign business_cases = site.use-cases | where: "type", "Business" %}
+      {% assign _bc_all = site.use-cases | where: "type", "Business" %}
+      {% assign _bc_feat = _bc_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _bc_unfeat = _bc_all | where_exp: "item", "item.featured == nil" %}
+      {% assign business_cases = _bc_feat | concat: _bc_unfeat %}
       {% if business_cases.size > 0 %}
         {% for usecase in business_cases %}
           <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">

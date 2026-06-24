@@ -13,7 +13,10 @@
     {% endfor %}
   </div>
   <div id="demos-container" class="cards-grid">
-    {% for demo in site.demos %}
+    {% assign _dm_feat = site.demos | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _dm_unfeat = site.demos | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_demos = _dm_feat | concat: _dm_unfeat %}
+    {% for demo in sorted_demos %}
       <div class="asset-card" data-slug="{{ demo.slug }}" data-title="{{ demo.title | downcase }}" data-content="{{ demo.content | strip_html | downcase }}" data-domain="{{ demo.domain | downcase }}" data-team="{{ demo.team | downcase }}">
         <h3>{{ demo.title }}</h3>
         <div class="badge-container">

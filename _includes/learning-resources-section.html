@@ -6,8 +6,11 @@
         </p>
   <div id="learning-resources-container" class="cards-grid">
 
-    {% if site.learning.size > 0 %}
-      {% for resource in site.learning %}
+    {% assign featured_learning = site.learning | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign unfeatured_learning = site.learning | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_learning = featured_learning | concat: unfeatured_learning %}
+    {% if sorted_learning.size > 0 %}
+      {% for resource in sorted_learning %}
         <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
           <h3>{{ resource.title }}</h3>
           <div class="card-body">

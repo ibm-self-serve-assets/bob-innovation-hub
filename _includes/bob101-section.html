@@ -3,8 +3,11 @@
   <h2 class="section-title">📚 Bob 101</h2>
   <div id="bob101-container" class="cards-grid">
 
-    {% if site.bob101.size > 0 %}
-      {% for item in site.bob101 %}
+    {% assign _b1_feat = site.bob101 | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _b1_unfeat = site.bob101 | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_bob101 = _b1_feat | concat: _b1_unfeat %}
+    {% if sorted_bob101.size > 0 %}
+      {% for item in sorted_bob101 %}
         <div class="asset-card" data-slug="{{ item.slug }}" data-title="{{ item.title | downcase }}" data-content="{{ item.content | strip_html | downcase }}">
           <h3>{{ item.title }}</h3>
           <div class="card-body">

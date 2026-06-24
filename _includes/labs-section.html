@@ -13,7 +13,10 @@
     {% endfor %}
   </div>
   <div id="labs-container" class="cards-grid">
-    {% for lab in site.labs %}
+    {% assign _lb_feat = site.labs | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _lb_unfeat = site.labs | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_labs = _lb_feat | concat: _lb_unfeat %}
+    {% for lab in sorted_labs %}
       <div class="asset-card" data-slug="{{ lab.slug }}" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-domain="{{ lab.domain | downcase }}" data-team="{{ lab.team | downcase }}">
         <h3>{{ lab.title }}</h3>
         <div class="badge-container">
