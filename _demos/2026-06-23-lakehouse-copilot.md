@@ -1,5 +1,6 @@
 ---
 title: Lakehouse Copilot
+team: Service Engineering
 domain: Data
 link: https://youtu.be/lItqe23Z1B8
 ---
