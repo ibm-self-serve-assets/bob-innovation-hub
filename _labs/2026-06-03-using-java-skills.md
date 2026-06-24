@@ -1,5 +1,6 @@
 ---
 title: Using Java Skills
+team: Other
 domain: Automation
 duration: 30 mins
 link: https://github.com/IBM/bob-demo/tree/main/using-java-skills
