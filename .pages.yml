@@ -167,6 +167,12 @@ content:
         label: "Mode Link"
         type: string
         required: false
+      - name: slide_deck
+        label: Slide Deck
+        type: file
+        options:
+          extensions: [pdf]
+        required: false
   - name: learning-content
     label: "Bob Learning Content"
     type: collection
