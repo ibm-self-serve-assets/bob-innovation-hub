@@ -4,7 +4,7 @@ media:
   output: /docs/slide_decks
   rename: false
   categories: [document]
-  extensions: [pdf]
+  extensions: [pdf, PDF]
 content:
   - name: modes
     label: "🤖 Bob Modes"
@@ -180,7 +180,7 @@ content:
         options:
           media: docs
           path: docs/slide_decks
-          extensions: [pdf]
+          extensions: [pdf, PDF]
         required: false
   - name: learning-content
     label: "Bob Learning Content"
