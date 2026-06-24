@@ -1,5 +1,6 @@
 ---
 title: IBM Bob Premium Package for Java Modernization
+team: Other
 type: Premium
 industry:
   - Cross
