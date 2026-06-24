@@ -1,6 +1,6 @@
 ---
 title: Fast track API development with IBM Bob and API connect MCP server
-type: Business
+type: Technical
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCM87MFdhdBc9GFGHjV3cPfdm3g8
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=fast%20track%20api%20development%20with%20ibm%20bob%20and%20api%20connect%20mcp%20server
