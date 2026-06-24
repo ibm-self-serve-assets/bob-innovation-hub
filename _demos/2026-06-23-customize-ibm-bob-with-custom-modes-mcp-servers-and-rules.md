@@ -1,5 +1,6 @@
 ---
 title: Customize IBM Bob with Custom Modes, MCP Servers and Rules
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=MzmcVd2DJmk
 ---
