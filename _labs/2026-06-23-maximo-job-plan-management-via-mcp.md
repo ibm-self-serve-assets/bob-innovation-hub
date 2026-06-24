@@ -1,5 +1,6 @@
 ---
 title: Maximo Job Plan Management via MCP
+team: Service Engineering
 domain: Automation
 duration: 20 mins
 link: https://github.com/ibm-self-serve-assets/Bob-driven-Integration-for-Maximo-via-MCP
