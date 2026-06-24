@@ -1,5 +1,6 @@
 ---
 title: vault-secure-coding-mode
+team: Service Engineering
 type: Custom
 industry:
   - Cross
