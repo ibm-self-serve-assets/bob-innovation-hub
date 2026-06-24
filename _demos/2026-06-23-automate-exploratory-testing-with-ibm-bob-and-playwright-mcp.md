@@ -1,5 +1,6 @@
 ---
 title: Automate Exploratory Testing with IBM Bob and Playwright MCP
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=oLEzLcTiceI
 ---
