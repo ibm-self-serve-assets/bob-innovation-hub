@@ -1,6 +1,6 @@
 ---
 title: " Build Agentic AI-powered Financial Planner Efficiently using IBM Bob"
-type: Technical
+type: Business
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCJP2Gpf866B98qB2f3F73PcJ37G
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=ibm%20bob%20-%20build%20agentic%20ai-powered%20financial%20planner%20efficiently%20using%20
