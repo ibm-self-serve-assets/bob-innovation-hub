@@ -4,7 +4,7 @@
   <p style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent-danger); font-weight: 600; text-align: center;">
           Disclaimer : Some content may need IBM Partner ID to access.
         </p>
-  <div class="cards-grid">
+  <div id="learning-resources-container" class="cards-grid">
 
     {% if site.learning.size > 0 %}
       {% for resource in site.learning %}
@@ -32,4 +32,5 @@
     {% endif %}
 
   </div>
+  <div id="learning-resources-pagination" class="pagination"></div>
 </div>

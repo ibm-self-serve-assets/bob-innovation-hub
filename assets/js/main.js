@@ -31,7 +31,7 @@ function updateThemeButton(theme) {
 }
 
 // Sections that show the search bar
-const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes', 'skills'];
+const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'bob101', 'learning-resources'];
 
 // Sections with sub-tabs
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
@@ -395,7 +395,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs', 'custom-modes', 'premium-modes', 'demos', 'technical-use-cases', 'business-use-cases', 'modes', 'bob101', 'skills'];
+const ALL_PAGINATED_SECTIONS = ['labs', 'custom-modes', 'premium-modes', 'demos', 'technical-use-cases', 'business-use-cases', 'modes', 'bob101', 'skills', 'learning-resources'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
