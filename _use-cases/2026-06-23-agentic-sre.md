@@ -3,7 +3,6 @@ title: Agentic SRE
 team: Service Engineering
 type: Technical
 domain: Automation
-link: https://ibm.box.com/s/2uoxbhdodza47eotiiyrfshzwi8silp7
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=sre%20agent
 slide_deck: /docs/slide_decks/mqrhrzec-zncuz991.pdf
 ---
