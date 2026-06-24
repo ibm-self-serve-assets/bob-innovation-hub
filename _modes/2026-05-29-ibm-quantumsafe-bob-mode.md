@@ -1,5 +1,6 @@
 ---
 title: ibm-quantumsafe-bob-mode
+team: Service Engineering
 type: Custom
 industry:
   - Cross
