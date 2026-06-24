@@ -8,6 +8,14 @@ content:
         label: "Mode Name"
         type: string
         required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: type
         label: "Type"
         type: select
@@ -49,6 +57,14 @@ content:
         label: "Lab Title"
         type: string
         required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: domain
         label: "Domain"
         type: select
@@ -78,6 +94,14 @@ content:
         label: "Demo Name"
         type: string
         required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: domain
         label: "Domain"
         type: select
@@ -103,6 +127,14 @@ content:
         label: "Use-case Title"
         type: string
         required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: type
         label: "Type"
         type: select
@@ -178,6 +210,14 @@ content:
         label: "Skill Name"
         type: string
         required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: industry
         label: "Industry"
         type: select
