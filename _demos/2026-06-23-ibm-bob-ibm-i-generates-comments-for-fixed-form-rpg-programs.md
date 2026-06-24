@@ -1,7 +1,7 @@
 ---
 title: IBM Bob - IBM i Generates Comments for Fixed Form RPG Programs
 team: Other
-domain: Automation
+domain: Modernization
 link: https://www.youtube.com/watch?v=JIB47ne0w8M
 ---
 Got fixed form RPG programs with minimal or no comments? You're not alone. In this video, we show how IBM Bob can analyze your legacy RPG2 code and automatically generate clear, concise, and meaningful comments, line by line.  
