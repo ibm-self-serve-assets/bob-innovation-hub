@@ -1,6 +1,6 @@
 ---
 title: IBM Bob ConcertDef SBOM
-type: Business
+type: Technical
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCbDQqTbQ6WHTG2BJ8PcTcQdVBPV
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=ibm%20bob%20concertdef%20sbom
