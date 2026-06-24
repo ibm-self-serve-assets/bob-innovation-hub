@@ -1,6 +1,7 @@
 ---
 title: Fraud Detection using IBM Bob and wx.data
+team: Service Engineering
 domain: Data
-link: https://youtu.be/C6ekFvYex5U
+link: https://youtu.be/1jBDh0qvo7M
 ---
 This asset will explore capability of IBM Bob with [wx.data](http://watsonx.data) with the help of mcp server
