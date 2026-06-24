@@ -1,6 +1,6 @@
 ---
 title: Observability and self healing application powered by BoB & Instana
-type: Business
+type: Technical
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCMVp4G7gPHBc8QMPbRBcDBPp743
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=observability%20and%20self%20healing%20application%20powered%20by%20bob%20%26%20instana
