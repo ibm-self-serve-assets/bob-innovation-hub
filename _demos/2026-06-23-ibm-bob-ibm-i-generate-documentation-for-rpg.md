@@ -1,7 +1,7 @@
 ---
 title: IBM Bob -IBM i Generate Documentation for RPG
 team: Other
-domain: Automation
+domain: Modernization
 link: https://www.youtube.com/watch?v=ULEJQwgzieg
 ---
 What does it take to document a massive legacy ERP application written in RPG 36? About an hour with IBM Bob. In this video, we point Bob at a large, complex application — complete with CL programs, printer files, logical and physical files, DDS panel groups, and extensive RPG code — and ask for comprehensive documentation from scratch.  
