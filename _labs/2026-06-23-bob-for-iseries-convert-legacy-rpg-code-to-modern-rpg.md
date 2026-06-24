@@ -1,7 +1,7 @@
 ---
 title: "Bob for iSeries: Convert legacy RPG code to modern RPG"
 team: Other
-domain: Data
+domain: Modernization
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-1-rpg-fixed-to-free-conversion
 ---
