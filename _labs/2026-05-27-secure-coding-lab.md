@@ -1,5 +1,6 @@
 ---
 title: Secure Coding Lab
+team: Service Engineering
 domain: Security
 duration: 30 mins
 link: https://github.com/ibm-self-serve-assets/bob-secure-coding-lab
