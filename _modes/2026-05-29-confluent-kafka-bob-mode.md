@@ -1,5 +1,6 @@
 ---
 title: confluent-kafka-bob-mode
+team: Service Engineering
 type: Custom
 industry:
   - Cross
