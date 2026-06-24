@@ -1,5 +1,6 @@
 ---
 title: IBM Bob- IBM i Refactor Variable names in RPG
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=4wtDCmVpi5k
 ---
