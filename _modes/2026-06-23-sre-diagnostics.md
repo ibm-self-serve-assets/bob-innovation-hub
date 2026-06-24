@@ -1,5 +1,6 @@
 ---
 title: SRE Diagnostics
+team: Service Engineering
 type: Custom
 industry:
   - Cross
