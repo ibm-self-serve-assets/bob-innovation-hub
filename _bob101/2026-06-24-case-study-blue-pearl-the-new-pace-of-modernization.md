@@ -1,5 +1,5 @@
 ---
-title: "Case Study- Blue Pearl: The new pace of modernization"
+title: Case Study- AI led modernization, delivered with IBM Bob
 link: https://www.ibm.com/case-studies/blue-pearl-bob
 ---
-AI‑led modernization, delivered with IBM Bob
+**Blue Pearl** modernized complex applications in as little as 3 days, automating code analysis, refactoring and testing while maintaining architectural integrity.
