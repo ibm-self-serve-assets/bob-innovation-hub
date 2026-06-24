@@ -1,5 +1,6 @@
 ---
 title: Sterling OMS MCP Server
+team: Service Engineering
 domain: Automation
 duration: 30 mins
 link: https://github.com/ibm-self-serve-assets/sterling-oms-mcp-server
