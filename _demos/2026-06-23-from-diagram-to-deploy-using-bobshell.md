@@ -1,5 +1,6 @@
 ---
 title: From Diagram to deploy using bobshell
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=flo7L7rVvKw
 ---
