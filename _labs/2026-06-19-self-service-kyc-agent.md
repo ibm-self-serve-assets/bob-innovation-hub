@@ -1,5 +1,6 @@
 ---
 title: Self-service KYC Agent
+team: Service Engineering
 domain: Data
 duration: 60 mins
 link: https://ibm.github.io/select-t-partner-market-launchpad/tracks/track-01/labs/lab-301/financial-services/self-service-kyc/details/
