@@ -1,5 +1,6 @@
 ---
 title: Automated architecture test with Taikai
+team: Other
 domain: Automation
 duration: 20 mins
 link: https://github.com/IBM/bob-demo/tree/main/automated-architecture-taikai
