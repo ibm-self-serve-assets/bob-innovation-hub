@@ -1,6 +1,6 @@
 ---
 title: Parkbot assist
-type: Technical
+type: Business
 domain: Data
 link: https://ibm.seismic.com/Link/Content/DC47CGJ98XXj7GMTWcRPVR2WcdmP
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=parkbot%20assist
