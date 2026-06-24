@@ -1,5 +1,6 @@
 ---
 title: Observability and self healing application powered by BoB & Instana
+team: Service Engineering
 domain: Automation
 link: https://youtu.be/We3lU17gh8U
 ---
