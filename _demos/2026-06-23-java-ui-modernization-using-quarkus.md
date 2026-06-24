@@ -1,5 +1,6 @@
 ---
 title: " Java UI Modernization using Quarkus"
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=gqZG_afyQyg
 ---
