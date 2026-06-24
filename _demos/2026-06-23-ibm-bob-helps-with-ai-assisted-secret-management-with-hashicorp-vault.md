@@ -1,5 +1,6 @@
 ---
 title: IBM Bob helps with AI-Assisted Secret Management with Hashicorp Vault
+team: Other
 domain: Security
 link: https://www.youtube.com/watch?v=wHBPHmz8F48
 ---
