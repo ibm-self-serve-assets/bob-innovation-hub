@@ -1,5 +1,6 @@
 ---
 title: Modernize EJB to Quarkus
+team: Other
 domain: Automation
 duration: 30 mins
 link: https://github.com/IBM/bob-demo/tree/main/modernize-ejb-to-quarkus
