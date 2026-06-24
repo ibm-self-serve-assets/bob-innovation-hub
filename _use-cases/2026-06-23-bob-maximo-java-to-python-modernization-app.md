@@ -1,6 +1,6 @@
 ---
 title: Bob + Maximo (Java to python modernization app)
-type: Business
+type: Technical
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCWT4QDGD2h9pGqDmJc8F4pf9pF3
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=bob%20%2B%20maximo%20(java%20to%20python%20modernization%20app)
