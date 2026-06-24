@@ -1,6 +1,7 @@
 ---
 title: "Bob for iSeries: Transform record-level access operations to modern SQL
   with JOINs"
+team: Other
 domain: Data
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-3-convert-rla-to-sql
