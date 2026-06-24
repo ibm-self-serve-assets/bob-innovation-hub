@@ -1,6 +1,6 @@
 ---
 title: Lease Management in Maximo REF Using MCP Servers
-type: Technical
+type: Business
 domain: Automation
 link: https://github.com/RahulBhavar/MREF-Contract-Management-MCP
 ---
