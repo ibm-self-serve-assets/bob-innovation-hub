@@ -1,5 +1,6 @@
 ---
 title: " IBM Bob for watsonx Orchestrate: Create MCP Tools and Agents"
+team: Other
 domain: Automation
 link: https://www.youtube.com/watch?v=5v8E-YbSPMo
 ---
