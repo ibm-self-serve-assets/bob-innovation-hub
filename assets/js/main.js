@@ -31,7 +31,7 @@ function updateThemeButton(theme) {
 }
 
 // Sections that show the search bar
-const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes'];
+const SEARCH_SECTIONS = ['use-cases', 'demos', 'labs', 'modes', 'skills'];
 
 // Sections with sub-tabs
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
@@ -130,6 +130,9 @@ function activateSection(sectionId, subSectionId, pushRoute) {
       filterAndPaginate(firstSubSection);
     }
   } else if (SEARCH_SECTIONS.includes(sectionId)) {
+    // Reset domain filter for flat sections (demos, labs)
+    activeDomainFilter[sectionId] = '';
+    resetDomainPills(sectionEl);
     filterAndPaginate(sectionId);
   }
 
@@ -246,7 +249,8 @@ let currentPage = {
   demos: 1,
   'technical-use-cases': 1,
   'business-use-cases': 1,
-  modes: 1
+  modes: 1,
+  skills: 1
 };
 
 function filterAndPaginate(section) {
@@ -270,6 +274,17 @@ function filterAndPaginate(section) {
     const matchesDomain = !domainFilter || domain === domainFilter;
     return matchesSearch && matchesDomain;
   });
+
+  // Sort: Service Engineering assets appear first
+  visibleCards.sort((a, b) => {
+    const aIsServiceEng = (a.dataset.team || '') === 'service engineering' ? 0 : 1;
+    const bIsServiceEng = (b.dataset.team || '') === 'service engineering' ? 0 : 1;
+    return aIsServiceEng - bIsServiceEng;
+  });
+  // Re-insert all asset cards in sorted order so the CSS grid renders them correctly.
+  // Non-visible cards are appended after visible ones, keeping the full stable order.
+  const hiddenCards = cards.filter(c => !(emptyState && c === emptyState) && !visibleCards.includes(c));
+  [...visibleCards, ...hiddenCards].forEach(card => container.appendChild(card));
 
   // Reset to page 1 when searching
   if (searchTerm) currentPage[section] = 1;

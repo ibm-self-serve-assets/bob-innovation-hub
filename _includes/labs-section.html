@@ -1,9 +1,20 @@
 <!-- Labs Section -->
 <div id="labs-section" class="content-section">
   <h2 class="section-title">🚀 Hands-on Labs</h2>
+  <!-- Domain filter pills -->
+  <div class="domain-filter" data-sub-section="labs" role="group" aria-label="Filter by domain">
+    <span class="domain-filter-label">Domain:</span>
+    <button class="domain-pill active" data-domain="">All</button>
+    {% assign lab_domains = site.labs | map: "domain" | uniq | sort %}
+    {% for d in lab_domains %}
+      {% if d != "" and d != nil %}
+        <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
   <div id="labs-container" class="cards-grid">
     {% for lab in site.labs %}
-      <div class="asset-card" data-slug="{{ lab.slug }}" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-domain="{{ lab.domain | downcase }}">
+      <div class="asset-card" data-slug="{{ lab.slug }}" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-domain="{{ lab.domain | downcase }}" data-team="{{ lab.team | downcase }}">
         <h3>{{ lab.title }}</h3>
         <div class="badge-container">
           {% if lab.domain %}

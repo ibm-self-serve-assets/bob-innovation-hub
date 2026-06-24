@@ -18,10 +18,10 @@
       {% assign premium_modes = site.modes | where: "type", "Premium" %}
       {% if premium_modes.size > 0 %}
         {% for mode in premium_modes %}
-          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
-            <h3>{{ mode.title }}</h3>
-            <div class="badge-container">
-              <span class="badge badge-orange">⭐ Premium</span>
+          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
+             <h3>{{ mode.title }}</h3>
+             <div class="badge-container">
+               <span class="badge badge-orange">⭐ Premium</span>
               {% if mode.industry %}
                 {% for ind in mode.industry %}
                   <span class="badge badge-blue">🏢 {{ ind }}</span>
@@ -68,10 +68,10 @@
       {% assign custom_modes = site.modes | where: "type", "Custom" %}
       {% if custom_modes.size > 0 %}
         {% for mode in custom_modes %}
-          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}">
-            <h3>{{ mode.title }}</h3>
-            <div class="badge-container">
-              <span class="badge badge-green">🤖 Custom</span>
+          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
+             <h3>{{ mode.title }}</h3>
+             <div class="badge-container">
+               <span class="badge badge-green">🤖 Custom</span>
               {% if mode.industry %}
                 {% for ind in mode.industry %}
                   <span class="badge badge-blue">🏢 {{ ind }}</span>
