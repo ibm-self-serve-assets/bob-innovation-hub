@@ -83,6 +83,7 @@ section#main_content {
 }
 .bob-logo{
   height: 40px;
+  flex-shrink: 0;
 }
 /* Left Sidebar Navigation */
 .sidebar {
@@ -113,7 +114,8 @@ section#main_content {
   font-weight: 700;
   color: var(--text-primary);
   font-family: 'IBM Plex Sans', sans-serif;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .sidebar-header h2 {
