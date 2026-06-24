@@ -2,7 +2,7 @@
 title: "Bob for iSeries: Configure Bob for IBM i development with MCP tools and
   custom modes"
 team: Other
-domain: Data
+domain: Modernization
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab4-ibmi-mcp-mode.md
 ---
