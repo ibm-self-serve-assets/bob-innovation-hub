@@ -1,8 +1,10 @@
 media:
+  name: docs
   input: docs/slide_decks
   output: /docs/slide_decks
   rename: random
   categories: [document]
+  extensions: [pdf]
 content:
   - name: modes
     label: "🤖 Bob Modes"
