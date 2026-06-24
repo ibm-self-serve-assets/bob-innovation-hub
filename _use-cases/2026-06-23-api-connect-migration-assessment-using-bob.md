@@ -1,6 +1,6 @@
 ---
 title: API Connect Migration Assessment using Bob
-type: Business
+type: Technical
 domain: Automation
 link: https://ibm.seismic.com/Link/Content/DCVcFf6FWR426GTP9739Fgg2b9q3
 demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=api%20connect%20migration%20assessment%20using%20bob
