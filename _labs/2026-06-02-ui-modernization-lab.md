@@ -1,7 +1,7 @@
 ---
 title: UI Modernization lab
 team: Service Engineering
-domain: Automation
+domain: Modernization
 duration: 45 mins
 link: https://github.com/ibm-self-serve-assets/ui-modernization-lab
 ---
