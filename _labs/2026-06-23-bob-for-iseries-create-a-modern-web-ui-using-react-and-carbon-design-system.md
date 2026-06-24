@@ -1,5 +1,6 @@
 ---
 title: "Bob for iSeries: Create a modern web UI using React and Carbon Design System"
+team: Other
 domain: Data
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-2-build-a-simple-article-list
