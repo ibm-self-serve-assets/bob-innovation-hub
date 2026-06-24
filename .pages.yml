@@ -171,6 +171,8 @@ content:
         label: Slide Deck
         type: file
         options:
+          media: docs
+          path: docs/slide_decks
           extensions: [pdf]
         required: false
   - name: learning-content
