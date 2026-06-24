@@ -1,5 +1,6 @@
 ---
 title: ACE and IWHI Integration Lab
+team: Service Engineering
 domain: Automation
 duration: 30 mins
 link: https://github.com/ibm-self-serve-assets/bob-ace-integration-lab
