@@ -1,5 +1,6 @@
 ---
 title: "Bob for iSeries: Automate IBM i system management with Bob & ansible"
+team: Other
 domain: Data
 duration: 20 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab1-rpg-documentation-fixed-to-free.md
