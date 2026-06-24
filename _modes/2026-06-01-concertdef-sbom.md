@@ -1,5 +1,6 @@
 ---
 title: "ConcertDef SBOM "
+team: Service Engineering
 type: Custom
 industry:
   - Cross
