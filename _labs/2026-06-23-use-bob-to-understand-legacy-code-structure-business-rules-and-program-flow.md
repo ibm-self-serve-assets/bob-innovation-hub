@@ -1,6 +1,7 @@
 ---
 title: "Bob for iSeries: Use Bob to understand legacy iSeries code structure,
   business rules, and program flow"
+team: Other
 domain: Data
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-0-discover-the-samco-application
