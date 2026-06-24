@@ -1,5 +1,6 @@
 ---
 title: "Quarkus AI integration "
+team: Other
 domain: Automation
 duration: 45 mins
 link: https://github.com/IBM/bob-demo/tree/main/quarkus-ai-integration
