@@ -1,7 +1,9 @@
 ---
 title: Smarter Procurement & Inventory Management with Bob, Maximo & OMS Integration
+team: Service Engineering
 domain: Automation
 link: https://youtu.be/0reeSOS9vwc
+featured: 22
 ---
 This demo showcases how IBM Bob accelerates enterprise integration development by using AI to analyze business requirements and automatically generate integration assets.
 
