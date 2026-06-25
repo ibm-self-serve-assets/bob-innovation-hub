@@ -2,6 +2,7 @@
 title: "On demand Webinar- From code to competitive advantage: What AI‑native
   development means for your SDLC"
 link: https://www.ibm.com/forms/mkt-webinar-5acdb
+featured: 1
 ---
 Business velocity is no longer defined by how fast teams write code; it is limited by rising complexity. Multicloud setups, legacy systems, fragmented toolchains, and growing technical debt slow delivery far more than coding itself.
 
