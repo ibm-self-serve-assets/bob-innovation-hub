@@ -1,8 +1,10 @@
 ---
 title: Modernize Retail with dynamic pricing and offer optimization with IBM
   Bob, Confluent and watsonx Orchestrate
+team: Service Engineering
 domain: Automation
 link: https://www.youtube.com/watch?v=_x9wrMifFRE
+featured: 4
 ---
 This demo shows an AI-powered dynamic pricing and offer optimization system that combines batch-processed historical insights with real-time signals to deliver intelligent, context-aware decisions across industries.
 
