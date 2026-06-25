@@ -60,7 +60,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: labs
     label: "🤖 Bob Labs"
     type: collection
@@ -103,7 +103,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: demos
     label: "💻 Bob Demos"
     type: collection
@@ -142,7 +142,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: use-cases
     label: "📋 Bob Usecases"
     type: collection
@@ -205,7 +205,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: learning-content
     label: "Bob Learning Content"
     type: collection
@@ -228,7 +228,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: bob101
     label: "Bob 101"
     type: collection
@@ -251,7 +251,7 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
   - name: skills
     label: "🤖 Bob Skills"
     type: collection
@@ -290,6 +290,6 @@ content:
         type: number
         options:
           min: 1
-          max: 8
+          max: 50
 
 # Made with Bob
