@@ -4,6 +4,7 @@ team: Other
 domain: Modernization
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-2-build-a-simple-article-list
+featured: 16
 ---
 **Use Case**: Display articles in a web browser using Carbon Design System
 
