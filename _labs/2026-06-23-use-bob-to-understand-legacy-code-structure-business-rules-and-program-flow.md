@@ -5,6 +5,7 @@ team: Other
 domain: Modernization
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-0-discover-the-samco-application
+featured: 18
 ---
 **Use Case**: Use Bob as a discovery tool to understand legacy code before modernizing
 
