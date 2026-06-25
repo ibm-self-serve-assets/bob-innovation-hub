@@ -4,6 +4,7 @@ team: Other
 domain: Modernization
 duration: 15 min
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-1-rpg-fixed-to-free-conversion
+featured: 15
 ---
 **Use Case**: Convert the subfile load logic (s01lod) to modern RPG
 
