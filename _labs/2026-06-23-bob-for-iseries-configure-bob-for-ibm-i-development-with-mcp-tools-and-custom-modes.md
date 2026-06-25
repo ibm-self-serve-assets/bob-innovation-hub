@@ -5,6 +5,7 @@ team: Other
 domain: Modernization
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab4-ibmi-mcp-mode.md
+featured: 14
 ---
 **Use Case**: Customize Bob for IBM i development and leverage IBM i-specific tools
 
