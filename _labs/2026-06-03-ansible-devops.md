@@ -4,6 +4,7 @@ team: Other
 domain: Automation
 duration: 30 mins
 link: https://github.com/IBM/bob-demo/tree/main/ansible-devops
+featured: 20
 ---
 This demo shows how to use Bob to generate Ansible playbooks to install and configure a Web Server and properly configure the firewall.
 
