@@ -4,5 +4,6 @@ team: Service Engineering
 domain: Modernization
 duration: 45 mins
 link: https://github.com/ibm-self-serve-assets/java-modernization-lab
+featured: 2
 ---
 Transform a **Legacy Struts 1.3** application to a modern **Spring Boot 3.x + React 18 + PostgreSQL** application
