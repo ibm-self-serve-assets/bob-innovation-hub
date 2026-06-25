@@ -1,6 +1,7 @@
 ---
 title: MCP Context-Forge
 link: https://github.com/IBM/mcp-context-forge
+featured: 10
 ---
 **ContextForge** is an open source registry and proxy that federates tools, agents, and APIs into one clean endpoint for your AI clients. It provides centralized governance, discovery, and observability across your AI infrastructure:
 
