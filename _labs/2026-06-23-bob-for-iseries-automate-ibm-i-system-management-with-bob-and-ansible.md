@@ -4,6 +4,7 @@ team: Other
 domain: Modernization
 duration: 20 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab1-rpg-documentation-fixed-to-free.md
+featured: 13
 ---
 **Use Case**: Address skills shortage in IBM i DevOps through AI-assisted system automation and PTF management
 
