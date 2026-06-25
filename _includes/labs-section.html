@@ -14,8 +14,9 @@
   </div>
   <div id="labs-container" class="cards-grid">
     {% assign _lb_feat = site.labs | where_exp: "item", "item.featured" | sort: "featured" %}
-    {% assign _lb_unfeat = site.labs | where_exp: "item", "item.featured == nil" %}
-    {% assign sorted_labs = _lb_feat | concat: _lb_unfeat %}
+    {% assign _lb_se = site.labs | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+    {% assign _lb_other = site.labs | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+    {% assign sorted_labs = _lb_feat | concat: _lb_se | concat: _lb_other %}
     {% for lab in sorted_labs %}
       <div class="asset-card" data-slug="{{ lab.slug }}" data-title="{{ lab.title | downcase }}" data-content="{{ lab.content | strip_html | downcase }}" data-domain="{{ lab.domain | downcase }}" data-team="{{ lab.team | downcase }}">
         <h3>{{ lab.title }}</h3>

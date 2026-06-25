@@ -4,8 +4,9 @@
   <div id="skills-container" class="cards-grid">
 
     {% assign _sk_feat = site.skills | where_exp: "item", "item.featured" | sort: "featured" %}
-    {% assign _sk_unfeat = site.skills | where_exp: "item", "item.featured == nil" %}
-    {% assign sorted_skills = _sk_feat | concat: _sk_unfeat %}
+    {% assign _sk_se = site.skills | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+    {% assign _sk_other = site.skills | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+    {% assign sorted_skills = _sk_feat | concat: _sk_se | concat: _sk_other %}
     {% if sorted_skills.size > 0 %}
       {% for skill in sorted_skills %}
         <div class="asset-card" data-slug="{{ skill.slug }}" data-title="{{ skill.title | downcase }}" data-content="{{ skill.content | strip_html | downcase }}" data-industry="{{ skill.industry | join: ' ' | downcase }}" data-team="{{ skill.team | downcase }}">

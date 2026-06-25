@@ -17,8 +17,9 @@
     <div id="premium-modes-container" class="cards-grid">
       {% assign _pm_all = site.modes | where: "type", "Premium" %}
       {% assign _pm_feat = _pm_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _pm_unfeat = _pm_all | where_exp: "item", "item.featured == nil" %}
-      {% assign premium_modes = _pm_feat | concat: _pm_unfeat %}
+      {% assign _pm_se = _pm_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+      {% assign _pm_other = _pm_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+      {% assign premium_modes = _pm_feat | concat: _pm_se | concat: _pm_other %}
       {% if premium_modes.size > 0 %}
         {% for mode in premium_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
@@ -70,8 +71,9 @@
     <div id="custom-modes-container" class="cards-grid">
       {% assign _cm_all = site.modes | where: "type", "Custom" %}
       {% assign _cm_feat = _cm_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _cm_unfeat = _cm_all | where_exp: "item", "item.featured == nil" %}
-      {% assign custom_modes = _cm_feat | concat: _cm_unfeat %}
+      {% assign _cm_se = _cm_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+      {% assign _cm_other = _cm_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+      {% assign custom_modes = _cm_feat | concat: _cm_se | concat: _cm_other %}
       {% if custom_modes.size > 0 %}
         {% for mode in custom_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">

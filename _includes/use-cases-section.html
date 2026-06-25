@@ -28,8 +28,9 @@
     <div id="technical-use-cases-container" class="cards-grid">
       {% assign _tc_all = site.use-cases | where: "type", "Technical" %}
       {% assign _tc_feat = _tc_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _tc_unfeat = _tc_all | where_exp: "item", "item.featured == nil" %}
-      {% assign technical_cases = _tc_feat | concat: _tc_unfeat %}
+      {% assign _tc_se = _tc_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+      {% assign _tc_other = _tc_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+      {% assign technical_cases = _tc_feat | concat: _tc_se | concat: _tc_other %}
       {% if technical_cases.size > 0 %}
         {% for usecase in technical_cases %}
           <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
@@ -96,8 +97,9 @@
     <div id="business-use-cases-container" class="cards-grid">
       {% assign _bc_all = site.use-cases | where: "type", "Business" %}
       {% assign _bc_feat = _bc_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _bc_unfeat = _bc_all | where_exp: "item", "item.featured == nil" %}
-      {% assign business_cases = _bc_feat | concat: _bc_unfeat %}
+      {% assign _bc_se = _bc_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+      {% assign _bc_other = _bc_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+      {% assign business_cases = _bc_feat | concat: _bc_se | concat: _bc_other %}
       {% if business_cases.size > 0 %}
         {% for usecase in business_cases %}
           <div class="asset-card" data-slug="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
