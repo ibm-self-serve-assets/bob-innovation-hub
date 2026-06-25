@@ -3,5 +3,6 @@ title: Enterprise Secure Coding
 team: Service Engineering
 domain: Security
 link: https://www.youtube.com/watch?v=unBYDNKAPyw
+featured: 1
 ---
 Enforce secure coding at scale by combining IBM Bob, HashiCorp Vault for just-in-time secrets, and IBM MCP Gateway for governed tool access.
