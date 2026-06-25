@@ -5,6 +5,7 @@ team: Other
 domain: Modernization
 duration: 15 mins
 link: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-3-convert-rla-to-sql
+featured: 17
 ---
 **Use Case**: Convert article lookup from RLA to SQL with JOIN
 
