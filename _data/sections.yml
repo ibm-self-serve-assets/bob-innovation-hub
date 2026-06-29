@@ -9,13 +9,6 @@ sections:
     type: custom
     include_file: introduction-section.html
 
-  - id: bob101
-    title: Bob 101
-    icon: "" #📘
-    show_search: true
-    type: custom
-    include_file: bob101-section.html
-
   - id: learning-resources
     title: Learning Resources
     icon: "" #🎓
@@ -87,6 +80,14 @@ sections:
     show_search: true
     type: custom
     include_file: skills-section.html
+
+  - id: bob101
+    title: Additional Resources
+    icon: "" #📘
+    show_search: true
+    type: custom
+    include_file: bob101-section.html
+
 
 
 # To add a new section, copy the template below and customize:

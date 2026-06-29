@@ -278,8 +278,15 @@ section#main_content {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.4rem;
   font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.section-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
 /* Cards Grid */
