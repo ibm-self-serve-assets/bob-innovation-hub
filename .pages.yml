@@ -1,3 +1,6 @@
+settings:
+  commit:
+    identity: user
 media:
   name: docs
   input: docs/slide_decks
