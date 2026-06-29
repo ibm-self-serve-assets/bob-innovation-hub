@@ -28,7 +28,7 @@ Single-page app rendered by Jekyll. Navigation is purely JavaScript hash-routing
 1. `_config.yml` — add collection (`output: false`)
 2. `_data/sections.yml` — add entry with `type:` and `id:`
 3. `_includes/[id]-section.html` — create card grid HTML
-4. `index.html` — add `{% include [id]-section.html %}`
+4. `index.html` — add `{% raw %}{% include [id]-section.html %}{% endraw %}`
 5. `assets/js/main.js` — add section id to `currentPage`, `ALL_PAGINATED_SECTIONS`, `SEARCH_SECTIONS`, `ROUTE_MAP`, and `SECTION_TO_ROUTE`
 
 > See [`QUICK_START.md`](QUICK_START.md) for the full walkthrough.
