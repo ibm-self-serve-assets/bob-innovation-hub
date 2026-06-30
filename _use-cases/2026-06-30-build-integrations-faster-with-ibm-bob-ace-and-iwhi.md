@@ -1,5 +1,6 @@
 ---
 title: Build Integrations Faster with IBM Bob, ACE and IWHI
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
