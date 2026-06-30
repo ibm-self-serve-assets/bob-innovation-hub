@@ -1,6 +1,6 @@
 ---
 title: Squash security issues in your code
-team: Service Engineering
+team: Other
 domain: Security
 link: https://www.youtube.com/watch?v=T4A04Jsxogs
 featured: 24
