@@ -3,7 +3,7 @@ title: Autonomous Threat Remediation
 team: Service Engineering
 type: Technical
 domain: Security
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=autonomous%20threat%20remediation
+demo: https://www.youtube.com/watch?v=1gtTt0g3ejA
 slide_deck: /docs/slide_decks/Autonomous Threat Remediation.pdf
 featured: 6
 ---
