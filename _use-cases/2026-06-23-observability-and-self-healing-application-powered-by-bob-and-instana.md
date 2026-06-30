@@ -3,7 +3,7 @@ title: Observability and self healing application powered by BoB & Instana
 team: Service Engineering
 type: Technical
 domain: Automation
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=observability%20and%20self%20healing%20application%20powered%20by%20bob%20%26%20instana
+demo: https://www.youtube.com/watch?v=We3lU17gh8U
 slide_deck: /docs/slide_decks/Leveraging-Bob-with-Instana-1Pager.pdf
 featured: 15
 ---
