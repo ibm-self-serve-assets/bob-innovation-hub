@@ -1,8 +1,10 @@
 ---
 title: Legacy to Carbon UI
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Modernization
+link: https://github.com/ibm-self-serve-assets/ui-modernization-lab
 demo: https://www.youtube.com/watch?v=fpoO_603duw
 featured: 4
 ---
