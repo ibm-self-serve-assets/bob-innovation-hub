@@ -3,7 +3,7 @@ title: API Connect Migration Assessment using Bob
 team: Service Engineering
 type: Technical
 domain: Automation
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=api%20connect%20migration%20assessment%20using%20bob
+demo: https://www.youtube.com/watch?v=70x5dIv8qj8
 slide_deck: /docs/slide_decks/BOB_API Connect_Migration_Assessment.pdf
 featured: 18
 ---
