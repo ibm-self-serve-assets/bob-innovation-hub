@@ -4,9 +4,10 @@ asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
-link: https://github.com/ibm-self-serve-assets/bob-ace-integration-lab
 demo: https://www.youtube.com/watch?v=UcbTj7bOGKs
+lab: https://github.com/ibm-self-serve-assets/bob-ace-integration-lab
 mode: https://github.com/ibm-self-serve-assets/ibm-ace-bob-mode
+skill: https://github.com/ot4i/ace-bob
 featured: 1
 ---
 Generate production-ready integrations with AI assistance and deploy them with centralized governance-  
