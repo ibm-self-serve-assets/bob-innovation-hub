@@ -3,7 +3,7 @@ title: Dynamic pricing - Retail
 team: Service Engineering
 type: Business
 domain: Automation
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=modernize%20retail%20with%20dynamic%20pricing%20and%20offer%20optimization%20with%20ibm%20bob%2C%20confluent%20and%20watsonx%20orchestrate
+demo: https://www.youtube.com/watch?v=_x9wrMifFRE
 slide_deck: /docs/slide_decks/Retail_DynamicPricing.pdf
 featured: 2
 ---
