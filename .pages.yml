@@ -199,6 +199,10 @@ content:
         label: "Demo Link"
         type: string
         required: false
+      - name: lab
+        label: "Lab Link"
+        type: string
+        required: false
       - name: mode
         label: "Mode Link"
         type: string
