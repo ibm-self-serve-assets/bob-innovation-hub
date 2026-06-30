@@ -3,7 +3,7 @@ title: Lakehouse Copilot
 team: Service Engineering
 type: Technical
 domain: Data
-demo: youtube.com/watch?v=lItqe23Z1B8&feature=youtu.be
+demo: https://www.youtube.com/watch?v=lItqe23Z1B8
 slide_deck: /docs/slide_decks/Lakehouse Copilot Deck.pdf
 featured: 16
 ---
