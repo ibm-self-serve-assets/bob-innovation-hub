@@ -3,7 +3,7 @@ title: Fast track API development with IBM Bob and API connect MCP server
 team: Service Engineering
 type: Technical
 domain: Automation
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=fast%20track%20api%20development%20with%20ibm%20bob%20and%20api%20connect%20mcp%20server
+demo: https://www.youtube.com/watch?v=JZMN0-PFseQ
 slide_deck: /docs/slide_decks/APIC_development_with_Bob.pdf
 featured: 19
 ---
