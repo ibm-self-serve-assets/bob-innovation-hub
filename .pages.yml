@@ -207,6 +207,10 @@ content:
         label: "Mode Link"
         type: string
         required: false
+      - name: skill
+        label: "Skill Link"
+        type: string
+        required: false
       - name: slide_deck
         label: Slide Deck
         type: file
