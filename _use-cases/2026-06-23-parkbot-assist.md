@@ -3,7 +3,7 @@ title: Parkbot assist
 team: Service Engineering
 type: Business
 domain: Data
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=parkbot%20assist
+demo: https://www.youtube.com/watch?v=eDLVhvbMWQg
 slide_deck: /docs/slide_decks/ParkBot Assist Business Deck.pdf
 featured: 14
 ---
