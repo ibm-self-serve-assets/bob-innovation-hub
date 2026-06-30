@@ -6,7 +6,7 @@ domain: Automation
 link: https://github.com/ibm-self-serve-assets/bob-ace-integration-lab
 demo: https://www.youtube.com/watch?v=UcbTj7bOGKs
 mode: https://github.com/ibm-self-serve-assets/ibm-ace-bob-mode
-featured: 11
+featured: 1
 ---
 Generate production-ready integrations with AI assistance and deploy them with centralized governance-  
 **IBM Bob**: AI-powered development assistant that accelerates ACE integration project creation through natural language prompts
