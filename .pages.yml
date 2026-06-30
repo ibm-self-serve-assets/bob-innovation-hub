@@ -18,6 +18,10 @@ content:
         label: "Mode Name"
         type: string
         required: true
+      - name: asset-owner
+        label: "Asset Owner Email"
+        type: string
+        required: true
       - name: team
         label: "Team"
         type: select
@@ -155,6 +159,10 @@ content:
         label: "Use-case Title"
         type: string
         required: true
+      - name: asset-owner
+        label: "Asset Owner Email"
+        type: string
+        required: true
       - name: team
         label: "Team"
         type: select
@@ -262,6 +270,10 @@ content:
     fields:
       - name: title
         label: "Skill Name"
+        type: string
+        required: true
+      - name: asset-owner
+        label: "Asset Owner Email"
         type: string
         required: true
       - name: team
