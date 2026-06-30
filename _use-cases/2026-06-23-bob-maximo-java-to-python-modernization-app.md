@@ -3,7 +3,7 @@ title: Bob + Maximo (Java to python modernization app)
 team: Service Engineering
 type: Technical
 domain: Modernization
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=bob%20%2B%20maximo%20(java%20to%20python%20modernization%20app)
+demo: https://www.youtube.com/watch?v=ZD-PbxxTOz0
 slide_deck: /docs/slide_decks/Bob_Maximo_one_pager.pdf
 featured: 12
 ---
