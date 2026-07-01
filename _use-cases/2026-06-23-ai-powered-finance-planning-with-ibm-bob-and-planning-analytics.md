@@ -1,8 +1,15 @@
 ---
+id: eaf890d3-a67c-4d2e-944b-f7db3272ab38
 title: AI Powered Finance Planning with IBM Bob & Planning Analytics
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Automation
+domain: BFSI
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
 demo: https://www.youtube.com/watch?v=Qv6avtybm6E
 featured: 9
 ---
