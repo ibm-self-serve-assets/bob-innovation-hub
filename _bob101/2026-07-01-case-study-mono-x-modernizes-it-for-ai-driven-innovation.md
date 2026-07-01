@@ -1,5 +1,5 @@
 ---
-title: "Case-Study: MONO-X modernizes IT for AI-driven innovation"
+title: "Case Study: MONO-X modernizes IT for AI-driven innovation"
 link: https://www.ibm.com/case-studies/mono-x-ibm-bob-power-virtual-server
 ---
 MONO-X is a Japan‑based technology company and IBM Business Partner that supports enterprises modernizing mission‑critical systems while maintaining business continuity. As customer demand for cloud migration and AI‑driven innovation increased, MONO-X recognized the need to deliver a more agile, resilient and sustainable modernization approach for organizations running IBM i workloads.
