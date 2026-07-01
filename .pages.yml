@@ -218,10 +218,10 @@ content:
         options:
           min: 1
           max: 50
-  - name: case-studies
-    label: "Case Studies"
+  - name: skills
+    label: "Bob Skills"
     type: collection
-    path: _case_studies
+    path: _skills
     fields:
       - name: id
         label: "ID (auto-generated)"
@@ -229,21 +229,27 @@ content:
         options:
           editable: false
       - name: title
-        label: "Document Title"
+        label: "Skill Name"
         type: string
         required: true
-      - name: industry
-        label: "Industry"
+      - name: asset-owner
+        label: "Asset Owner Email"
+        type: string
+        required: true
+      - name: team
+        label: "Team"
         type: select
         required: true
         options:
-         values: ["BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment"]
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
       - name: body
-        label: "Document Description"
+        label: "Skill Description"
         type: rich-text
         required: true
       - name: link
-        label: "Document Link"
+        label: "Skill Github Link"
         type: string
         required: true
       - name: featured
@@ -328,10 +334,10 @@ content:
         options:
           min: 1
           max: 50
-  - name: skills
-    label: "🤖 Bob Skills"
+  - name: case-studies
+    label: "Case Studies"
     type: collection
-    path: _skills
+    path: _case_studies
     fields:
       - name: id
         label: "ID (auto-generated)"
@@ -339,27 +345,21 @@ content:
         options:
           editable: false
       - name: title
-        label: "Skill Name"
+        label: "Document Title"
         type: string
         required: true
-      - name: asset-owner
-        label: "Asset Owner Email"
-        type: string
-        required: true
-      - name: team
-        label: "Team"
+      - name: industry
+        label: "Industry"
         type: select
         required: true
         options:
-         values: ["Service Engineering", "Other"]
-         multiple: false
-         placeholder: "Asset Owner Team"
+         values: ["BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment"]
       - name: body
-        label: "Skill Description"
+        label: "Document Description"
         type: rich-text
         required: true
       - name: link
-        label: "Skill Github Link"
+        label: "Document Link"
         type: string
         required: true
       - name: featured
