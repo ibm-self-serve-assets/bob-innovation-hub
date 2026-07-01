@@ -1,5 +1,5 @@
 ---
-title: Case Study- AI led modernization, delivered with IBM Bob
+title: "Case Study: AI led modernization, delivered with IBM Bob"
 link: https://www.ibm.com/case-studies/blue-pearl-bob
 featured: 5
 ---
