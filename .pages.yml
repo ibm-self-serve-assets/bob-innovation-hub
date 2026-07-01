@@ -15,10 +15,10 @@ media:
     rename: false
     categories: [image]
 content:
-  - name: modes
-    label: "🤖 Bob Modes"
+  - name: documentation
+    label: "Documentation"
     type: collection
-    path: _modes
+    path: _documentation
     fields:
       - name: id
         label: "ID (auto-generated)"
@@ -26,35 +26,59 @@ content:
         options:
           editable: false
       - name: title
-        label: "Mode Name"
+        label: "Documentation Title"
         type: string
         required: true
-      - name: asset-owner
-        label: "Asset Owner Email"
+      - name: body
+        label: "Documentation Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Documentation Link"
         type: string
         required: true
-      - name: team
-        label: "Team"
-        type: select
-        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
         options:
-         values: ["Service Engineering", "Other"]
-         multiple: false
-         placeholder: "Asset Owner Team"
+          min: 1
+          max: 50
+  - name: learning-content
+    label: "Bob Learning Content"
+    type: collection
+    path: _learning
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Document Title"
+        type: string
+        required: true
+      - name: body
+        label: "Document Description"
+        type: rich-text
+        required: true
       - name: type
         label: "Type"
         type: select
         required: true
         options:
-         values: ["Premium", "Custom"]
+         values: ["Learning", "Explore Bob"]
          multiple: false
-         placeholder: "Use-case Type"
-      - name: body
-        label: "Mode Description"
+         placeholder: "Resource Type"
+      - name: outcomes
+        label: "What we will learn"
         type: rich-text
         required: true
+      - name: duration
+        label: "duration"
+        type: string
+        required: true
       - name: link
-        label: "Mode Github Link"
+        label: "Document Link"
         type: string
         required: true
       - name: featured
@@ -165,78 +189,7 @@ content:
         options:
           min: 1
           max: 50
-  - name: documentation
-    label: "Documentation"
-    type: collection
-    path: _documentation
-    fields:
-      - name: id
-        label: "ID (auto-generated)"
-        type: uuid
-        options:
-          editable: false
-      - name: title
-        label: "Documentation Title"
-        type: string
-        required: true
-      - name: body
-        label: "Documentation Description"
-        type: rich-text
-        required: true
-      - name: link
-        label: "Documentation Link"
-        type: string
-        required: true
-      - name: featured
-        label: Featured(Skip this field)
-        type: number
-        options:
-          min: 1
-          max: 50
-  - name: learning-content
-    label: "Bob Learning Content"
-    type: collection
-    path: _learning
-    fields:
-      - name: id
-        label: "ID (auto-generated)"
-        type: uuid
-        options:
-          editable: false
-      - name: title
-        label: "Document Title"
-        type: string
-        required: true
-      - name: body
-        label: "Document Description"
-        type: rich-text
-        required: true
-      - name: type
-        label: "Type"
-        type: select
-        required: true
-        options:
-         values: ["Learning", "Explore Bob"]
-         multiple: false
-         placeholder: "Resource Type"
-      - name: outcomes
-        label: "What we will learn"
-        type: rich-text
-        required: true
-      - name: duration
-        label: "duration"
-        type: string
-        required: true
-      - name: link
-        label: "Document Link"
-        type: string
-        required: true
-      - name: featured
-        label: Featured(Skip this field)
-        type: number
-        options:
-          min: 1
-          max: 50
+  
   - name: bob101
     label: "Bob 101"
     type: collection
@@ -319,6 +272,54 @@ content:
         required: true
       - name: link
         label: "MCP Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
+  - name: modes
+    label: "🤖 Bob Modes"
+    type: collection
+    path: _modes
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Mode Name"
+        type: string
+        required: true
+      - name: asset-owner
+        label: "Asset Owner Email"
+        type: string
+        required: true
+      - name: team
+        label: "Team"
+        type: select
+        required: true
+        options:
+         values: ["Service Engineering", "Other"]
+         multiple: false
+         placeholder: "Asset Owner Team"
+      - name: type
+        label: "Type"
+        type: select
+        required: true
+        options:
+         values: ["Premium", "Custom"]
+         multiple: false
+         placeholder: "Use-case Type"
+      - name: body
+        label: "Mode Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Mode Github Link"
         type: string
         required: true
       - name: featured
