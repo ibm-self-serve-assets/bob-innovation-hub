@@ -4,7 +4,7 @@ title: Self-service KYC Agent
 asset-owner: anand.awasthi@in.ibm.com
 team: Other
 type: Business
-domain: Automation
+domain: BFSI
 problem: '""'
 solution: '""'
 business-value: '""'
