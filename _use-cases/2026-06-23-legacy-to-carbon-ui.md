@@ -6,6 +6,7 @@ type: Technical
 domain: Modernization
 link: https://github.com/ibm-self-serve-assets/ui-modernization-lab
 demo: https://www.youtube.com/watch?v=fpoO_603duw
+lab: https://github.com/ibm-self-serve-assets/ui-modernization-lab
 featured: 4
 ---
 Leverage IBM Bob's Carbon-React mode to transform legacy UI to modern Carbon UI framework.
