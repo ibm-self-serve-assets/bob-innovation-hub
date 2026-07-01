@@ -1,9 +1,16 @@
 ---
+id: 71ed1f9d-23c1-4ccf-889f-f6805c449b75
 title: Real-time credit card fraud detection system
 asset-owner: vivprata@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Data
+domain: BFSI
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
+  - IBM Confluent
 lab: https://github.com/ibm-self-serve-assets/Producer-Consumer-Fraud-detection-with-Kafka/blob/main/CASE_STUDY.md
 featured: 8
 ---
