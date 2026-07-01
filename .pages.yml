@@ -143,11 +143,6 @@ content:
         options:
           media: diagrams
         required: false
-      
-      - name: link
-        label: "Use-case Link"
-        type: string
-        required: false
       - name: demo
         label: "Demo Link"
         type: string
