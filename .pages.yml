@@ -328,7 +328,7 @@ content:
         type: select
         required: true
         options:
-         values: ["BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment"]
+         values: ["BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment", "Information Technology"]
       - name: body
         label: "Document Description"
         type: rich-text
