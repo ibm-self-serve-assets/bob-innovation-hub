@@ -1,32 +1,74 @@
-<!-- Documentation Section -->
+<!-- Documentation Section (tabbed: Official Documentation / Pricing Plan) -->
 <div id="documentation-section" class="content-section">
   <h2 class="section-title">Documentation</h2>
   <p class="section-description">Browse official Bob documentation to get started, explore features, and find answers to common questions.</p>
-  <div id="documentation-container" class="cards-grid">
 
-    {% assign _doc_feat = site.documentation | where_exp: "item", "item.featured" | sort: "featured" %}
-    {% assign _doc_unfeat = site.documentation | where_exp: "item", "item.featured == nil" %}
-    {% assign sorted_documentation = _doc_feat | concat: _doc_unfeat %}
-    {% if sorted_documentation.size > 0 %}
-      {% for doc in sorted_documentation %}
-        <div class="asset-card" data-slug="{{ doc.slug }}" data-title="{{ doc.title | downcase }}" data-content="{{ doc.content | strip_html | downcase }}">
-          <h3>{{ doc.title }}</h3>
-          <div class="card-body">{{ doc.content }}</div>
-          {% if doc.link %}
-            <div class="card-actions">
-              <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="asset-card" style="grid-column: 1 / -1;">
-        <div class="empty-state">
-          <p>No documentation found. Add documents from your Pages CMS manager to populate this section.</p>
-        </div>
-      </div>
-    {% endif %}
+  <!-- Carbon Tabs — sub-section navigation -->
+  <cds-tabs value="official-documentation" id="documentation-tabs">
+    <cds-tab id="tab-official-documentation" value="official-documentation" data-sub-section="official-documentation">Official Documentation</cds-tab>
+    <cds-tab id="tab-pricing-plan"           value="pricing-plan"           data-sub-section="pricing-plan">Pricing Plan</cds-tab>
+  </cds-tabs>
 
+  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
+  <div class="sub-tabs" style="display:none;" role="tablist">
+    <button class="sub-tab active" data-sub-section="official-documentation" role="tab" aria-selected="true">Official Documentation</button>
+    <button class="sub-tab"        data-sub-section="pricing-plan"           role="tab" aria-selected="false">Pricing Plan</button>
   </div>
-  <div id="documentation-pagination" class="pagination"></div>
+
+  <!-- Official Documentation -->
+  <div id="official-documentation-sub" class="sub-section active">
+    <div id="official-documentation-container" class="cards-grid">
+      {% assign _od_all  = site.documentation | where: "type", "Official Documentation" %}
+      {% assign _od_feat = _od_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _od_rest = _od_all | where_exp: "item", "item.featured == nil" %}
+      {% assign official_docs = _od_feat | concat: _od_rest %}
+      {% if official_docs.size > 0 %}
+        {% for doc in official_docs %}
+          <div class="asset-card" data-slug="{{ doc.slug }}" data-title="{{ doc.title | downcase }}" data-content="{{ doc.content | strip_html | downcase }}">
+            <h3>{{ doc.title }}</h3>
+            <div class="card-body">{{ doc.content }}</div>
+            {% if doc.link %}
+              <div class="card-actions">
+                <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No official documentation found. Add documents with <code>type: Official Documentation</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="official-documentation-pagination" class="pagination"></div>
+  </div>
+
+  <!-- Pricing Plan -->
+  <div id="pricing-plan-sub" class="sub-section">
+    <div id="pricing-plan-container" class="cards-grid">
+      {% assign _pp_all  = site.documentation | where: "type", "Pricing Plan" %}
+      {% assign _pp_feat = _pp_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _pp_rest = _pp_all | where_exp: "item", "item.featured == nil" %}
+      {% assign pricing_docs = _pp_feat | concat: _pp_rest %}
+      {% if pricing_docs.size > 0 %}
+        {% for doc in pricing_docs %}
+          <div class="asset-card" data-slug="{{ doc.slug }}" data-title="{{ doc.title | downcase }}" data-content="{{ doc.content | strip_html | downcase }}">
+            <h3>{{ doc.title }}</h3>
+            <div class="card-body">{{ doc.content }}</div>
+            {% if doc.link %}
+              <div class="card-actions">
+                <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No pricing plans found. Add documents with <code>type: Pricing Plan</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="pricing-plan-pagination" class="pagination"></div>
+  </div>
+
 </div>

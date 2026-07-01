@@ -45,12 +45,14 @@ function updateThemeButton(theme) {
 
 // ─── Section / routing config ─────────────────────────────────────────────────
 const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'case-studies', 'bob-community'];
-const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
+const SUB_TAB_SECTIONS = ['use-cases', 'modes', 'documentation', 'learning-resources'];
 
 const ROUTE_MAP = {
   '':                         { section: 'introduction' },
   '/':                        { section: 'introduction' },
-  '/learning-resources':      { section: 'learning-resources' },
+  '/learning-resources':                { section: 'learning-resources', subSection: 'learning-path' },
+  '/learning-resources/learning-path':  { section: 'learning-resources', subSection: 'learning-path' },
+  '/learning-resources/explore-bob':    { section: 'learning-resources', subSection: 'explore-bob' },
   '/use-cases':               { section: 'use-cases', subSection: 'business-use-cases' },
   '/use-cases/technical':     { section: 'use-cases', subSection: 'technical-use-cases' },
   '/use-cases/business':      { section: 'use-cases', subSection: 'business-use-cases' },
@@ -60,7 +62,9 @@ const ROUTE_MAP = {
   '/modes/premium':           { section: 'modes', subSection: 'premium-modes' },
   '/modes/custom':            { section: 'modes', subSection: 'custom-modes' },
   '/skills':                  { section: 'skills' },
-  '/documentation':           { section: 'documentation' },
+  '/documentation':                            { section: 'documentation', subSection: 'official-documentation' },
+  '/documentation/official-documentation':     { section: 'documentation', subSection: 'official-documentation' },
+  '/documentation/pricing-plan':               { section: 'documentation', subSection: 'pricing-plan' },
   '/mcp':                     { section: 'mcp' },
   '/case-studies':            { section: 'case-studies' },
   '/bob-community':           { section: 'bob-community' },
@@ -68,7 +72,9 @@ const ROUTE_MAP = {
 
 const SECTION_TO_ROUTE = {
   'introduction':         '#/',
-  'learning-resources':   '#/learning-resources',
+  'learning-resources':        '#/learning-resources',
+  'learning-path':             '#/learning-resources/learning-path',
+  'explore-bob':               '#/learning-resources/explore-bob',
   'use-cases':            '#/use-cases',
   'technical-use-cases':  '#/use-cases/technical',
   'business-use-cases':   '#/use-cases/business',
@@ -78,7 +84,9 @@ const SECTION_TO_ROUTE = {
   'premium-modes':        '#/modes/premium',
   'custom-modes':         '#/modes/custom',
   'skills':               '#/skills',
-  'documentation':        '#/documentation',
+  'documentation':                    '#/documentation',
+  'official-documentation':           '#/documentation/official-documentation',
+  'pricing-plan':                     '#/documentation/pricing-plan',
   'mcp':                  '#/mcp',
   'case-studies':         '#/case-studies',
   'bob-community':        '#/bob-community',
@@ -566,7 +574,11 @@ let currentPage = {
   modes: 1,
   skills: 1,
   'learning-resources': 1,
+  'learning-path': 1,
+  'explore-bob': 1,
   documentation: 1,
+  'official-documentation': 1,
+  'pricing-plan': 1,
   mcp: 1,
   'case-studies': 1,
   'bob-community': 1,
@@ -681,7 +693,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-resources','documentation','mcp','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','official-documentation','pricing-plan','mcp','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));

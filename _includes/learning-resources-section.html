@@ -1,4 +1,4 @@
-<!-- Learning Resources Section -->
+<!-- Learning Resources Section (tabbed: Learning Path / Explore Bob) -->
 <div id="learning-resources-section" class="content-section">
   <h2 class="section-title">Learning Resources</h2>
   <p class="section-description">Whether you are starting from scratch or looking to sharpen your skills, complete our curated learning plans to build your expertise and earn your Bob proficiency badges. Dive deep into technical tutorials designed for hands-on, immersive learning, and explore the core architectural components powering agentic solutions—including IBM MCP servers, MCP, A2A, and AI Gateways.</p>
@@ -10,31 +10,73 @@
     subtitle="Some content may need an IBM Partner ID to access."
     hide-close-button>
   </cds-inline-notification>
-  <div id="learning-resources-container" class="cards-grid">
 
-    {% assign featured_learning = site.learning | where_exp: "item", "item.featured" | sort: "featured" %}
-    {% assign unfeatured_learning = site.learning | where_exp: "item", "item.featured == nil" %}
-    {% assign sorted_learning = featured_learning | concat: unfeatured_learning %}
-    {% if sorted_learning.size > 0 %}
-      {% for resource in sorted_learning %}
-        <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
-          <h3>{{ resource.title }}</h3>
-          <div class="card-body">{{ resource.content }}</div>
-          {% if resource.link %}
-            <div class="card-actions">
-              <cds-link href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">View Resource</cds-link>
-            </div>
-          {% endif %}
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="asset-card" style="grid-column: 1 / -1;">
-        <div class="empty-state">
-          <p>No learning resources found. Add resources from your Pages CMS manager to populate this section.</p>
-        </div>
-      </div>
-    {% endif %}
+  <!-- Carbon Tabs — sub-section navigation -->
+  <cds-tabs value="learning-path" id="learning-resources-tabs">
+    <cds-tab id="tab-learning-path" value="learning-path" data-sub-section="learning-path">Learning Path</cds-tab>
+    <cds-tab id="tab-explore-bob"   value="explore-bob"   data-sub-section="explore-bob">Explore Bob</cds-tab>
+  </cds-tabs>
 
+  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
+  <div class="sub-tabs" style="display:none;" role="tablist">
+    <button class="sub-tab active" data-sub-section="learning-path" role="tab" aria-selected="true">Learning Path</button>
+    <button class="sub-tab"        data-sub-section="explore-bob"   role="tab" aria-selected="false">Explore Bob</button>
   </div>
-  <div id="learning-resources-pagination" class="pagination"></div>
+
+  <!-- Learning Path -->
+  <div id="learning-path-sub" class="sub-section active">
+    <div id="learning-path-container" class="cards-grid">
+      {% assign _lp_all  = site.learning | where: "type", "Learning" %}
+      {% assign _lp_feat = _lp_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _lp_rest = _lp_all | where_exp: "item", "item.featured == nil" %}
+      {% assign learning_path_resources = _lp_feat | concat: _lp_rest %}
+      {% if learning_path_resources.size > 0 %}
+        {% for resource in learning_path_resources %}
+          <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
+            <h3>{{ resource.title }}</h3>
+            <div class="card-body">{{ resource.content }}</div>
+            {% if resource.link %}
+              <div class="card-actions">
+                <cds-link href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">View Resource</cds-link>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No learning path resources found. Add resources with <code>type: Learning</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="learning-path-pagination" class="pagination"></div>
+  </div>
+
+  <!-- Explore Bob -->
+  <div id="explore-bob-sub" class="sub-section">
+    <div id="explore-bob-container" class="cards-grid">
+      {% assign _eb_all  = site.learning | where: "type", "Explore Bob" %}
+      {% assign _eb_feat = _eb_all | where_exp: "item", "item.featured" | sort: "featured" %}
+      {% assign _eb_rest = _eb_all | where_exp: "item", "item.featured == nil" %}
+      {% assign explore_bob_resources = _eb_feat | concat: _eb_rest %}
+      {% if explore_bob_resources.size > 0 %}
+        {% for resource in explore_bob_resources %}
+          <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
+            <h3>{{ resource.title }}</h3>
+            <div class="card-body">{{ resource.content }}</div>
+            {% if resource.link %}
+              <div class="card-actions">
+                <cds-link href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">View Resource</cds-link>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-state">
+          <p>No Explore Bob resources found. Add resources with <code>type: Explore Bob</code> to populate this section.</p>
+        </div>
+      {% endif %}
+    </div>
+    <div id="explore-bob-pagination" class="pagination"></div>
+  </div>
+
 </div>

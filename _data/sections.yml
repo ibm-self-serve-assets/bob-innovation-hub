@@ -13,8 +13,18 @@ sections:
     title: Documentation
     icon: "" #📄
     show_search: true
-    type: collection
-    collection: documentation
+    type: collection-tabbed
+    sub_sections:
+      - id: official-documentation
+        title: Official Documentation
+        collection: documentation
+        filter_key: type
+        filter_value: "Official Documentation"
+      - id: pricing-plan
+        title: Pricing Plan
+        collection: documentation
+        filter_key: type
+        filter_value: "Pricing Plan"
     link_text: View Document
     empty_message: No documentation found. Add documents from your Pages CMS manager to populate this section.
 
@@ -22,8 +32,20 @@ sections:
     title: Learning Resources
     icon: "" #🎓
     show_search: true
-    type: custom
-    include_file: learning-resources-section.html
+    type: collection-tabbed
+    sub_sections:
+      - id: learning-path
+        title: Learning Path
+        collection: learning
+        filter_key: type
+        filter_value: "Learning"
+      - id: explore-bob
+        title: Explore Bob
+        collection: learning
+        filter_key: type
+        filter_value: "Explore Bob"
+    link_text: View Resource
+    empty_message: No learning resources found. Add resources from your Pages CMS manager to populate this section.
 
   - id: use-cases
     title: Use-Cases
