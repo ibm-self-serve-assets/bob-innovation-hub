@@ -1,8 +1,16 @@
 ---
+id: 294b190e-d482-4a5a-ad6f-addf07bc3d38
 title: Parkbot assist
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Data
+domain: Transport & Logistics
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
+  - watsonx.data
 demo: https://www.youtube.com/watch?v=eDLVhvbMWQg
 slide_deck: /docs/slide_decks/ParkBot Assist Business Deck.pdf
 featured: 14
