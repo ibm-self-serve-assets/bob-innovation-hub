@@ -68,93 +68,17 @@ content:
         options:
           min: 1
           max: 50
-  - name: labs
-    label: "🤖 Bob Labs"
-    type: collection
-    path: _labs
-    fields:
-      - name: title
-        label: "Lab Title"
-        type: string
-        required: true
-      - name: team
-        label: "Team"
-        type: select
-        required: true
-        options:
-         values: ["Service Engineering", "Other"]
-         multiple: false
-         placeholder: "Asset Owner Team"
-      - name: domain
-        label: "Domain"
-        type: select
-        required: true
-        options:
-         values: ["Data", "Automation", "Security", "Modernization"]
-         multiple: false
-         placeholder: "Select Domain"
-      - name: duration
-        label: "Estimated Time (e.g., 45 mins)"
-        type: string
-        required: true
-      - name: body
-        label: "Lab Description"
-        type: rich-text
-        required: true
-      - name: link
-        label: "Lab Link"
-        type: string
-        required: true
-      - name: featured
-        label: Featured(Skip this field)
-        type: number
-        options:
-          min: 1
-          max: 50
-  - name: demos
-    label: "💻 Bob Demos"
-    type: collection
-    path: _demos
-    fields:
-      - name: title
-        label: "Demo Name"
-        type: string
-        required: true
-      - name: team
-        label: "Team"
-        type: select
-        required: true
-        options:
-         values: ["Service Engineering", "Other"]
-         multiple: false
-         placeholder: "Asset Owner Team"
-      - name: domain
-        label: "Domain"
-        type: select
-        required: true
-        options:
-         values: ["Data", "Automation", "Security", "Modernization"]
-         multiple: false
-         placeholder: "Select Domain"
-      - name: body
-        label: "Demo Description"
-        type: rich-text
-        required: true
-      - name: link
-        label: "Demo Link"
-        type: string
-        required: true
-      - name: featured
-        label: Featured(Skip this field)
-        type: number
-        options:
-          min: 1
-          max: 50
   - name: use-cases
     label: "📋 Bob Usecases"
     type: collection
     path: _use-cases
     fields:
+      - name: id
+        label: "ID (auto-generated, do not edit)"
+        type: string
+        required: true
+        options:
+          random: true
       - name: title
         label: "Use-case Title"
         type: string
