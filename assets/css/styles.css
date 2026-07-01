@@ -861,15 +861,19 @@ cds-link { font-size: inherit; }
 
 /* Hero block */
 .uc-detail-hero {
-  max-width: 900px;
+  max-width: 100%;
   margin-bottom: var(--cds-spacing-07);
 }
 
-/* Badges + button on one row */
+.uc-detail-hero .uc-detail-hero-top,
+.uc-detail-hero .uc-detail-title {
+  max-width: 900px;
+}
+
+/* Badges row */
 .uc-detail-hero-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--cds-spacing-05);
   margin-bottom: var(--cds-spacing-04);
   flex-wrap: wrap;
@@ -928,13 +932,21 @@ cds-link { font-size: inherit; }
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+/* Description + explore-lab button row */
+.uc-detail-description-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cds-spacing-06);
+}
+
 /* Description */
 .uc-detail-description {
   font-size: 0.875rem;
   color: var(--cds-text-secondary);
   line-height: 1.6;
   margin: 0;
-  max-width: 600px;
+  flex: 1;
 }
 
 /* Explore lab button */
