@@ -1,5 +1,5 @@
 ---
-title: "Case-Study: Carreras Grupo Logistico Accelerates AIAssisted Development
+title: "Case Study: Carreras Grupo Logistico Accelerates AIAssisted Development
   on IBM i"
 link: https://www-api.ibm.com/adobe/assets/urn:aaid:aem:0a46f0df-8e70-4516-afd7-57424b390a68/original/as/carreras-grupo-logistico-ibm-i-client-story-3-31-26.pdf
 ---
