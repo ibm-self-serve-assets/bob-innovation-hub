@@ -2,12 +2,18 @@ settings:
   commit:
     identity: user
 media:
-  name: docs
-  input: docs/slide_decks
-  output: /docs/slide_decks
-  rename: false
-  categories: [document]
-  extensions: [pdf, PDF]
+  - name: docs
+    input: docs/slide_decks
+    output: /docs/slide_decks
+    rename: false
+    categories: [document]
+    extensions: [pdf, PDF]
+  - name: diagrams
+    label: Architecture Diagrams
+    input: docs/diagrams
+    output: /docs/diagrams
+    rename: false
+    categories: [image]
 content:
   - name: modes
     label: "🤖 Bob Modes"
@@ -131,6 +137,13 @@ content:
          values: ["watsonx.ai", "watsonx.data", "watsonx.gov"]
          multiple: true
          placeholder: "Select Products"
+      - name: architecture_diagram
+        label: Architecture Diagram
+        type: image
+        options:
+          media: diagrams
+        required: false
+      
       - name: link
         label: "Use-case Link"
         type: string
@@ -152,7 +165,7 @@ content:
         type: string
         required: false
       - name: slide_deck
-        label: Slide Deck
+        label: "Slide Deck(.pdf Only)"
         type: file
         options:
           media: docs
