@@ -76,7 +76,6 @@ content:
       - name: id
         label: "ID (auto-generated, do not edit)"
         type: string
-        required: true
         options:
           random: true
       - name: title
