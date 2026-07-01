@@ -289,16 +289,22 @@ function updateSlideView() {
 
   // If a PDF is available, render it as an embedded viewer (full-width)
   if (_slideDeckUrl && total === 0) {
+    // _slideDeckUrl is site-root-relative (e.g. /docs/slide_decks/foo.pdf).
+    // On GitHub Pages the site lives under a subpath (/bob-innovation-hub/),
+    // so we must prepend the page's base (origin + pathname without the hash)
+    // rather than using the bare root-relative path.
+    const pageBase = location.href.split('#')[0].replace(/\/$/, '');
+    const pdfUrl = pageBase + _slideDeckUrl;
     layout.classList.add('uc-presentation-layout--pdf');
     nav.innerHTML = '';
     viewer.innerHTML = `
       <iframe
         class="uc-pdf-iframe"
-        src="${_slideDeckUrl}"
+        src="${pdfUrl}"
         title="Presentation Deck"
       ></iframe>
       <div class="uc-pdf-fallback">
-        <a class="uc-resource-link" href="${_slideDeckUrl}" target="_blank" rel="noopener noreferrer">
+        <a class="uc-resource-link" href="${pdfUrl}" target="_blank" rel="noopener noreferrer">
           Open PDF in new tab →
         </a>
       </div>`;
