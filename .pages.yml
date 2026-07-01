@@ -77,10 +77,6 @@ content:
          values: ["Learning", "Explore Bob"]
          multiple: false
          placeholder: "Resource Type"
-      - name: outcomes
-        label: "What we will learn"
-        type: rich-text
-        required: true
       - name: duration
         label: "duration"
         type: string
