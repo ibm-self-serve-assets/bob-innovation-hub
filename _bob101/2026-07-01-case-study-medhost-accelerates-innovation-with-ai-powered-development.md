@@ -1,0 +1,5 @@
+---
+title: "Case Study: MEDHOST Accelerates Innovation with AI Powered Development"
+link: https://www.medhost.com/blog/medhost-accelerates-ibm-i-modernization-with-ai-powered-development-using-ibm-bob/
+---
+MEDHOST is modernizing its IBM i application development by leveraging ++[IBM Bob](https://bob.ibm.com/?utm_content=SRCWW&p1=Search&p4=2447864445311&p5=e&p9=198488469240&&msclkid=5aaf0ee280de1e8dc35664ee15e15cad&gclid=5aaf0ee280de1e8dc35664ee15e15cad&gclsrc=3p.ds&gad_source=7&gad_campaignid=23802906232)++, an AI-powered partner that enhances code understanding, accelerates development, and improves productivity. By enabling faster analysis of complex RPG applications and, through beta use cases, estimating up to a 50% reduction in effort compared to manual coding, the organization is increasing throughput and efficiency while minimizing risk in mission-critical systems. This approach allows MEDHOST to preserve the reliability and stability clients depend on while delivering greater value and ensuring quality remains at the forefront.
