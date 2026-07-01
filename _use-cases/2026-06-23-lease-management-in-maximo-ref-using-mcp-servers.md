@@ -1,9 +1,16 @@
 ---
+id: 1923b322-ec9f-4b07-abc3-31526c6e7e39
 title: Lease Management in Maximo REF Using MCP Servers
 asset-owner: ssnarasi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Automation
+domain: SupplyChain
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
+  - Maximo
 lab: https://github.com/RahulBhavar/MREF-Contract-Management-MCP
 featured: 13
 ---
