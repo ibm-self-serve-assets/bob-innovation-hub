@@ -22,18 +22,18 @@ sections:
     show_search: true
     type: collection-tabbed
     sub_sections:
-      - id: technical-use-cases
-        title: Technical Use-cases
-        icon: "" #🔧
-        collection: use-cases
-        filter_key: type
-        filter_value: technical
       - id: business-use-cases
         title: Business Use-cases
         icon: "" #💼
         collection: use-cases
         filter_key: type
         filter_value: business
+      - id: technical-use-cases
+        title: Technical Use-cases
+        icon: "" #🔧
+        collection: use-cases
+        filter_key: type
+        filter_value: technical
     link_text: View Use Case
     empty_message: No use cases found. Add new use cases from your Pages CMS manager to populate this deck.
 
@@ -61,16 +61,16 @@ sections:
     show_search: true
     type: collection-tabbed
     sub_sections:
+      - id: custom-modes
+        title: Custom Modes
+        icon: "" #🤖
+        collection: modes
       - id: premium-modes
         title: Premium Modes
         icon: "" #⭐
         collection: modes
         filter_key: premium
         filter_value: true
-      - id: custom-modes
-        title: Custom Modes
-        icon: "" #🤖
-        collection: modes
     link_text: View on GitHub
     empty_message: No modes found. Use Pages CMS to add initial configurations.
 
