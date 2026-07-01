@@ -74,10 +74,10 @@ content:
     path: _use-cases
     fields:
       - name: id
-        label: "ID (auto-generated, do not edit)"
-        type: string
+        label: "ID (auto-generated)"
+        type: uuid
         options:
-          random: true
+          editable: false
       - name: title
         label: "Use-case Title"
         type: string
