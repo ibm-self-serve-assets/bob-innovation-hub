@@ -44,13 +44,12 @@ function updateThemeButton(theme) {
 }
 
 // ─── Section / routing config ─────────────────────────────────────────────────
-const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'bob101', 'learning-resources', 'documentation', 'mcp', 'case-studies', 'bob-community'];
+const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'case-studies', 'bob-community'];
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
 
 const ROUTE_MAP = {
   '':                         { section: 'introduction' },
   '/':                        { section: 'introduction' },
-  '/bob101':                  { section: 'bob101' },
   '/learning-resources':      { section: 'learning-resources' },
   '/use-cases':               { section: 'use-cases', subSection: 'business-use-cases' },
   '/use-cases/technical':     { section: 'use-cases', subSection: 'technical-use-cases' },
@@ -69,7 +68,6 @@ const ROUTE_MAP = {
 
 const SECTION_TO_ROUTE = {
   'introduction':         '#/',
-  'bob101':               '#/bob101',
   'learning-resources':   '#/learning-resources',
   'use-cases':            '#/use-cases',
   'technical-use-cases':  '#/use-cases/technical',
@@ -567,7 +565,6 @@ let currentPage = {
   'business-use-cases': 1,
   modes: 1,
   skills: 1,
-  bob101: 1,
   'learning-resources': 1,
   documentation: 1,
   mcp: 1,
@@ -684,7 +681,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','bob101','skills','learning-resources','documentation','mcp','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-resources','documentation','mcp','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));

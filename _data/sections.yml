@@ -99,12 +99,12 @@ sections:
     link_text: View Resource
     empty_message: No community resources found. Add resources from your Pages CMS manager to populate this section.
 
-  - id: bob101
-    title: Additional Resources
-    icon: "" #📘
-    show_search: true
-    type: custom
-    include_file: bob101-section.html
+  #- id: bob101
+  #  title: Additional Resources
+  #  icon: "" #📘
+  #  show_search: true
+  #  type: custom
+  #  include_file: bob101-section.html
 
   #- id: demos
   #  title: Demos
