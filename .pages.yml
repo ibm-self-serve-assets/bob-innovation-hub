@@ -14,6 +14,11 @@ content:
     type: collection
     path: _modes
     fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
       - name: title
         label: "Mode Name"
         type: string
@@ -153,6 +158,11 @@ content:
     type: collection
     path: _learning
     fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
       - name: title
         label: "Document Title"
         type: string
@@ -176,6 +186,11 @@ content:
     type: collection
     path: _bob101
     fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
       - name: title
         label: "Document Title"
         type: string
@@ -199,6 +214,11 @@ content:
     type: collection
     path: _skills
     fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
       - name: title
         label: "Skill Name"
         type: string
