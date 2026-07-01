@@ -29,11 +29,6 @@
             <h3>{{ mode.title }}</h3>
             <div class="badge-container">
               <cds-tag type="warm-gray" size="sm">Premium</cds-tag>
-              {% if mode.industry %}
-                {% for ind in mode.industry %}
-                  <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
-                {% endfor %}
-              {% endif %}
             </div>
             <div class="card-body">{{ mode.content }}</div>
             <div class="card-actions">
@@ -72,11 +67,7 @@
             <h3>{{ mode.title }}</h3>
             <div class="badge-container">
               <cds-tag type="green" size="sm">Custom</cds-tag>
-              {% if mode.industry %}
-                {% for ind in mode.industry %}
-                  <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
-                {% endfor %}
-              {% endif %}
+
             </div>
             <div class="card-body">{{ mode.content }}</div>
             <div class="card-actions">

@@ -19,7 +19,7 @@ title: Bob Innovation Hub
 
   <!-- Left Sidebar Navigation (custom — reliable click handling) -->
   <aside class="sidebar" role="navigation" aria-label="Main navigation">
-    <div class="sidebar-header">
+    <div class="sidebar-header" role="button" tabindex="0" aria-label="Go to Introduction" style="cursor:pointer;" onclick="document.querySelector('[data-section=\'introduction\']').click()" onkeydown="if(event.key==='Enter'||event.key===' ')document.querySelector('[data-section=\'introduction\']').click()">
       <img src="https://raw.githubusercontent.com/ibm-self-serve-assets/bob-innovation-hub/refs/heads/main/assets/images/Bob_svg.svg" class="bob-logo" alt="Bob logo"/>
       <div style="min-width:0;">
         <p class="sidebar-title">Bob Innovation Hub</p>
