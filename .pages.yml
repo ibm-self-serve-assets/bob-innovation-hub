@@ -80,7 +80,7 @@ content:
       - name: duration
         label: "duration"
         type: string
-        required: true
+        required: false
       - name: link
         label: "Document Link"
         type: string
