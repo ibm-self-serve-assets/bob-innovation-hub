@@ -57,14 +57,6 @@ content:
         label: "Mode Github Link"
         type: string
         required: true
-      - name : demo
-        label: "Mode Demo Link"
-        type: string
-        required: false
-      - name: lab
-        label: "Mode Lab Link"
-        type: string
-        required: false
       - name: featured
         label: Featured(Skip this field)
         type: number
@@ -173,6 +165,34 @@ content:
         options:
           min: 1
           max: 50
+  - name: documentation
+    label: "Documentation"
+    type: collection
+    path: _documentation
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Documentation Title"
+        type: string
+        required: true
+      - name: body
+        label: "Documentation Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Documentation Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
   - name: learning-content
     label: "Bob Learning Content"
     type: collection
@@ -190,6 +210,22 @@ content:
       - name: body
         label: "Document Description"
         type: rich-text
+        required: true
+      - name: type
+        label: "Type"
+        type: select
+        required: true
+        options:
+         values: ["Learning", "Explore Bob"]
+         multiple: false
+         placeholder: "Resource Type"
+      - name: outcomes
+        label: "What we will learn"
+        type: rich-text
+        required: true
+      - name: duration
+        label: "duration"
+        type: string
         required: true
       - name: link
         label: "Document Link"
@@ -221,6 +257,68 @@ content:
         required: true
       - name: link
         label: "Document Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
+  - name: case-studies
+    label: "Case Studies"
+    type: collection
+    path: _case_studies
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Document Title"
+        type: string
+        required: true
+      - name: industry
+        label: "Industry"
+        type: select
+        required: true
+        options:
+         values: ["BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment"]
+      - name: body
+        label: "Document Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Document Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
+  - name: mcp
+    label: "MCP"
+    type: collection
+    path: _mcp
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "MCP Title"
+        type: string
+        required: true
+      - name: body
+        label: "MCP Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "MCP Link"
         type: string
         required: true
       - name: featured
@@ -261,6 +359,34 @@ content:
         required: true
       - name: link
         label: "Skill Github Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
+  - name: bob_community
+    label: "Bob Community"
+    type: collection
+    path: _bob_community
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Bob Community Title"
+        type: string
+        required: true
+      - name: body
+        label: "Bob Community Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Bob Community Link"
         type: string
         required: true
       - name: featured
