@@ -88,7 +88,7 @@ content:
           min: 1
           max: 50
   - name: use-cases
-    label: "📋 Bob Usecases"
+    label: "Bob Usecases"
     type: collection
     path: _use-cases
     fields:
@@ -183,35 +183,6 @@ content:
           path: docs/slide_decks
           extensions: [pdf, PDF]
         required: false
-      - name: featured
-        label: Featured(Skip this field)
-        type: number
-        options:
-          min: 1
-          max: 50
-  
-  - name: bob101
-    label: "Bob 101"
-    type: collection
-    path: _bob101
-    fields:
-      - name: id
-        label: "ID (auto-generated)"
-        type: uuid
-        options:
-          editable: false
-      - name: title
-        label: "Document Title"
-        type: string
-        required: true
-      - name: body
-        label: "Document Description"
-        type: rich-text
-        required: true
-      - name: link
-        label: "Document Link"
-        type: string
-        required: true
       - name: featured
         label: Featured(Skip this field)
         type: number
@@ -388,6 +359,34 @@ content:
         required: true
       - name: link
         label: "Bob Community Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 50
+  - name: bob101
+    label: "Bob 101"
+    type: collection
+    path: _bob101
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Document Title"
+        type: string
+        required: true
+      - name: body
+        label: "Document Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Document Link"
         type: string
         required: true
       - name: featured
