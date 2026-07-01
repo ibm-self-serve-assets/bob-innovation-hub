@@ -1,0 +1,138 @@
+<!-- Use-Case Detail Section — JS-driven, populated from embedded JSON data -->
+
+<!-- Embedded use-case data (Liquid renders this at build time; JS reads it at runtime) -->
+<script id="use-cases-data" type="application/json">
+[
+  {% assign _all_uc = site.use-cases %}
+  {% for uc in _all_uc %}
+  {
+    "id": {{ uc.id | default: uc.slug | jsonify }},
+    "slug": {{ uc.slug | jsonify }},
+    "title": {{ uc.title | jsonify }},
+    "type": {{ uc.type | jsonify }},
+    "domain": {{ uc.domain | jsonify }},
+    "team": {{ uc.team | jsonify }},
+    "description": {{ uc.content | strip_html | strip | jsonify }},
+    "link": {{ uc.link | jsonify }},
+    "demo": {{ uc.demo | jsonify }},
+    "mode": {{ uc.mode | jsonify }},
+    "lab": {{ uc.lab | jsonify }},
+    "skill": {{ uc.skill | jsonify }},
+    "slide_deck": {{ uc.slide_deck | jsonify }},
+    "problem": {{ uc.problem | jsonify }},
+    "solution": {{ uc.solution | jsonify }},
+    "business_value": {{ uc.business_value | jsonify }},
+    "tech_stack": {{ uc.tech_stack | jsonify }},
+    "demo_steps": {{ uc.demo_steps | jsonify }},
+    "slide_titles": {{ uc.slide_titles | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+</script>
+
+<!-- Detail panel shell — JS fills this in when navigating to #/use-cases/:id -->
+<div id="use-case-detail-section" class="content-section">
+  <div class="uc-detail-breadcrumb">
+    <button class="uc-back-link" id="ucBackBtn">← Back to all use cases</button>
+  </div>
+
+  <div class="uc-detail-hero">
+    <div class="uc-detail-hero-top">
+      <div class="uc-detail-badges" id="ucDetailBadges"></div>
+      <button class="uc-explore-btn" id="ucExploreBtn" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/><path d="M21 15l-8-5v10l8-5z"/></svg>
+        Explore lab
+      </button>
+    </div>
+    <h1 class="uc-detail-title" id="ucDetailTitle"></h1>
+    <p class="uc-detail-description" id="ucDetailDescription"></p>
+  </div>
+
+  <!-- Tab bar -->
+  <div class="uc-detail-tabs-bar">
+    <div class="uc-detail-tabs" id="ucDetailTabs">
+      <button class="uc-detail-tab active" data-tab="overview">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28 6H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 18H4V8h24z"/><path d="M7 11h18v2H7zm0 4h12v2H7z"/></svg>
+        Overview
+      </button>
+      <button class="uc-detail-tab" data-tab="demo" id="ucDemoTab" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M11 23l12-7-12-7v14z"/><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12z"/></svg>
+        Demo
+      </button>
+      <button class="uc-detail-tab" data-tab="presentation" id="ucPresentationTab" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M28 4H4a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 20H4V6h24z"/><path d="M7 10h18v2H7zm0 5h18v2H7zm0 5h12v2H7z"/></svg>
+        Presentation
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab panels -->
+  <div id="ucTabOverview" class="uc-tab-panel active">
+    <div class="uc-overview-grid">
+      <div class="uc-overview-main">
+        <div id="ucProblemBlock" class="uc-overview-block" style="display:none;">
+          <h3 class="uc-overview-block-title"><span class="uc-block-accent uc-block-accent--red"></span>The Problem</h3>
+          <p id="ucProblemText"></p>
+        </div>
+        <div id="ucSolutionBlock" class="uc-overview-block" style="display:none;">
+          <h3 class="uc-overview-block-title"><span class="uc-block-accent uc-block-accent--blue"></span>The Solution</h3>
+          <p id="ucSolutionText"></p>
+        </div>
+        <div id="ucArchBlock" class="uc-overview-block uc-overview-block--collapsible" style="display:none;">
+          <button class="uc-collapsible-btn" id="ucArchBtn">
+            <span class="uc-block-accent uc-block-accent--blue"></span>
+            <span>Solution Architecture</span>
+            <svg class="uc-chevron" width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M16 22L4 10l1.4-1.4L16 19.2l10.6-10.6L28 10z"/></svg>
+          </button>
+          <div class="uc-collapsible-body" id="ucArchBody"></div>
+        </div>
+      </div>
+      <div class="uc-overview-side">
+        <div id="ucBizValueBlock" style="display:none;">
+          <div class="uc-side-card uc-side-card--value">
+            <h4 class="uc-side-card-title">Business Value</h4>
+            <ul class="uc-value-list" id="ucBizValueList"></ul>
+          </div>
+        </div>
+        <div id="ucTechStackBlock" style="display:none;">
+          <div class="uc-side-card">
+            <h4 class="uc-side-card-title">Technology Stack</h4>
+            <div class="uc-tech-pills" id="ucTechPills"></div>
+          </div>
+        </div>
+        <div id="ucLinksBlock" class="uc-side-card" style="display:none;">
+          <h4 class="uc-side-card-title">Resources</h4>
+          <div id="ucLinksList" class="uc-links-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ucTabDemo" class="uc-tab-panel">
+    <h2 class="uc-tab-panel-title">Interactive Demo</h2>
+    <p class="uc-tab-panel-subtitle" id="ucDemoSubtitle"></p>
+    <div class="uc-demo-player" id="ucDemoPlayer"></div>
+    <div id="ucDemoStepsBlock" style="display:none;">
+      <h4 class="uc-demo-steps-title">What you will see in this demo</h4>
+      <ol class="uc-demo-steps" id="ucDemoStepsList"></ol>
+    </div>
+  </div>
+
+  <div id="ucTabPresentation" class="uc-tab-panel">
+    <h2 class="uc-tab-panel-title">Presentation Deck</h2>
+    <p class="uc-tab-panel-subtitle" id="ucPresentationSubtitle"></p>
+    <div class="uc-presentation-layout" id="ucPresentationLayout">
+      <div class="uc-slide-nav" id="ucSlideNav"></div>
+      <div class="uc-slide-viewer" id="ucSlideViewer"></div>
+    </div>
+  </div>
+
+  <footer class="uc-detail-footer">
+    <span>© 2025 IBM Corporation. All rights reserved.</span>
+    <div class="uc-footer-links">
+      <a href="https://www.ibm.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+      <a href="https://www.ibm.com/legal" target="_blank" rel="noopener noreferrer">Terms of use</a>
+      <a href="https://www.ibm.com/contact" target="_blank" rel="noopener noreferrer">Contact IBM</a>
+    </div>
+  </footer>
+</div>

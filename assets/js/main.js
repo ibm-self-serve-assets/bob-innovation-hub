@@ -86,6 +86,260 @@ const SECTION_TO_ROUTE = {
   'bob-community':        '#/bob-community',
 };
 
+// ─── Use-Case Detail ──────────────────────────────────────────────────────────
+// Load embedded JSON data (rendered by Jekyll/Liquid at build time)
+let _ucData = null;
+function getUcData() {
+  if (_ucData) return _ucData;
+  try {
+    const el = document.getElementById('use-cases-data');
+    _ucData = el ? JSON.parse(el.textContent) : [];
+  } catch (_) { _ucData = []; }
+  return _ucData;
+}
+
+function findUcById(id) {
+  return getUcData().find(uc => (uc.id || uc.slug) === id) || null;
+}
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+// Track which sub-section we came from so Back returns correctly
+let _ucReturnSubSection = 'business-use-cases';
+
+function navigateToUcDetail(ucId) {
+  const uc = findUcById(ucId);
+  if (!uc) return;
+
+  // Remember which tab we came from (business or technical)
+  const activeSubTab = document.querySelector('.sub-tab.active');
+  if (activeSubTab) _ucReturnSubSection = activeSubTab.dataset.subSection;
+
+  renderUcDetail(uc);
+
+  // Show detail section
+  contentSections.forEach(s => s.classList.remove('active'));
+  document.getElementById('use-case-detail-section').classList.add('active');
+
+  // Dim sidebar active state (no sidebar item for detail pages)
+  sidebarButtons.forEach(btn => btn.classList.remove('active'));
+
+  searchContainer.style.display = 'none';
+
+  const hash = '#/use-cases/' + encodeURIComponent(ucId);
+  if (window.location.hash !== hash) history.pushState(null, '', hash);
+}
+
+function renderUcDetail(uc) {
+  // Reset tab to overview
+  document.querySelectorAll('.uc-detail-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.uc-detail-tab[data-tab="overview"]').classList.add('active');
+  document.querySelectorAll('.uc-tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('ucTabOverview').classList.add('active');
+
+  // Title + description
+  document.getElementById('ucDetailTitle').textContent = uc.title || '';
+  document.getElementById('ucDetailDescription').textContent = uc.description || '';
+
+  // Badges
+  const badgesEl = document.getElementById('ucDetailBadges');
+  badgesEl.innerHTML = '';
+  if (uc.domain) {
+    const d = document.createElement('span');
+    d.className = 'uc-badge uc-badge--domain';
+    d.textContent = uc.domain;
+    badgesEl.appendChild(d);
+  }
+  if (uc.type) {
+    const t = document.createElement('span');
+    t.className = 'uc-badge uc-badge--type';
+    t.textContent = uc.type;
+    badgesEl.appendChild(t);
+  }
+
+  // Explore lab button (lab or link)
+  const exploreBtn = document.getElementById('ucExploreBtn');
+  const exploreUrl = uc.lab || uc.link;
+  if (exploreUrl) {
+    exploreBtn.style.display = 'inline-flex';
+    exploreBtn.onclick = () => window.open(exploreUrl, '_blank', 'noopener,noreferrer');
+  } else {
+    exploreBtn.style.display = 'none';
+  }
+
+  // Overview — Problem
+  const problemBlock = document.getElementById('ucProblemBlock');
+  if (uc.problem) {
+    document.getElementById('ucProblemText').textContent = uc.problem;
+    problemBlock.style.display = 'block';
+  } else {
+    problemBlock.style.display = 'none';
+  }
+
+  // Overview — Solution
+  const solutionBlock = document.getElementById('ucSolutionBlock');
+  if (uc.solution) {
+    document.getElementById('ucSolutionText').textContent = uc.solution;
+    solutionBlock.style.display = 'block';
+  } else {
+    solutionBlock.style.display = 'none';
+  }
+
+  // Overview — Architecture (hidden collapsible placeholder)
+  document.getElementById('ucArchBlock').style.display = 'none';
+
+  // Side — Business value
+  const bizBlock = document.getElementById('ucBizValueBlock');
+  if (uc.business_value && uc.business_value.length) {
+    const list = document.getElementById('ucBizValueList');
+    list.innerHTML = uc.business_value.map(v => `<li><span class="uc-value-check">✓</span>${v}</li>`).join('');
+    bizBlock.style.display = 'block';
+  } else {
+    bizBlock.style.display = 'none';
+  }
+
+  // Side — Tech stack
+  const techBlock = document.getElementById('ucTechStackBlock');
+  if (uc.tech_stack && uc.tech_stack.length) {
+    const pills = document.getElementById('ucTechPills');
+    pills.innerHTML = uc.tech_stack.map(t => `<span class="uc-tech-pill">${t}</span>`).join('');
+    techBlock.style.display = 'block';
+  } else {
+    techBlock.style.display = 'none';
+  }
+
+  // Side — resource links (if no problem/solution, show links in overview)
+  const linksBlock = document.getElementById('ucLinksBlock');
+  const linkItems = [];
+  if (uc.link)       linkItems.push({ label: 'View Use Case', href: uc.link });
+  if (uc.mode)       linkItems.push({ label: 'View Mode', href: uc.mode });
+  if (uc.skill)      linkItems.push({ label: 'View Skill', href: uc.skill });
+  if (uc.slide_deck) linkItems.push({ label: 'View Slide Deck', href: 'https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main' + uc.slide_deck });
+  if (linkItems.length) {
+    document.getElementById('ucLinksList').innerHTML = linkItems
+      .map(l => `<a class="uc-resource-link" href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label} →</a>`)
+      .join('');
+    linksBlock.style.display = 'block';
+  } else {
+    linksBlock.style.display = 'none';
+  }
+
+  // Demo tab
+  const demoTab = document.getElementById('ucDemoTab');
+  if (uc.demo) {
+    demoTab.style.display = 'inline-flex';
+    document.getElementById('ucDemoSubtitle').textContent =
+      `Experience the ${uc.title} solution live. Follow the guided walkthrough below.`;
+    const ytId = getYouTubeId(uc.demo);
+    const playerEl = document.getElementById('ucDemoPlayer');
+    if (ytId) {
+      playerEl.innerHTML = `<iframe class="uc-demo-iframe" src="https://www.youtube.com/embed/${ytId}" title="${uc.title} Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    } else {
+      playerEl.innerHTML = `<a class="uc-demo-external-link" href="${uc.demo}" target="_blank" rel="noopener noreferrer">Open Demo →</a>`;
+    }
+    const stepsBlock = document.getElementById('ucDemoStepsBlock');
+    if (uc.demo_steps && uc.demo_steps.length) {
+      const stepsList = document.getElementById('ucDemoStepsList');
+      stepsList.innerHTML = uc.demo_steps.map((s, i) =>
+        `<li class="uc-demo-step"><span class="uc-step-num">${i + 1}</span><div><strong>${s.title || s}</strong>${s.desc ? `<p>${s.desc}</p>` : ''}</div></li>`
+      ).join('');
+      stepsBlock.style.display = 'block';
+    } else {
+      stepsBlock.style.display = 'none';
+    }
+  } else {
+    demoTab.style.display = 'none';
+  }
+
+  // Presentation tab
+  const presTab = document.getElementById('ucPresentationTab');
+  if (uc.slide_deck || (uc.slide_titles && uc.slide_titles.length)) {
+    presTab.style.display = 'inline-flex';
+    document.getElementById('ucPresentationSubtitle').textContent =
+      `Browse the slides for ${uc.title}. Use the navigation to move between slides.`;
+    renderSlideViewer(uc);
+  } else {
+    presTab.style.display = 'none';
+  }
+}
+
+// Simple slide viewer — PDF iframe when slide_deck is set, slide titles otherwise
+let _currentSlide = 0;
+let _slideTitles  = [];
+let _slideDeckUrl = null;
+
+function renderSlideViewer(uc) {
+  _slideTitles  = uc.slide_titles || [];
+  _currentSlide = 0;
+  _slideDeckUrl = uc.slide_deck || null;
+  updateSlideView();
+}
+
+function updateSlideView() {
+  const layout = document.getElementById('ucPresentationLayout');
+  const nav    = document.getElementById('ucSlideNav');
+  const viewer = document.getElementById('ucSlideViewer');
+  if (!layout || !nav || !viewer) return;
+
+  const total = _slideTitles.length;
+
+  // If a PDF is available, render it as an embedded viewer (full-width)
+  if (_slideDeckUrl && total === 0) {
+    layout.classList.add('uc-presentation-layout--pdf');
+    nav.innerHTML = '';
+    viewer.innerHTML = `
+      <iframe
+        class="uc-pdf-iframe"
+        src="${_slideDeckUrl}"
+        title="Presentation Deck"
+      ></iframe>
+      <div class="uc-pdf-fallback">
+        <a class="uc-resource-link" href="${_slideDeckUrl}" target="_blank" rel="noopener noreferrer">
+          Open PDF in new tab →
+        </a>
+      </div>`;
+    return;
+  }
+
+  // Slide titles mode — restore two-column layout
+  layout.classList.remove('uc-presentation-layout--pdf');
+
+  if (total === 0) {
+    nav.innerHTML = '';
+    viewer.innerHTML = '<p class="uc-no-slides">No slide preview available.</p>';
+    return;
+  }
+
+  nav.innerHTML = `<p class="uc-slides-label">SLIDES (${total})</p>` +
+    _slideTitles.map((t, i) =>
+      `<button class="uc-slide-nav-item ${i === _currentSlide ? 'active' : ''}" onclick="goToSlide(${i})">${i + 1}. ${t}</button>`
+    ).join('');
+
+  const slide = _slideTitles[_currentSlide];
+  viewer.innerHTML = `
+    <div class="uc-slide-display">
+      <span class="uc-slide-label">SLIDE ${_currentSlide + 1} OF ${total}</span>
+      <h3 class="uc-slide-title">${slide}</h3>
+    </div>
+    <div class="uc-slide-controls">
+      <button class="uc-slide-btn" onclick="goToSlide(${_currentSlide - 1})" ${_currentSlide === 0 ? 'disabled' : ''}>← Previous</button>
+      <div class="uc-slide-dots">
+        ${_slideTitles.map((_, i) => `<span class="uc-slide-dot ${i === _currentSlide ? 'active' : ''}" onclick="goToSlide(${i})"></span>`).join('')}
+      </div>
+      <button class="uc-slide-btn uc-slide-btn--primary" onclick="goToSlide(${_currentSlide + 1})" ${_currentSlide === total - 1 ? 'disabled' : ''}>Next →</button>
+    </div>`;
+}
+
+function goToSlide(idx) {
+  if (idx < 0 || idx >= _slideTitles.length) return;
+  _currentSlide = idx;
+  updateSlideView();
+}
+
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
 const sidebarButtons   = document.querySelectorAll('.sidebar-button');
 const contentSections  = document.querySelectorAll('.content-section');
@@ -471,6 +725,11 @@ function highlightCard(slug) {
 
 function resolveHash(hash) {
   const { path, query } = parseHash(hash);
+  // Detect /use-cases/:id detail route
+  const ucDetailMatch = path.match(/^\/use-cases\/(.+)$/);
+  if (ucDetailMatch && !ROUTE_MAP[path]) {
+    return { section: 'use-case-detail', ucId: decodeURIComponent(ucDetailMatch[1]), query };
+  }
   return { ...(ROUTE_MAP[path] || ROUTE_MAP['/']), query };
 }
 
@@ -562,24 +821,70 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Use-case card clicks → detail view
+  document.querySelectorAll('.uc-card-clickable').forEach(card => {
+    card.addEventListener('click', e => {
+      // Don't intercept clicks on links/buttons inside the card
+      if (e.target.closest('a, button, cds-link')) return;
+      const ucId = card.dataset.ucId;
+      if (ucId) navigateToUcDetail(ucId);
+    });
+  });
+
+  // Back button in detail view
+  const backBtn = document.getElementById('ucBackBtn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      activateSection('use-cases', _ucReturnSubSection, true);
+      repaginateAll();
+    });
+  }
+
+  // Tab switching in detail view
+  document.querySelectorAll('.uc-detail-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabId = tab.dataset.tab;
+      document.querySelectorAll('.uc-detail-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.uc-tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(`ucTab${tabId.charAt(0).toUpperCase() + tabId.slice(1)}`).classList.add('active');
+    });
+  });
+
+  // Collapsible architecture block
+  const archBtn = document.getElementById('ucArchBtn');
+  if (archBtn) {
+    archBtn.addEventListener('click', () => {
+      const body = document.getElementById('ucArchBody');
+      const open = archBtn.classList.toggle('open');
+      if (body) body.style.display = open ? 'block' : 'none';
+    });
+  }
+
   injectShareButtons();
 
-  const { section, subSection, query } = resolveHash(window.location.hash);
-  activateSection(section, subSection || null, false);
-  if (query) setSearchValue(query);
-
-  repaginateAll();
-
-  if (query) setTimeout(() => highlightCard(query), 50);
+  const resolved = resolveHash(window.location.hash);
+  if (resolved.section === 'use-case-detail') {
+    navigateToUcDetail(resolved.ucId);
+  } else {
+    activateSection(resolved.section, resolved.subSection || null, false);
+    if (resolved.query) setSearchValue(resolved.query);
+    repaginateAll();
+    if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);
+  }
 });
 
 // Browser back/forward
 window.addEventListener('hashchange', () => {
-  const { section, subSection, query } = resolveHash(window.location.hash);
-  activateSection(section, subSection || null, false);
-  setSearchValue(query || '');
-  repaginateAll();
-  if (query) setTimeout(() => highlightCard(query), 50);
+  const resolved = resolveHash(window.location.hash);
+  if (resolved.section === 'use-case-detail') {
+    navigateToUcDetail(resolved.ucId);
+  } else {
+    activateSection(resolved.section, resolved.subSection || null, false);
+    setSearchValue(resolved.query || '');
+    repaginateAll();
+    if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);
+  }
 });
 
 // Re-paginate on resize
