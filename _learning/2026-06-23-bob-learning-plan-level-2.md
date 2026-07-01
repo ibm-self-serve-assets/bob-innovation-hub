@@ -1,5 +1,8 @@
 ---
+id: 8021b4c8-ec32-4ee1-983c-0e93cce6dcad
 title: Bob Learning Plan - Level 2
+type: Learning
+duration: 4 hours
 link: https://learn.ibm.com/course/view.php?id=18733
 featured: 2
 ---
