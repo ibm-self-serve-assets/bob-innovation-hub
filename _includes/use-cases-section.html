@@ -36,7 +36,7 @@
       {% assign technical_cases = _tc_feat | concat: _tc_se | concat: _tc_other %}
       {% if technical_cases.size > 0 %}
         {% for usecase in technical_cases %}
-            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.id | default: usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
+            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}
@@ -78,9 +78,9 @@
 
   <!-- Business Use-cases -->
   <div id="business-use-cases-sub" class="sub-section active">
-    <!-- Domain filter -->
-    <div class="domain-filter" data-sub-section="business-use-cases" role="group" aria-label="Filter by domain">
-      <span class="domain-filter-label">Domain:</span>
+    <!-- Industry filter -->
+    <div class="domain-filter" data-sub-section="business-use-cases" role="group" aria-label="Filter by industry">
+      <span class="domain-filter-label">Industry:</span>
       <button class="domain-pill active" data-domain="">All</button>
       {% assign biz_domains = site.use-cases | where: "type", "Business" | map: "domain" | uniq | sort %}
       {% for d in biz_domains %}
@@ -97,7 +97,7 @@
       {% assign business_cases = _bc_feat | concat: _bc_se | concat: _bc_other %}
       {% if business_cases.size > 0 %}
         {% for usecase in business_cases %}
-            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.id | default: usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
+            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}

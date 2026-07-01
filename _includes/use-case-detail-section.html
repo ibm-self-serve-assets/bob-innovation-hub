@@ -6,7 +6,7 @@
   {% assign _all_uc = site.use-cases %}
   {% for uc in _all_uc %}
   {
-    "id": {{ uc.id | default: uc.slug | jsonify }},
+    "id": {{ uc.slug | jsonify }},
     "slug": {{ uc.slug | jsonify }},
     "title": {{ uc.title | jsonify }},
     "type": {{ uc.type | jsonify }},
@@ -21,8 +21,8 @@
     "slide_deck": {{ uc.slide_deck | jsonify }},
     "problem": {{ uc.problem | jsonify }},
     "solution": {{ uc.solution | jsonify }},
-    "business_value": {{ uc.business_value | jsonify }},
-    "tech_stack": {{ uc.tech_stack | jsonify }},
+    "business_value": {{ uc['business-value'] | jsonify }},
+    "tech_stack": {{ uc['tech-stack'] | jsonify }},
     "demo_steps": {{ uc.demo_steps | jsonify }},
     "slide_titles": {{ uc.slide_titles | jsonify }}
   }{% unless forloop.last %},{% endunless %}
@@ -74,11 +74,11 @@
       <div class="uc-overview-main">
         <div id="ucProblemBlock" class="uc-overview-block" style="display:none;">
           <h3 class="uc-overview-block-title"><span class="uc-block-accent uc-block-accent--red"></span>The Problem</h3>
-          <p id="ucProblemText"></p>
+          <div id="ucProblemText" class="uc-md-content"></div>
         </div>
         <div id="ucSolutionBlock" class="uc-overview-block" style="display:none;">
           <h3 class="uc-overview-block-title"><span class="uc-block-accent uc-block-accent--blue"></span>The Solution</h3>
-          <p id="ucSolutionText"></p>
+          <div id="ucSolutionText" class="uc-md-content"></div>
         </div>
         <div id="ucArchBlock" class="uc-overview-block uc-overview-block--collapsible" style="display:none;">
           <button class="uc-collapsible-btn" id="ucArchBtn">

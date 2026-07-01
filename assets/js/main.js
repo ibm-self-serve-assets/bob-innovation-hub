@@ -105,13 +105,41 @@ function getUcData() {
 }
 
 function findUcById(id) {
-  return getUcData().find(uc => (uc.id || uc.slug) === id) || null;
+  return getUcData().find(uc => uc.id === id) || null;
 }
 
 function getYouTubeId(url) {
   if (!url) return null;
   const m = url.match(/(?:youtu\.be\/|[?&]v=)([\w-]{11})/);
   return m ? m[1] : null;
+}
+
+function markdownToHtml(text) {
+  if (!text) return '';
+  // Split into blocks on blank lines
+  const blocks = text.split(/\n{2,}/);
+  return blocks.map(block => {
+    const lines = block.split('\n').map(l => l.trimEnd());
+    // Bullet list block
+    if (lines.every(l => /^[\s]*[-*]\s/.test(l) || l.trim() === '')) {
+      const items = lines
+        .filter(l => /^[\s]*[-*]\s/.test(l))
+        .map(l => `<li>${inlineMd(l.replace(/^[\s]*[-*]\s/, ''))}</li>`)
+        .join('');
+      return `<ul>${items}</ul>`;
+    }
+    // Paragraph
+    return `<p>${lines.map(inlineMd).join('<br>')}</p>`;
+  }).join('');
+}
+
+function inlineMd(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
 }
 
 // Track which sub-section we came from so Back returns correctly
@@ -122,7 +150,8 @@ function navigateToUcDetail(ucId) {
   if (!uc) return;
 
   // Remember which tab we came from (business or technical)
-  const activeSubTab = document.querySelector('.sub-tab.active');
+  const useCasesSectionEl = document.getElementById('use-cases-section');
+  const activeSubTab = useCasesSectionEl && useCasesSectionEl.querySelector('.sub-tab.active');
   if (activeSubTab) _ucReturnSubSection = activeSubTab.dataset.subSection;
 
   renderUcDetail(uc);
@@ -180,7 +209,7 @@ function renderUcDetail(uc) {
   // Overview — Problem
   const problemBlock = document.getElementById('ucProblemBlock');
   if (uc.problem) {
-    document.getElementById('ucProblemText').textContent = uc.problem;
+    document.getElementById('ucProblemText').innerHTML = markdownToHtml(uc.problem);
     problemBlock.style.display = 'block';
   } else {
     problemBlock.style.display = 'none';
@@ -189,7 +218,7 @@ function renderUcDetail(uc) {
   // Overview — Solution
   const solutionBlock = document.getElementById('ucSolutionBlock');
   if (uc.solution) {
-    document.getElementById('ucSolutionText').textContent = uc.solution;
+    document.getElementById('ucSolutionText').innerHTML = markdownToHtml(uc.solution);
     solutionBlock.style.display = 'block';
   } else {
     solutionBlock.style.display = 'none';
@@ -200,9 +229,17 @@ function renderUcDetail(uc) {
 
   // Side — Business value
   const bizBlock = document.getElementById('ucBizValueBlock');
-  if (uc.business_value && uc.business_value.length) {
+  let bizItems = [];
+  if (typeof uc.business_value === 'string' && uc.business_value.trim()) {
+    bizItems = uc.business_value.split('\n')
+      .map(l => l.replace(/^[\s\-\*]+/, '').trim())
+      .filter(l => l.length > 0);
+  } else if (Array.isArray(uc.business_value)) {
+    bizItems = uc.business_value.filter(v => v && v.trim());
+  }
+  if (bizItems.length) {
     const list = document.getElementById('ucBizValueList');
-    list.innerHTML = uc.business_value.map(v => `<li><span class="uc-value-check">✓</span>${v}</li>`).join('');
+    list.innerHTML = bizItems.map(v => `<li><span class="uc-value-check">✓</span>${v}</li>`).join('');
     bizBlock.style.display = 'block';
   } else {
     bizBlock.style.display = 'none';
@@ -210,9 +247,12 @@ function renderUcDetail(uc) {
 
   // Side — Tech stack
   const techBlock = document.getElementById('ucTechStackBlock');
-  if (uc.tech_stack && uc.tech_stack.length) {
+  const techItems = Array.isArray(uc.tech_stack)
+    ? uc.tech_stack
+    : (typeof uc.tech_stack === 'string' && uc.tech_stack.trim() ? [uc.tech_stack] : []);
+  if (techItems.length) {
     const pills = document.getElementById('ucTechPills');
-    pills.innerHTML = uc.tech_stack.map(t => `<span class="uc-tech-pill">${t}</span>`).join('');
+    pills.innerHTML = techItems.map(t => `<span class="uc-tech-pill">${t}</span>`).join('');
     techBlock.style.display = 'block';
   } else {
     techBlock.style.display = 'none';
@@ -221,10 +261,9 @@ function renderUcDetail(uc) {
   // Side — resource links (if no problem/solution, show links in overview)
   const linksBlock = document.getElementById('ucLinksBlock');
   const linkItems = [];
-  if (uc.link)       linkItems.push({ label: 'View Use Case', href: uc.link });
-  if (uc.mode)       linkItems.push({ label: 'View Mode', href: uc.mode });
-  if (uc.skill)      linkItems.push({ label: 'View Skill', href: uc.skill });
-  if (uc.slide_deck) linkItems.push({ label: 'View Slide Deck', href: 'https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main' + uc.slide_deck });
+  if (uc.link)  linkItems.push({ label: 'View Use Case', href: uc.link });
+  if (uc.mode)  linkItems.push({ label: 'View Mode', href: uc.mode });
+  if (uc.skill) linkItems.push({ label: 'View Skill', href: uc.skill });
   if (linkItems.length) {
     document.getElementById('ucLinksList').innerHTML = linkItems
       .map(l => `<a class="uc-resource-link" href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label} →</a>`)
@@ -752,6 +791,11 @@ function resolveHash(hash) {
 const SHARE_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
 
 function buildShareUrl(card) {
+  // Use-case cards have a detail page — link directly to it
+  if (card.dataset.ucId) {
+    const hash = '#/use-cases/' + encodeURIComponent(card.dataset.ucId);
+    return window.location.origin + window.location.pathname + hash;
+  }
   const sectionEl   = card.closest('.content-section');
   const subPanel    = card.closest('.sub-section');
   const sectionId   = sectionEl ? sectionEl.id.replace('-section', '') : null;
