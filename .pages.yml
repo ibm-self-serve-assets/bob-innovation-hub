@@ -43,14 +43,6 @@ content:
          values: ["Premium", "Custom"]
          multiple: false
          placeholder: "Use-case Type"
-      - name: industry
-        label: "Industry"
-        type: select
-        required: true
-        options:
-          values: ["Cross","AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
-          placeholder: "Select Industry"
-          multiple: true
       - name: body
         label: "Mode Description"
         type: rich-text
@@ -112,13 +104,33 @@ content:
         type: select
         required: true
         options:
-         values: ["Data", "Automation", "Security", "Modernization"]
+         values: ["Data", "Automation", "Security", "Modernization","BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment"]
          multiple: false
          placeholder: "Select Domain"
       - name: body
         label: "Use-case Description"
         type: rich-text
         required: true
+      - name: problem
+        label: "Use-case problem statement"
+        type: rich-text
+        required: true
+      - name: solution
+        label: "Use-case solution description"
+        type: rich-text
+        required: true
+      - name: business-value
+        label: "Use-case Business value(use bullet points)"
+        type: rich-text
+        required: false
+      - name: tech-stack
+        label: "Tech Products Used"
+        type: select
+        required: true
+        options:
+         values: ["watsonx.ai", "watsonx.data", "watsonx.gov"]
+         multiple: true
+         placeholder: "Select Products"
       - name: link
         label: "Use-case Link"
         type: string
@@ -235,14 +247,6 @@ content:
          values: ["Service Engineering", "Other"]
          multiple: false
          placeholder: "Asset Owner Team"
-      - name: industry
-        label: "Industry"
-        type: select
-        required: true
-        options:
-          values: ["Cross","AI", "Marketing", "Sales", "Customer Service", "Finance", "HR", "Operations", "Other"]
-          placeholder: "Select Industry"
-          multiple: true
       - name: body
         label: "Skill Description"
         type: rich-text
