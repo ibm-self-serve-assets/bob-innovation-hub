@@ -2,7 +2,7 @@
 title: Use IBM Bob and Sterling MCP server for supply chain management
 asset-owner: sujamoha@in.ibm.com
 team: Service Engineering
-type: Business
+type: Technical
 domain: Automation
 lab: https://github.com/ibm-self-serve-assets/sterling-oms-mcp-server
 ---
