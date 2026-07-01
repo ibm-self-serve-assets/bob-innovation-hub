@@ -3,82 +3,75 @@ layout: null
 title: Bob Innovation Hub
 ---
 
-<!-- Link to external CSS -->
+<!-- Carbon Design System tokens + layout -->
 <link rel="stylesheet" href="assets/css/styles.css">
 
-<!-- Theme Toggle Button -->
-<div class="theme-toggle-container">
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-    <span class="theme-toggle-icon" id="themeIcon">🌙</span>
-    <span id="themeText">Dark</span>
-  </button>
-</div>
+<!-- Carbon Web Components v2 — individual component bundles (correct CDN) -->
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/ui-shell.min.js"></script>
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/search.min.js"></script>
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tag.min.js"></script>
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tabs.min.js"></script>
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/link.min.js"></script>
+<script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/notification.min.js"></script>
 
-<!-- Main Layout with Sidebar -->
+<!-- ─── Main Layout with Sidebar ────────────────────────────────────────────── -->
 <div class="main-layout">
-  <!-- Left Sidebar Navigation -->
-  <aside class="sidebar">
+
+  <!-- Left Sidebar Navigation (custom — reliable click handling) -->
+  <aside class="sidebar" role="navigation" aria-label="Main navigation">
     <div class="sidebar-header">
-      <img src="https://raw.githubusercontent.com/ibm-self-serve-assets/bob-innovation-hub/refs/heads/main/assets/images/Bob_svg.svg" class="bob-logo"/>
-      <div style="min-width: 0;">
-        <p>Bob Innovation Hub</p>
-        <p style="font-size: 0.75em; font-weight: 400; color: var(--text-secondary); margin-top: 2px;">By IBM Service Engineering Lab</p>
+      <img src="https://raw.githubusercontent.com/ibm-self-serve-assets/bob-innovation-hub/refs/heads/main/assets/images/Bob_svg.svg" class="bob-logo" alt="Bob logo"/>
+      <div style="min-width:0;">
+        <p class="sidebar-title">Bob Innovation Hub</p>
+        <p class="sidebar-subtitle">By IBM Service Engineering Lab</p>
       </div>
     </div>
-    <nav class="sidebar-nav" role="navigation">
+    <nav class="sidebar-nav">
       {% for section in site.data.sections.sections %}
-      <button class="sidebar-button {% if forloop.first %}active{% endif %}" 
-              data-section="{{ section.id }}" 
+      <button class="sidebar-button {% if forloop.first %}active{% endif %}"
+              data-section="{{ section.id }}"
               aria-label="{{ section.title }}">
-        <span class="icon">{{ section.icon }}</span>
         <span>{{ section.title }}</span>
       </button>
       {% endfor %}
     </nav>
+    <!-- Theme toggle inside sidebar footer -->
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+      </button>
+    </div>
   </aside>
 
   <!-- Main Content Area -->
-  <main class="main-content">
+  <main class="main-content" role="main">
 
-    <!-- Search Bar -->
-    <div class="search-container">
-      <input
-        type="text"
+    <!-- Carbon Search component -->
+    <div class="search-container" id="searchContainer" style="display:none;">
+      <cds-search
         id="searchBar"
-        class="search-bar"
-        placeholder="🔍 Search ..."
-        aria-label="Search content"
-      >
+        size="lg"
+        label-text="Search"
+        placeholder="Search..."
+        aria-label="Search content">
+      </cds-search>
     </div>
 
-    <!-- Sections in order from sections.yml -->
-
-    <!-- Landing Page Section -->
+    <!-- Sections -->
     {% include introduction-section.html %}
-
-    <!-- Learning Resources Section -->
     {% include learning-resources-section.html %}
-
-    <!-- Use-Cases Section (tabbed) -->
     {% include use-cases-section.html %}
 
-    {% comment %}<!-- Demos Section -->
-    {% include demos-section.html %}{% endcomment %}
+    {% comment %}{% include demos-section.html %}{% endcomment %}
+    {% comment %}{% include labs-section.html %}{% endcomment %}
 
-    {% comment %}<!-- Labs Section -->
-    {% include labs-section.html %}{% endcomment %}
-
-    <!-- Modes Section (tabbed: Premium / Custom)-->
     {% include modes-section.html %}
-
-    <!-- Skills Section -->
     {% include skills-section.html %}
-
-    <!-- Additional Resources Section-->
     {% include bob101-section.html %}
 
   </main>
 </div>
 
-<!-- Link to external JavaScript -->
+<!-- Main JavaScript -->
 <script src="assets/js/main.js"></script>

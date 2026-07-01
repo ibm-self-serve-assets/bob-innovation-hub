@@ -1,10 +1,15 @@
 <!-- Learning Resources Section -->
 <div id="learning-resources-section" class="content-section">
-  <h2 class="section-title">🎓 Learning Resources</h2>
+  <h2 class="section-title">Learning Resources</h2>
   <p class="section-description">Whether you are starting from scratch or looking to sharpen your skills, complete our curated learning plans to build your expertise and earn your Bob proficiency badges. Dive deep into technical tutorials designed for hands-on, immersive learning, and explore the core architectural components powering agentic solutions—including IBM MCP servers, MCP, A2A, and AI Gateways.</p>
-  <p style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 6px; border-left: 4px solid var(--accent-danger); font-weight: 600; text-align: center;">
-          Disclaimer : Some content may need IBM Partner ID to access.
-        </p>
+  <!-- Carbon inline notification — warning -->
+  <cds-inline-notification
+    kind="warning"
+    low-contrast
+    title="Disclaimer:"
+    subtitle="Some content may need an IBM Partner ID to access."
+    hide-close-button>
+  </cds-inline-notification>
   <div id="learning-resources-container" class="cards-grid">
 
     {% assign featured_learning = site.learning | where_exp: "item", "item.featured" | sort: "featured" %}
@@ -14,15 +19,10 @@
       {% for resource in sorted_learning %}
         <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
           <h3>{{ resource.title }}</h3>
-          <div class="card-body">
-            {{ resource.content }}
-          </div>
+          <div class="card-body">{{ resource.content }}</div>
           {% if resource.link %}
-            <div style="margin-top: 1rem;">
-              <a href="{{ resource.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                🔗 View Resource
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+            <div class="card-actions">
+              <cds-link href="{{ resource.link }}" target="_blank" rel="noopener noreferrer">View Resource</cds-link>
             </div>
           {% endif %}
         </div>

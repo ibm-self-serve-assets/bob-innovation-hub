@@ -1,16 +1,18 @@
 <!-- Modes Section (tabbed: Premium Modes / Custom Modes) -->
 <div id="modes-section" class="content-section">
-  <h2 class="section-title">🤖 Modes</h2>
+  <h2 class="section-title">Modes</h2>
   <p class="section-description">Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Explore premium modes designed for legacy modernization, or leverage custom modes for specialized scenarios. These custom modes serve as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements.</p>
 
-  <!-- Sub-section tabs -->
-  <div class="sub-tabs" role="tablist">
-    <button class="sub-tab" data-sub-section="custom-modes" role="tab" aria-selected="true">
-      🤖 Custom Modes
-    </button>
-    <button class="sub-tab active" data-sub-section="premium-modes" role="tab" aria-selected="false">
-      ⭐ Premium Modes
-    </button>
+  <!-- Carbon Tabs — sub-section navigation -->
+  <cds-tabs value="premium-modes" id="modes-tabs">
+    <cds-tab id="tab-premium-modes" value="premium-modes" data-sub-section="premium-modes">Premium Modes</cds-tab>
+    <cds-tab id="tab-custom-modes"  value="custom-modes"  data-sub-section="custom-modes">Custom Modes</cds-tab>
+  </cds-tabs>
+
+  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
+  <div class="sub-tabs" style="display:none;" role="tablist">
+    <button class="sub-tab active" data-sub-section="premium-modes" role="tab" aria-selected="true">Premium Modes</button>
+    <button class="sub-tab"        data-sub-section="custom-modes"  role="tab" aria-selected="false">Custom Modes</button>
   </div>
 
   <!-- Premium Modes -->
@@ -24,36 +26,25 @@
       {% if premium_modes.size > 0 %}
         {% for mode in premium_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
-             <h3>{{ mode.title }}</h3>
-             <div class="badge-container">
-               <span class="badge badge-orange">⭐ Premium</span>
+            <h3>{{ mode.title }}</h3>
+            <div class="badge-container">
+              <cds-tag type="warm-gray" size="sm">Premium</cds-tag>
               {% if mode.industry %}
                 {% for ind in mode.industry %}
-                  <span class="badge badge-blue">🏢 {{ ind }}</span>
+                  <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
                 {% endfor %}
               {% endif %}
             </div>
-            <div class="card-body">
-              {{ mode.content }}
-            </div>
-            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="card-body">{{ mode.content }}</div>
+            <div class="card-actions">
               {% if mode.link %}
-                <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.link }}" target="_blank" rel="noopener noreferrer">View</cds-link>
               {% endif %}
               {% if mode.demo %}
-                <a href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🎯 View Demo
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
               {% endif %}
               {% if mode.lab %}
-                <a href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🚀 View Lab
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
               {% endif %}
             </div>
           </div>
@@ -78,36 +69,25 @@
       {% if custom_modes.size > 0 %}
         {% for mode in custom_modes %}
           <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
-             <h3>{{ mode.title }}</h3>
-             <div class="badge-container">
-               <span class="badge badge-green">🤖 Custom</span>
+            <h3>{{ mode.title }}</h3>
+            <div class="badge-container">
+              <cds-tag type="green" size="sm">Custom</cds-tag>
               {% if mode.industry %}
                 {% for ind in mode.industry %}
-                  <span class="badge badge-blue">🏢 {{ ind }}</span>
+                  <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
                 {% endfor %}
               {% endif %}
             </div>
-            <div class="card-body">
-              {{ mode.content }}
-            </div>
-            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="card-body">{{ mode.content }}</div>
+            <div class="card-actions">
               {% if mode.link %}
-                <a href="{{ mode.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View on GitHub
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.link }}" target="_blank" rel="noopener noreferrer">View on GitHub</cds-link>
               {% endif %}
               {% if mode.demo %}
-                <a href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🎯 View Demo
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
               {% endif %}
               {% if mode.lab %}
-                <a href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🚀 View Lab
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
               {% endif %}
             </div>
           </div>

@@ -1,6 +1,6 @@
 <!-- Skills Section -->
 <div id="skills-section" class="content-section">
-  <h2 class="section-title">🛠️ Skills</h2>
+  <h2 class="section-title">Skills</h2>
   <p class="section-description">Accelerate your workflow with Skills—reusable instruction sets that teach Bob how to deliver consistent results for specialized tasks. Use them as an immediate starting point to quickly build your own custom use cases.</p>
   <div id="skills-container" class="cards-grid">
 
@@ -15,19 +15,14 @@
           <div class="badge-container">
             {% if skill.industry %}
               {% for ind in skill.industry %}
-                <span class="badge badge-blue">🏢 {{ ind }}</span>
+                <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
               {% endfor %}
             {% endif %}
           </div>
-          <div class="card-body">
-            {{ skill.content }}
-          </div>
+          <div class="card-body">{{ skill.content }}</div>
           {% if skill.link %}
-            <div style="margin-top: 1rem;">
-              <a href="{{ skill.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                🔗 View on GitHub
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+            <div class="card-actions">
+              <cds-link href="{{ skill.link }}" target="_blank" rel="noopener noreferrer">View on GitHub</cds-link>
             </div>
           {% endif %}
         </div>

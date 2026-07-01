@@ -1,21 +1,23 @@
 <!-- Use-Cases Section (tabbed: Technical / Business) -->
 <div id="use-cases-section" class="content-section">
-  <h2 class="section-title">📋 Use-Cases</h2>
+  <h2 class="section-title">Use-Cases</h2>
   <p class="section-description">Discover how IBM Bob solves complex problems through our technical and industry use cases, interactive labs, and product demos. You can leverage these templates as a foundation to build upon and quickly achieve your specific goals.</p>
 
-  <!-- Sub-section tabs -->
-  <div class="sub-tabs" role="tablist">
-    <button class="sub-tab" data-sub-section="business-use-cases" role="tab" aria-selected="true">
-      💼 Business Use-cases
-    </button>
-    <button class="sub-tab active" data-sub-section="technical-use-cases" role="tab" aria-selected="false">
-      🔧 Technical Use-cases
-    </button>
+  <!-- Carbon Tabs — sub-section navigation -->
+  <cds-tabs value="technical-use-cases" id="use-cases-tabs">
+    <cds-tab id="tab-technical-use-cases" value="technical-use-cases" data-sub-section="technical-use-cases">Technical Use-cases</cds-tab>
+    <cds-tab id="tab-business-use-cases"  value="business-use-cases"  data-sub-section="business-use-cases">Business Use-cases</cds-tab>
+  </cds-tabs>
+
+  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
+  <div class="sub-tabs" style="display:none;" role="tablist">
+    <button class="sub-tab"        data-sub-section="business-use-cases" role="tab" aria-selected="false">Business Use-cases</button>
+    <button class="sub-tab active" data-sub-section="technical-use-cases" role="tab" aria-selected="true">Technical Use-cases</button>
   </div>
 
   <!-- Technical Use-cases -->
   <div id="technical-use-cases-sub" class="sub-section active">
-    <!-- Domain filter pills -->
+    <!-- Domain filter -->
     <div class="domain-filter" data-sub-section="technical-use-cases" role="group" aria-label="Filter by domain">
       <span class="domain-filter-label">Domain:</span>
       <button class="domain-pill active" data-domain="">All</button>
@@ -38,49 +40,29 @@
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}
-                <span class="badge badge-blue">🔧 {{ usecase.domain }}</span>
+                <cds-tag type="blue" size="sm">{{ usecase.domain }}</cds-tag>
               {% endif %}
-              <span class="badge badge-green">Technical</span>
+              <cds-tag type="teal" size="sm">Technical</cds-tag>
             </div>
-            <div class="card-body">
-              {{ usecase.content }}
-            </div>
-            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="card-body">{{ usecase.content }}</div>
+            <div class="card-actions">
               {% if usecase.link %}
-                <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View Use Case
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer">View Use Case</cds-link>
               {% endif %}
               {% if usecase.demo %}
-                <a href="{{ usecase.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🎯 View Demo
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
               {% endif %}
               {% if usecase.mode %}
-                <a href="{{ usecase.mode }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🤖 View Mode
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.mode }}" target="_blank" rel="noopener noreferrer">View Mode</cds-link>
               {% endif %}
               {% if usecase.lab %}
-                <a href="{{ usecase.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🚀 View Lab
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
               {% endif %}
               {% if usecase.skill %}
-                <a href="{{ usecase.skill }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🛠️ View Skill
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.skill }}" target="_blank" rel="noopener noreferrer">View Skill</cds-link>
               {% endif %}
               {% if usecase.slide_deck %}
-                <a href="https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main{{ usecase.slide_deck }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  📊 View Slide Deck
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main{{ usecase.slide_deck }}" target="_blank" rel="noopener noreferrer">View Slide Deck</cds-link>
               {% endif %}
             </div>
           </div>
@@ -96,7 +78,7 @@
 
   <!-- Business Use-cases -->
   <div id="business-use-cases-sub" class="sub-section">
-    <!-- Domain filter pills -->
+    <!-- Domain filter -->
     <div class="domain-filter" data-sub-section="business-use-cases" role="group" aria-label="Filter by domain">
       <span class="domain-filter-label">Domain:</span>
       <button class="domain-pill active" data-domain="">All</button>
@@ -119,49 +101,29 @@
             <h3>{{ usecase.title }}</h3>
             <div class="badge-container">
               {% if usecase.domain %}
-                <span class="badge badge-orange">💼 {{ usecase.domain }}</span>
+                <cds-tag type="purple" size="sm">{{ usecase.domain }}</cds-tag>
               {% endif %}
-              <span class="badge badge-orange">Business</span>
+              <cds-tag type="magenta" size="sm">Business</cds-tag>
             </div>
-            <div class="card-body">
-              {{ usecase.content }}
-            </div>
-            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="card-body">{{ usecase.content }}</div>
+            <div class="card-actions">
               {% if usecase.link %}
-                <a href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🔗 View Use Case
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer">View Use Case</cds-link>
               {% endif %}
               {% if usecase.demo %}
-                <a href="{{ usecase.demo }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🎯 View Demo
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
               {% endif %}
               {% if usecase.mode %}
-                <a href="{{ usecase.mode }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🤖 View Mode
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.mode }}" target="_blank" rel="noopener noreferrer">View Mode</cds-link>
               {% endif %}
               {% if usecase.lab %}
-                <a href="{{ usecase.lab }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-secondary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🚀 View Lab
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
               {% endif %}
               {% if usecase.skill %}
-                <a href="{{ usecase.skill }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-tertiary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  🛠️ View Skill
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="{{ usecase.skill }}" target="_blank" rel="noopener noreferrer">View Skill</cds-link>
               {% endif %}
               {% if usecase.slide_deck %}
-                <a href="https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main{{ usecase.slide_deck }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                  📊 View Slide Deck
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+                <cds-link href="https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main{{ usecase.slide_deck }}" target="_blank" rel="noopener noreferrer">View Slide Deck</cds-link>
               {% endif %}
             </div>
           </div>

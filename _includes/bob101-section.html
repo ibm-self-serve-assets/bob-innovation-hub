@@ -1,6 +1,6 @@
 <!-- Additional Resources Section -->
 <div id="bob101-section" class="content-section">
-  <h2 class="section-title">📚 Additional Resources</h2>
+  <h2 class="section-title">Additional Resources</h2>
   <p class="section-description">Explore additional Bob resources to deepen your understanding, collaborate effectively, and connect with the Bob community.</p>
   <div id="bob101-container" class="cards-grid">
 
@@ -11,15 +11,10 @@
       {% for item in sorted_bob101 %}
         <div class="asset-card" data-slug="{{ item.slug }}" data-title="{{ item.title | downcase }}" data-content="{{ item.content | strip_html | downcase }}">
           <h3>{{ item.title }}</h3>
-          <div class="card-body">
-            {{ item.content }}
-          </div>
+          <div class="card-body">{{ item.content }}</div>
           {% if item.link %}
-            <div style="margin-top: 1rem;">
-              <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem;">
-                🔗 View Document
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.7;"><path d="M10.5 1.5L1.5 10.5M10.5 1.5H3M10.5 1.5V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </a>
+            <div class="card-actions">
+              <cds-link href="{{ item.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
             </div>
           {% endif %}
         </div>
