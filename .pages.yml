@@ -33,6 +33,14 @@ content:
         label: "Documentation Description"
         type: rich-text
         required: true
+      - name: type
+        label: "Type"
+        type: select
+        required: true
+        options:
+         values: ["Official Documentation", "Pricing Plan"]
+         multiple: false
+         placeholder: "Resource Type"
       - name: link
         label: "Documentation Link"
         type: string
