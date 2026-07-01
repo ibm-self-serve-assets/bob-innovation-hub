@@ -1,8 +1,15 @@
 ---
+id: acb5db28-7bc5-450c-98f2-92bee011c134
 title: " Build Agentic AI-powered Financial Planner Efficiently using IBM Bob"
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Automation
+domain: BFSI
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
 demo: https://www.youtube.com/watch?v=KOnyKsYhORI
 slide_deck: /docs/slide_decks/Bob_wxO_asset_financial_planner_one_pager.pdf
 featured: 17
