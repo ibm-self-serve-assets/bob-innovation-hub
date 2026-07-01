@@ -1,0 +1,50 @@
+<!-- Case Studies Section -->
+<div id="case-studies-section" class="content-section">
+  <h2 class="section-title">Case Studies</h2>
+  <p class="section-description">Explore real-world case studies showcasing how Bob delivers value across industries.</p>
+
+  <!-- Industry domain filter -->
+  <div class="domain-filter" data-sub-section="case-studies" role="group" aria-label="Filter by industry">
+    <span class="domain-filter-label">Industry:</span>
+    <button class="domain-pill active" data-domain="">All</button>
+    {% assign cs_domains = site.case_studies | map: "industry" | uniq | sort %}
+    {% for d in cs_domains %}
+      {% if d != "" and d != nil %}
+        <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div id="case-studies-container" class="cards-grid">
+
+    {% assign _cs_feat = site.case_studies | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _cs_unfeat = site.case_studies | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_case_studies = _cs_feat | concat: _cs_unfeat %}
+    {% if sorted_case_studies.size > 0 %}
+      {% for study in sorted_case_studies %}
+        <div class="asset-card" data-slug="{{ study.slug }}" data-title="{{ study.title | downcase }}" data-content="{{ study.content | strip_html | downcase }}" data-domain="{{ study.industry | downcase }}">
+          <h3>{{ study.title }}</h3>
+          <div class="badge-container">
+            {% if study.industry %}
+              <cds-tag type="blue" size="sm">{{ study.industry }}</cds-tag>
+            {% endif %}
+          </div>
+          <div class="card-body">{{ study.content }}</div>
+          {% if study.link %}
+            <div class="card-actions">
+              <cds-link href="{{ study.link }}" target="_blank" rel="noopener noreferrer">View Case Study</cds-link>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No case studies found. Add case studies from your Pages CMS manager to populate this section.</p>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  <div id="case-studies-pagination" class="pagination"></div>
+</div>

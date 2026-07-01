@@ -1,0 +1,32 @@
+<!-- MCP Section -->
+<div id="mcp-section" class="content-section">
+  <h2 class="section-title">MCP</h2>
+  <p class="section-description">Explore Model Context Protocol (MCP) integrations and tools that extend Bob's capabilities.</p>
+  <div id="mcp-container" class="cards-grid">
+
+    {% assign _mcp_feat = site.mcp | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _mcp_unfeat = site.mcp | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_mcp = _mcp_feat | concat: _mcp_unfeat %}
+    {% if sorted_mcp.size > 0 %}
+      {% for item in sorted_mcp %}
+        <div class="asset-card" data-slug="{{ item.slug }}" data-title="{{ item.title | downcase }}" data-content="{{ item.content | strip_html | downcase }}">
+          <h3>{{ item.title }}</h3>
+          <div class="card-body">{{ item.content }}</div>
+          {% if item.link %}
+            <div class="card-actions">
+              <cds-link href="{{ item.link }}" target="_blank" rel="noopener noreferrer">View MCP</cds-link>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No MCP entries found. Add entries from your Pages CMS manager to populate this section.</p>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  <div id="mcp-pagination" class="pagination"></div>
+</div>

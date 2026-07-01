@@ -44,7 +44,7 @@ function updateThemeButton(theme) {
 }
 
 // ─── Section / routing config ─────────────────────────────────────────────────
-const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'bob101', 'learning-resources'];
+const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'bob101', 'learning-resources', 'documentation', 'mcp', 'case-studies', 'bob-community'];
 const SUB_TAB_SECTIONS = ['use-cases', 'modes'];
 
 const ROUTE_MAP = {
@@ -61,6 +61,10 @@ const ROUTE_MAP = {
   '/modes/premium':           { section: 'modes', subSection: 'premium-modes' },
   '/modes/custom':            { section: 'modes', subSection: 'custom-modes' },
   '/skills':                  { section: 'skills' },
+  '/documentation':           { section: 'documentation' },
+  '/mcp':                     { section: 'mcp' },
+  '/case-studies':            { section: 'case-studies' },
+  '/bob-community':           { section: 'bob-community' },
 };
 
 const SECTION_TO_ROUTE = {
@@ -76,6 +80,10 @@ const SECTION_TO_ROUTE = {
   'premium-modes':        '#/modes/premium',
   'custom-modes':         '#/modes/custom',
   'skills':               '#/skills',
+  'documentation':        '#/documentation',
+  'mcp':                  '#/mcp',
+  'case-studies':         '#/case-studies',
+  'bob-community':        '#/bob-community',
 };
 
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
@@ -301,6 +309,10 @@ let currentPage = {
   skills: 1,
   bob101: 1,
   'learning-resources': 1,
+  documentation: 1,
+  mcp: 1,
+  'case-studies': 1,
+  'bob-community': 1,
 };
 
 function filterAndPaginate(section) {
@@ -412,7 +424,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','bob101','skills','learning-resources'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','bob101','skills','learning-resources','documentation','mcp','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));

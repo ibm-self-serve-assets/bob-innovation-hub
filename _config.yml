@@ -16,3 +16,11 @@ collections:
     output: false
   skills:
     output: false
+  documentation:
+    output: false
+  mcp:
+    output: false
+  case_studies:
+    output: false
+  bob_community:
+    output: false

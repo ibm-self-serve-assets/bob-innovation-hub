@@ -1,0 +1,32 @@
+<!-- Bob Community Section -->
+<div id="bob-community-section" class="content-section">
+  <h2 class="section-title">Bob Community</h2>
+  <p class="section-description">Connect with the Bob community—find collaboration channels, events, and resources to engage with fellow Bob users.</p>
+  <div id="bob-community-container" class="cards-grid">
+
+    {% assign _bc_feat = site.bob_community | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _bc_unfeat = site.bob_community | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_bob_community = _bc_feat | concat: _bc_unfeat %}
+    {% if sorted_bob_community.size > 0 %}
+      {% for item in sorted_bob_community %}
+        <div class="asset-card" data-slug="{{ item.slug }}" data-title="{{ item.title | downcase }}" data-content="{{ item.content | strip_html | downcase }}">
+          <h3>{{ item.title }}</h3>
+          <div class="card-body">{{ item.content }}</div>
+          {% if item.link %}
+            <div class="card-actions">
+              <cds-link href="{{ item.link }}" target="_blank" rel="noopener noreferrer">View Resource</cds-link>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No community resources found. Add resources from your Pages CMS manager to populate this section.</p>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  <div id="bob-community-pagination" class="pagination"></div>
+</div>

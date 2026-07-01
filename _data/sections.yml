@@ -9,6 +9,15 @@ sections:
     type: custom
     include_file: introduction-section.html
 
+  - id: documentation
+    title: Documentation
+    icon: "" #📄
+    show_search: true
+    type: collection
+    collection: documentation
+    link_text: View Document
+    empty_message: No documentation found. Add documents from your Pages CMS manager to populate this section.
+
   - id: learning-resources
     title: Learning Resources
     icon: "" #🎓
@@ -37,23 +46,21 @@ sections:
     link_text: View Use Case
     empty_message: No use cases found. Add new use cases from your Pages CMS manager to populate this deck.
 
-  #- id: demos
-  #  title: Demos
-  #  icon: "" #💻
-  #  show_search: true
-  #  type: collection
-  #  collection: demos
-  #  link_text: View Demo
-  #  empty_message: No demos found. Add new demos from your Pages CMS manager to populate this deck.
-#
-  #- id: labs
-  #  title: Labs
-  #  icon: "" #🚀
-  #  show_search: true
-  #  type: collection
-  #  collection: labs
-  #  link_text: View Lab
-  #  empty_message: No active labs found. Add new labs from your Pages CMS manager to populate this deck.
+  - id: skills
+    title: Skills
+    icon: "" #🛠️
+    show_search: true
+    type: custom
+    include_file: skills-section.html
+
+  - id: mcp
+    title: MCP
+    icon: "" #🔌
+    show_search: true
+    type: collection
+    collection: mcp
+    link_text: View MCP
+    empty_message: No MCP entries found. Add entries from your Pages CMS manager to populate this section.
 
   - id: modes
     title: Modes
@@ -74,12 +81,23 @@ sections:
     link_text: View on GitHub
     empty_message: No modes found. Use Pages CMS to add initial configurations.
 
-  - id: skills
-    title: Skills
-    icon: "" #🛠️
+  - id: case-studies
+    title: Case Studies
+    icon: "" #📊
     show_search: true
-    type: custom
-    include_file: skills-section.html
+    type: collection
+    collection: case_studies
+    link_text: View Case Study
+    empty_message: No case studies found. Add case studies from your Pages CMS manager to populate this section.
+
+  - id: bob-community
+    title: Bob Community
+    icon: "" #👥
+    show_search: true
+    type: collection
+    collection: bob_community
+    link_text: View Resource
+    empty_message: No community resources found. Add resources from your Pages CMS manager to populate this section.
 
   - id: bob101
     title: Additional Resources
@@ -88,7 +106,23 @@ sections:
     type: custom
     include_file: bob101-section.html
 
-
+  #- id: demos
+  #  title: Demos
+  #  icon: "" #💻
+  #  show_search: true
+  #  type: collection
+  #  collection: demos
+  #  link_text: View Demo
+  #  empty_message: No demos found. Add new demos from your Pages CMS manager to populate this deck.
+#
+  #- id: labs
+  #  title: Labs
+  #  icon: "" #🚀
+  #  show_search: true
+  #  type: collection
+  #  collection: labs
+  #  link_text: View Lab
+  #  empty_message: No active labs found. Add new labs from your Pages CMS manager to populate this deck.
 
 # To add a new section, copy the template below and customize:
 #

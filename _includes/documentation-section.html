@@ -1,0 +1,32 @@
+<!-- Documentation Section -->
+<div id="documentation-section" class="content-section">
+  <h2 class="section-title">Documentation</h2>
+  <p class="section-description">Browse official Bob documentation to get started, explore features, and find answers to common questions.</p>
+  <div id="documentation-container" class="cards-grid">
+
+    {% assign _doc_feat = site.documentation | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _doc_unfeat = site.documentation | where_exp: "item", "item.featured == nil" %}
+    {% assign sorted_documentation = _doc_feat | concat: _doc_unfeat %}
+    {% if sorted_documentation.size > 0 %}
+      {% for doc in sorted_documentation %}
+        <div class="asset-card" data-slug="{{ doc.slug }}" data-title="{{ doc.title | downcase }}" data-content="{{ doc.content | strip_html | downcase }}">
+          <h3>{{ doc.title }}</h3>
+          <div class="card-body">{{ doc.content }}</div>
+          {% if doc.link %}
+            <div class="card-actions">
+              <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No documentation found. Add documents from your Pages CMS manager to populate this section.</p>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  <div id="documentation-pagination" class="pagination"></div>
+</div>
