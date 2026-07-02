@@ -3,7 +3,7 @@ id: 294b190e-d482-4a5a-ad6f-addf07bc3d38
 title: Parkbot assist
 asset-owner: pratik.sinha1@ibm.com
 team: Service Engineering
-type: Technical
+type: Business
 domain: Transport & Logistics
 problem: Drivers face significant challenges in securing parking in large MLCP
   (Multi-Level Car Parking) facilities due to the lack of real-time parking
