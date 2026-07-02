@@ -467,11 +467,6 @@ section#main_content { width: 100% !important; float: none !important; padding: 
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--cds-text-secondary);
-  background: var(--cds-layer-01);
-  border: 1px solid var(--cds-border-subtle-01);
-  border-radius: 2px;
-  padding: 2px 8px;
-  margin-bottom: var(--cds-spacing-03);
 }
 
 /* ── Card header row ────────────────────────────────────────── */

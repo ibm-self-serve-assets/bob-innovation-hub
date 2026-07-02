@@ -21,9 +21,11 @@
         <div class="intro-stat-divider"></div>
         <div class="intro-stat"><strong>{{ site.skills | size }}+</strong> Skills</div>
         <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.modes | size }}+</strong> Modes</div>
+        <div class="intro-stat"><strong>{{ site.subagents | size }}+</strong> Subagents</div>
         <div class="intro-stat-divider"></div>
         <div class="intro-stat"><strong>{{ site.mcp | size }}+</strong> MCP</div>
+        <div class="intro-stat-divider"></div>
+        <div class="intro-stat"><strong>{{ site.modes | size }}+</strong> Modes</div>
         <div class="intro-stat-divider"></div>
         <div class="intro-stat"><strong>{{ site.case_studies | size }}</strong> Case Studies</div>
       </div>
@@ -324,8 +326,9 @@
 }
 
 .intro-hero-illustration {
-  flex-shrink: 0;
-  width: 620px;
+  flex: 0 1 40vw;
+  max-width: 620px;
+  min-width: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,7 +336,7 @@
 
 .intro-bob-img {
   width: 100%;
-  max-width: 620px;
+  max-width: 100%;
   height: auto;
 }
 
@@ -542,7 +545,9 @@
     align-items: flex-start;
   }
   .intro-hero-illustration {
-    display: none;
+    width: min(100%, 520px);
+    min-width: 0;
+    align-self: center;
   }
   .intro-outcomes-grid-3 {
     grid-template-columns: 1fr 1fr;

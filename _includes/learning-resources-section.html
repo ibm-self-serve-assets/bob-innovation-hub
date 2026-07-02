@@ -32,13 +32,24 @@
       {% assign learning_path_resources = _lp_feat | concat: _lp_rest %}
       {% if learning_path_resources.size > 0 %}
         {% for resource in learning_path_resources %}
-            <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}">
+            <div class="asset-card" data-slug="{{ resource.slug }}" data-title="{{ resource.title | downcase }}" data-content="{{ resource.content | strip_html | downcase }}" data-persona="{{ resource.persona | downcase }}">
               <h3>{{ resource.title }}</h3>
-              {% if resource.duration %}
-                <div class="card-duration">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-19h-2v9l7 4 1-1.73-6-3.45z"/></svg>{{ resource.duration }}
-                </div>
-              {% endif %}
+              <div class="card-meta" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">
+                {% if resource.duration %}
+                  <span class="card-duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:4px;flex-shrink:0;"><path d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2zm0 26a12 12 0 1 1 12-12 12 12 0 0 1-12 12zm1-19h-2v9l7 4 1-1.73-6-3.45z"/></svg>{{ resource.duration }}
+                  </span>
+                {% endif %}
+                {% if resource.persona %}
+                  {% if resource.persona == "Sales Foundation" %}
+                    <cds-tag type="teal" size="sm">{{ resource.persona }}</cds-tag>
+                  {% elsif resource.persona == "Tech Sales Intermediate" %}
+                    <cds-tag type="purple" size="sm">{{ resource.persona }}</cds-tag>
+                  {% else %}
+                    <cds-tag type="cool-gray" size="sm">{{ resource.persona }}</cds-tag>
+                  {% endif %}
+                {% endif %}
+              </div>
               <div class="card-body">{{ resource.content }}</div>
               {% if resource.link %}
                 <div class="card-actions">
