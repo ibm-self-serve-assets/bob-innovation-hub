@@ -34,7 +34,7 @@ tech-stack:
   - IBM Bob
   - Guardium
 demo: https://www.youtube.com/watch?v=5HEAE8i09qM
-mode: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/modes/custom?q=ibm-quantumsafe-bob-mode
+mode: https://github.com/ibm-self-serve-assets/ibm-quantumsafe-bob-mode
 slide_deck: /docs/slide_decks/Quantum_Safe_with_Bob.pdf
 ---
 AI Meets Quantum Security: Discovering and Remediating Quantum Vulnerabilities in Enterprise Applications**.** This use case showcases Quantum Safe coding with IBM Bob, Quantum Safe Explorer and Guradium Crypto Manager.
