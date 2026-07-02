@@ -63,8 +63,9 @@ tech-stack:
   - IBM Bob
   - IBM Confluent
   - watsonx Orchestrate
+architecture_diagram: /docs/diagrams/high level arch.png
 demo: https://www.youtube.com/watch?v=_x9wrMifFRE
 slide_deck: /docs/slide_decks/Retail_DynamicPricing.pdf
 featured: 2
 ---
-IBM Bob accelerates building an adaptive pricing platform powered by watsonx Orchestrate, Confluent Kafka and Flink.
+The AI-powered dynamic pricing and offer optimization system bridges the gap between fragmented historical data and fast-changing market dynamics by merging batch intelligence with real-time decisioning. The system establishes a baseline pricing foundation from historical demand patterns and user behavior, then instantly adapts prices and promotions based on live signals like demand spikes, inventory changes, and group sizes. Tailored specifically across industries—delivering dynamic rates in retail and hospitality, and personalized bundles in food and beverage—the solution optimizes revenue during critical peak windows and attracts customers during low-demand periods. Crucially, the system communicates why prices are changing, ensuring transparency that preserves customer trust while maximizing revenue potential.
