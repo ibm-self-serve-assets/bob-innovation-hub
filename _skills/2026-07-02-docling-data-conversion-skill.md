@@ -3,7 +3,7 @@ id: 14a9397e-8ba1-4e4a-9b8e-235a8237dff5
 title: Docling Data Conversion Skill
 asset-owner: syedame1@in.ibm.com
 team: Service Engineering
-link: https://github.com/syedame1/Bob-customization/tree/master/skills/docling-data-conversion
+link: https://github.com/ibm-self-serve-assets/Bob-customization-ww-se/tree/master/skills/docling-data-conversion
 ---
 **Docling Data Conversion Skill**
 
