@@ -1,6 +1,6 @@
 ---
 id: cd3450f1-1f14-4f97-88a3-59bb10715fbd
-title: Confluent Kafka Bob Mode
+title: Confluent Kafka Mode
 asset-owner: vivprata@in.ibm.com
 team: Service Engineering
 type: Custom
