@@ -19,22 +19,20 @@ solution: The solution deploys Confluent Kafka Community Edition on RHEL to
   integration with downstream systems for analyst review and regulatory
   reporting.
 business-value: >+
-  - **80% reduction** in fraud losses through real-time transaction blocking
+  - 80% reduction in fraud losses through real-time transaction blocking
 
-  - **Sub-second detection** improves customer trust and reduces churn by 30%
+  - Sub-second detection improves customer trust and reduces churn by 30%
 
-  - **Eliminates batch processing** delays — fraud caught in milliseconds, not
-  hours
+  - Eliminates batch processing delays — fraud caught in milliseconds, not hours
 
-  - **Lower TCO** — open-source Kafka on RHEL avoids expensive licensing
+  - Lower TCO — open-source Kafka on RHEL avoids expensive licensing
 
-  - **Regulatory compliance** — meets PSD2/RBI real-time monitoring mandates
+  - Regulatory compliance — meets PSD2/RBI real-time monitoring mandates
 
-  - **Scalable architecture** — handles peak volumes without performance
-  degradation
+  - Scalable architecture — handles peak volumes without performance degradation
 
-  - **Future-ready** — extensible for ML-based anomaly detection and
-  cross-channel correlation
+  - Future-ready — extensible for ML-based anomaly detection and cross-channel
+  correlation
 
 tech-stack:
   - IBM Bob
