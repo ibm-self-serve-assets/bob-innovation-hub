@@ -1,6 +1,6 @@
 ---
 id: aaff8ac0-897c-4991-ae0a-6ac6ef76c358
-title: dockerfile-generator
+title: Dockerfile Generator
 asset-owner: syedame1@in.ibm.com
 team: Service Engineering
 link: https://github.com/ibm-self-serve-assets/Bob-customization-ww-se/tree/master/agents
