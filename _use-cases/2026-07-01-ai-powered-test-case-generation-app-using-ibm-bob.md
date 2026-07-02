@@ -1,7 +1,7 @@
 ---
 id: 55f30b2c-1be1-435f-86b1-21cad8791d45
 title: AI-Powered Test Case Generation App using  IBM Bob
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: ranjan.kumar.jena@ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
@@ -29,24 +29,11 @@ business-value: >+
   - **Improves test quality and consistency** with AI-generated, standardized
   test cases.
 
-  - **Minimizes human errors** by eliminating manual interpretation of technical
-  specifications.
-
-  - **Increases test coverage** through comprehensive, feature-based test
-  generation.
-
   - **Reduces Mean Time to Detect (MTTD)** by enabling faster and more effective
   testing.
 
   - **Boosts QA engineer productivity** by allowing teams to focus on validation
   rather than authoring test cases.
-
-  - **Enhances traceability and collaboration** with centralized test-case
-  management.
-
-  - **Supports scalable testing** for large and complex enterprise applications.
-
-  - **Enables faster release cycles** while maintaining higher software quality.
 
 tech-stack:
   - IBM Bob
