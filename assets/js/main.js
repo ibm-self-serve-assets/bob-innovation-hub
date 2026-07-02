@@ -44,7 +44,7 @@ function updateThemeButton(theme) {
 }
 
 // ─── Section / routing config ─────────────────────────────────────────────────
-const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'case-studies', 'bob-community'];
+const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'subagents', 'case-studies', 'bob-community'];
 const SUB_TAB_SECTIONS = ['use-cases', 'modes', 'documentation', 'learning-resources'];
 
 const ROUTE_MAP = {
@@ -66,6 +66,7 @@ const ROUTE_MAP = {
   '/documentation/official-documentation':     { section: 'documentation', subSection: 'official-documentation' },
   '/documentation/pricing-plan':               { section: 'documentation', subSection: 'pricing-plan' },
   '/mcp':                     { section: 'mcp' },
+  '/subagents':               { section: 'subagents' },
   '/case-studies':            { section: 'case-studies' },
   '/bob-community':           { section: 'bob-community' },
 };
@@ -88,6 +89,7 @@ const SECTION_TO_ROUTE = {
   'official-documentation':           '#/documentation/official-documentation',
   'pricing-plan':                     '#/documentation/pricing-plan',
   'mcp':                  '#/mcp',
+  'subagents':            '#/subagents',
   'case-studies':         '#/case-studies',
   'bob-community':        '#/bob-community',
 };
@@ -224,8 +226,20 @@ function renderUcDetail(uc) {
     solutionBlock.style.display = 'none';
   }
 
-  // Overview — Architecture (hidden collapsible placeholder)
-  document.getElementById('ucArchBlock').style.display = 'none';
+  // Overview — Architecture diagram (collapsible, shown only when image is available)
+  const archBlock = document.getElementById('ucArchBlock');
+  const archBody  = document.getElementById('ucArchBody');
+  const archBtn   = document.getElementById('ucArchBtn');
+  if (uc.architecture_diagram) {
+    archBody.innerHTML = `<img src="${uc.architecture_diagram}" alt="Solution Architecture Diagram" class="uc-arch-img">`;
+    archBlock.style.display = 'block';
+    // Reset collapsed state on each navigation
+    archBtn.classList.remove('open');
+    archBody.style.display = 'none';
+  } else {
+    archBlock.style.display = 'none';
+    archBody.innerHTML = '';
+  }
 
   // Side — Business value
   const bizBlock = document.getElementById('ucBizValueBlock');
@@ -619,6 +633,7 @@ let currentPage = {
   'official-documentation': 1,
   'pricing-plan': 1,
   mcp: 1,
+  subagents: 1,
   'case-studies': 1,
   'bob-community': 1,
 };
@@ -732,7 +747,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','official-documentation','pricing-plan','mcp','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','official-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));

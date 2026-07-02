@@ -1,0 +1,38 @@
+<!-- Subagents Section -->
+<div id="subagents-section" class="content-section">
+  <h2 class="section-title">Subagents</h2>
+  <p class="section-description">Discover community-built subagents that extend Bob's capabilities for specialised tasks and workflows.</p>
+  <div id="subagents-container" class="cards-grid">
+
+    {% assign _sa_feat = site.subagents | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _sa_se   = site.subagents | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+    {% assign _sa_other = site.subagents | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+    {% assign sorted_subagents = _sa_feat | concat: _sa_se | concat: _sa_other %}
+    {% if sorted_subagents.size > 0 %}
+      {% for agent in sorted_subagents %}
+        <div class="asset-card" data-slug="{{ agent.slug }}" data-title="{{ agent.title | downcase }}" data-content="{{ agent.content | strip_html | downcase }}">
+          <h3>{{ agent.title }}</h3>
+          <div class="badge-container">
+            {% if agent.team %}
+              <cds-tag type="blue" size="sm">{{ agent.team }}</cds-tag>
+            {% endif %}
+          </div>
+          <div class="card-body">{{ agent.content }}</div>
+          {% if agent.link %}
+            <div class="card-actions">
+              <cds-link href="{{ agent.link }}" target="_blank" rel="noopener noreferrer">View on GitHub</cds-link>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="asset-card" style="grid-column: 1 / -1;">
+        <div class="empty-state">
+          <p>No subagents found. Add subagents from your Pages CMS manager to populate this section.</p>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  <div id="subagents-pagination" class="pagination"></div>
+</div>

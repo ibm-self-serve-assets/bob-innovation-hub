@@ -24,7 +24,8 @@
     "business_value": {{ uc['business-value'] | jsonify }},
     "tech_stack": {{ uc['tech-stack'] | jsonify }},
     "demo_steps": {{ uc.demo_steps | jsonify }},
-    "slide_titles": {{ uc.slide_titles | jsonify }}
+    "slide_titles": {{ uc.slide_titles | jsonify }},
+    "architecture_diagram": {{ uc.architecture_diagram | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]

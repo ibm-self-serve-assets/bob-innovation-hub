@@ -1091,6 +1091,7 @@ cds-link { font-size: inherit; }
 .uc-chevron { margin-left: auto; transition: transform 0.2s; color: var(--cds-icon-secondary); }
 .uc-collapsible-btn.open .uc-chevron { transform: rotate(180deg); }
 .uc-collapsible-body { display: none; margin-top: var(--cds-spacing-04); }
+.uc-arch-img { display: block; max-width: 100%; height: auto; border: 1px solid var(--cds-border-subtle-00); border-radius: 4px; }
 
 /* Side cards */
 .uc-overview-side { display: flex; flex-direction: column; gap: var(--cds-spacing-05); }

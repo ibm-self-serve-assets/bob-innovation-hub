@@ -20,6 +20,8 @@ collections:
     output: false
   mcp:
     output: false
+  subagents:
+    output: false
   case_studies:
     output: false
   bob_community:

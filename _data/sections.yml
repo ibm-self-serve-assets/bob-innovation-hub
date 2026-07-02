@@ -84,6 +84,15 @@ sections:
     link_text: View MCP
     empty_message: No MCP entries found. Add entries from your Pages CMS manager to populate this section.
 
+  - id: subagents
+    title: Subagents
+    icon: "" #🤖
+    show_search: true
+    type: collection
+    collection: subagents
+    link_text: View on GitHub
+    empty_message: No subagents found. Add subagents from your Pages CMS manager to populate this section.
+
   - id: modes
     title: Modes
     icon: "" #🤖
