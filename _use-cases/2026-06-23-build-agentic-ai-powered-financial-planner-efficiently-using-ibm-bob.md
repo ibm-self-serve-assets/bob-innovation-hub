@@ -1,7 +1,7 @@
 ---
 id: acb5db28-7bc5-450c-98f2-92bee011c134
 title: " Build Agentic AI-powered Financial Planner Efficiently using IBM Bob"
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: ranjan.kumar.jena@ibm.com
 team: Service Engineering
 type: Business
 domain: BFSI
