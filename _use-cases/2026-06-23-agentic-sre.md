@@ -77,6 +77,7 @@ tech-stack:
   - Turbonomic
   - Terraform
   - Vault
+  - watsonx Orchestrate
 architecture_diagram: /docs/diagrams/agentic sre.png
 demo: https://www.youtube.com/watch?v=r-ZOrFuN4TA
 slide_deck: /docs/slide_decks/mqrhrzec-zncuz991.pdf
