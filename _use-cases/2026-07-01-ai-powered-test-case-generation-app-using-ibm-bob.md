@@ -37,6 +37,8 @@ business-value: >+
 
 tech-stack:
   - IBM Bob
+architecture_diagram: /docs/diagrams/Architecture-Testcase-App-Bob.png
 demo: https://youtu.be/F-wx8WsRtQI
+slide_deck: /docs/slide_decks/AI-Powered-TestCaseGenerationApp-Using-Bob.PDF
 ---
 This asset demonstrates an AI‑Powered Test‑Case Generation application built using IBM Bob. It automates the conversion of large and complex technical specifications into structured test cases. The solution eliminates manual interpretation of lengthy documents, reducing errors and effort. Using [watsonx.ai]([http://watsonx.ai](http://watsonx.ai)), the application applies RAG and vector search for accurate test generation. Test cases and executable scripts are generated in seconds instead of hours or months. Engineers can perform feature‑based testing and manage test cases through a centralized UI. The solution significantly reduces test creation time, MTTD, and QA costs. Overall, it accelerates release cycles while improving test quality and consistency.
