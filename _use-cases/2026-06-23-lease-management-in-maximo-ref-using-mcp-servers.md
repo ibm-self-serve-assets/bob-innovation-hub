@@ -4,7 +4,7 @@ title: Lease Management in Maximo REF Using MCP Servers
 asset-owner: ssnarasi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: SupplyChain
+domain: Retail
 problem: '""'
 solution: '""'
 business-value: '""'
