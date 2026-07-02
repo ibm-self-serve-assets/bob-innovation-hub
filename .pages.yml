@@ -84,7 +84,7 @@ content:
       - name: persona
         label: "Persona"
         type: select
-        required: true
+        required: false
         options:
          values: ["Sales Foundation", "Tech Sales Intermediate"]
          multiple: false
