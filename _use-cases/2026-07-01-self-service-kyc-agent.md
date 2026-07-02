@@ -2,7 +2,7 @@
 id: 116742f9-5bdc-4c8a-9309-0ce8fc32c586
 title: Self-service KYC Agent
 asset-owner: anand.awasthi@in.ibm.com
-team: Other
+team: Service Engineering
 type: Business
 domain: BFSI
 problem: '""'
