@@ -4,7 +4,7 @@ title: " Build Agentic AI-powered Financial Planner Efficiently using IBM Bob"
 asset-owner: ranjan.kumar.jena@ibm.com
 team: Service Engineering
 type: Business
-domain: BFSI
+domain: Automation
 problem: |-
   Building multi-agent systems is complex and error-prone   
   Requires deep watsonx Orchestrate ADK expertise   
@@ -29,6 +29,7 @@ business-value: >+
 
 tech-stack:
   - IBM Bob
+  - watsonx Orchestrate
 architecture_diagram: /docs/diagrams/bob+wxO-Architecture.png
 demo: https://www.youtube.com/watch?v=KOnyKsYhORI
 slide_deck: /docs/slide_decks/Bob_wxO_asset_financial_planner_one_pager.pdf
