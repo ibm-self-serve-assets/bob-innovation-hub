@@ -74,7 +74,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Sales Foundation", "Tech Sales Intermediate"]
+         values: ["Learning", "Explore Bob"]
          multiple: false
          placeholder: "Persona Type"
       - name: duration
@@ -86,7 +86,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Learning", "Explore Bob"]
+         values: ["Sales Foundation", "Tech Sales Intermediate"]
          multiple: false
          placeholder: "Resource Type"
       - name: link
