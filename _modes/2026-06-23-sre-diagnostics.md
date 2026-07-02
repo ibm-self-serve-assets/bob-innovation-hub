@@ -1,6 +1,6 @@
 ---
 id: 1a47c236-e878-4a4e-9de8-3d52b5008384
-title: SRE Diagnostics
+title: SRE Diagnostics Mode
 asset-owner: dimallya@in.ibm.com
 team: Service Engineering
 type: Custom
