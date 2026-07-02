@@ -1,6 +1,6 @@
 ---
 id: a3d62e79-c088-4fb7-96b3-cde0b88fa2c9
-title: "ConcertDef SBOM "
+title: ConcertDef SBOM Mode
 asset-owner: dimallya@in.ibm.com
 team: Service Engineering
 type: Custom
