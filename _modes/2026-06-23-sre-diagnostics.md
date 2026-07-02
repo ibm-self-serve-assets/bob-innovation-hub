@@ -1,10 +1,9 @@
 ---
+id: 1a47c236-e878-4a4e-9de8-3d52b5008384
 title: SRE Diagnostics
+asset-owner: dimallya@in.ibm.com
 team: Service Engineering
 type: Custom
-industry:
-  - Cross
 link: https://github.com/ibm-self-serve-assets/instana-sre-diagnostics-custom-mode
-demo: https://ibm-self-serve-assets.github.io/bob-innovation-hub/#/demos?q=Vulnerability%20Intelligence%20and%20Runtime%20Observability
 ---
 This mode is designed for Site Reliability Engineers to perform advanced diagnostics and troubleshooting using Instana observability platform integration.
