@@ -17,17 +17,12 @@
         solutions faster. The foundation is built; your customization is the differentiator.
       </p>
       <div class="intro-hero-stats">
-        <div class="intro-stat"><strong>{{ site.use-cases | size }}+</strong> Use Cases</div>
-        <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.skills | size }}+</strong> Skills</div>
-        <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.subagents | size }}+</strong> Subagents</div>
-        <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.mcp | size }}+</strong> MCP</div>
-        <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.modes | size }}+</strong> Modes</div>
-        <div class="intro-stat-divider"></div>
-        <div class="intro-stat"><strong>{{ site.case_studies | size }}</strong> Case Studies</div>
+        {% if site.use-cases.size > 10 %}<div class="intro-stat"><strong>{{ site.use-cases | size }}</strong> Use Cases</div><div class="intro-stat-divider"></div>{% endif %}
+        {% if site.skills.size > 10 %}<div class="intro-stat"><strong>{{ site.skills | size }}+</strong> Skills</div><div class="intro-stat-divider"></div>{% endif %}
+        {% if site.subagents.size > 10 %}<div class="intro-stat"><strong>{{ site.subagents | size }}+</strong> Subagents</div><div class="intro-stat-divider"></div>{% endif %}
+        {% if site.mcp.size > 10 %}<div class="intro-stat"><strong>{{ site.mcp | size }}+</strong> MCP</div><div class="intro-stat-divider"></div>{% endif %}
+        {% if site.modes.size > 10 %}<div class="intro-stat"><strong>{{ site.modes | size }}+</strong> Modes</div><div class="intro-stat-divider"></div>{% endif %}
+        {% if site.case_studies.size > 10 %}<div class="intro-stat"><strong>{{ site.case_studies | size }}</strong> Case Studies</div>{% endif %}
       </div>
       <div class="intro-hero-actions">
         <button class="intro-btn-primary" onclick="document.querySelector('[data-section=\'use-cases\']').click()">
@@ -69,7 +64,7 @@
         </div>
         <h3 class="intro-outcome-title">Modernize legacy systems</h3>
         <p class="intro-outcome-desc">Bring COBOL, RPG, and aging Java into the modern era — with the business logic intact. Bob reads, documents, refactors and re-platforms code teams are afraid to touch.</p>
-        <a class="intro-outcome-link" href="#/use-cases/technical" onclick="event.preventDefault(); document.querySelector('[data-section=\'use-cases\']').click();">Explore modernization ›</a>
+        
       </div>
 
       <!-- Secure -->
@@ -80,7 +75,7 @@
         </div>
         <h3 class="intro-outcome-title">Secure code &amp; supply chain</h3>
         <p class="intro-outcome-desc">Shift security left. Find and remediate vulnerabilities, move hardcoded secrets into Vault, generate SBOMs and get quantum-safe — without slowing delivery.</p>
-        <a class="intro-outcome-link" href="#/use-cases" onclick="event.preventDefault(); document.querySelector('[data-section=\'use-cases\']').click();">Explore secure coding ›</a>
+        
       </div>
 
       <!-- DevOps -->
@@ -91,7 +86,7 @@
         </div>
         <h3 class="intro-outcome-title">Automate DevOps &amp; operations</h3>
         <p class="intro-outcome-desc">Go from architecture diagram to deployed infrastructure. Bob generates reviewable IaC and CI/CD, then wires in observability and self-healing for resilient operations.</p>
-        <a class="intro-outcome-link" href="#/use-cases" onclick="event.preventDefault(); document.querySelector('[data-section=\'use-cases\']').click();">Explore automation ›</a>
+        
       </div>
 
     </div>
@@ -107,7 +102,7 @@
         </div>
         <h3 class="intro-outcome-title">Build agentic AI &amp; integrations</h3>
         <p class="intro-outcome-desc">Stand up multi-agent systems, MCP tools and enterprise integrations fast — Bob speaks plain-English requirements all the way to deployed agents on watsonx Orchestrate.</p>
-        <a class="intro-outcome-link" href="#/use-cases" onclick="event.preventDefault(); document.querySelector('[data-section=\'use-cases\']').click();">Explore agentic &amp; integration ›</a>
+        
       </div>
 
       <!-- Data & AI -->
@@ -118,7 +113,7 @@
         </div>
         <h3 class="intro-outcome-title">Work with data &amp; AI</h3>
         <p class="intro-outcome-desc">Turn data into action through natural language. Build lakehouse copilots, onboarding agents and real-time decisioning on watsonx.data and Dashzen — no code-heavy workflows.</p>
-        <a class="intro-outcome-link" href="#/use-cases" onclick="event.preventDefault(); document.querySelector('[data-section=\'use-cases\']').click();">Explore data &amp; AI ›</a>
+        
       </div>
 
     </div>
@@ -132,20 +127,9 @@
     <div class="intro-details-block">
       <div class="intro-section-label">What You'll Find Here</div>
       <dl class="intro-find-list">
-        <dt>Learning Resources</dt>
-        <dd>One stop shop for all IBM Bob Learning resources.</dd>
-
-        <dt>Use-Cases</dt>
-        <dd>Discover reference use cases spanning industries and IBM product portfolios. Each use case shows how customers can adopt Bob to solve specific business challenges, providing inspiration and patterns you can build upon.</dd>
-
-        <dt>Demos</dt>
-        <dd>Access demonstration applications that showcase IBM capabilities. These demos serve as starting points and accelerators – customize and extend them for your client engagements, proof-of-concepts, and partner solution development.</dd>
-
-        <dt>Hands-On Labs</dt>
-        <dd>Step-by-step guided labs designed to show you how to leverage IBM Bob for diverse use cases—including application modernization, shift-left security, automation, DevOps, and building agentic applications.</dd>
-
-        <dt>Bob Modes &amp; Skills</dt>
-        <dd>Explore customizable AI development modes and skills tailored for IBM technologies. Each mode or skill serves as a foundation you can build upon and customize for your specific use cases – from Carbon Design System interfaces to legacy modernization, watsonx implementations, and enterprise architecture.</dd>
+        {% for section in site.data.sections.sections %}{% if section.id != "introduction" and section.description %}<dt>{{ section.title }}</dt>
+        <dd>{{ section.description }}</dd>
+        {% endif %}{% endfor %}
       </dl>
     </div>
 

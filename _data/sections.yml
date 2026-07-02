@@ -11,6 +11,7 @@ sections:
 
   - id: documentation
     title: Documentation
+    description: "Browse official Bob documentation to get started, explore features, and find answers to common questions."
     icon: "" #📄
     show_search: true
     type: collection-tabbed
@@ -30,6 +31,7 @@ sections:
 
   - id: learning-resources
     title: Learning Resources
+    description: "Whether you are starting from scratch or looking to sharpen your skills, complete our curated learning plans to build your expertise and earn your Bob proficiency badges. Dive deep into technical tutorials designed for hands-on, immersive learning, and explore the core architectural components powering agentic solutions—including IBM MCP servers, MCP, A2A, and AI Gateways."
     icon: "" #🎓
     show_search: true
     type: collection-tabbed
@@ -49,6 +51,7 @@ sections:
 
   - id: use-cases
     title: Use-Cases
+    description: "Discover how IBM Bob solves complex problems through our technical and industry use cases, interactive labs, and product demos. You can leverage these templates as a foundation to build upon and quickly achieve your specific goals."
     icon: "" #📋
     show_search: true
     type: collection-tabbed
@@ -70,6 +73,7 @@ sections:
 
   - id: skills
     title: Skills
+    description: "Accelerate your workflow with Skills—reusable instruction sets that teach Bob how to deliver consistent results for specialized tasks. Use them as an immediate starting point to quickly build your own custom use cases."
     icon: "" #🛠️
     show_search: true
     type: custom
@@ -77,6 +81,7 @@ sections:
 
   - id: mcp
     title: MCP
+    description: "Explore Model Context Protocol (MCP) integrations and tools that extend Bob's capabilities."
     icon: "" #🔌
     show_search: true
     type: collection
@@ -86,6 +91,7 @@ sections:
 
   - id: subagents
     title: Subagents
+    description: "Discover community-built subagents that extend Bob's capabilities for specialised tasks and workflows."
     icon: "" #🤖
     show_search: true
     type: collection
@@ -95,6 +101,7 @@ sections:
 
   - id: modes
     title: Modes
+    description: "Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Explore premium modes designed for legacy modernization, or leverage custom modes for specialized scenarios. These custom modes serve as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements."
     icon: "" #🤖
     show_search: true
     type: collection-tabbed
@@ -114,6 +121,7 @@ sections:
 
   - id: case-studies
     title: Case Studies
+    description: "Explore real-world case studies showcasing how Bob delivers value across industries."
     icon: "" #📊
     show_search: true
     type: collection
@@ -123,6 +131,7 @@ sections:
 
   - id: bob-community
     title: Bob Community
+    description: "Connect with the Bob community—find collaboration channels, events, and resources to engage with fellow Bob users."
     icon: "" #👥
     show_search: true
     type: collection
