@@ -1,6 +1,6 @@
 ---
 id: 759f65d4-3ed0-498a-8205-5ce7df2beb4d
-title: security-reviewer
+title: Security Reviewer
 asset-owner: syedame1@in.ibm.com
 team: Service Engineering
 link: https://github.com/ibm-self-serve-assets/Bob-customization-ww-se/blob/master/agents/security-reviewer.md
