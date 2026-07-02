@@ -1,6 +1,6 @@
 ---
 id: a5a8cb82-1918-43d3-a2b8-54dd82a70cf2
-title: IBM Quantum Safe Bob Mode
+title: IBM Quantum Safe Mode
 asset-owner: stirouca@in.ibm.com
 team: Service Engineering
 type: Custom
