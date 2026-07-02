@@ -6,52 +6,55 @@ team: Other
 type: Technical
 domain: Modernization
 problem: >+
-  Organizations running mission-critical workloads on IBM i face substantial
-  code management barriers as their legacy systems age:
+  Enterprises running core backend workloads (such as banking, logistics, or ERP
+  systems) on IBM i face operational stagnation due to the nature of their
+  heritage codebases:
 
 
-  - **The "Fixed-Format" Syntax Barrier:** Legacy RPGLE code relies on rigid
-  column alignments (Fixed-Format). This syntax is highly alien to modern
-  software engineers who are accustomed to free-form languages like Java,
-  Python, or TypeScript.
+  - **The Legacy Syntax Bottleneck:** Millions of lines of production code are
+  written in Fixed-Format RPG, which relies on rigid column alignments. To
+  modern software engineers trained in Java, Python, or TypeScript, this layout
+  looks like a foreign language, creating a massive barrier to entry.
 
-  - **Severe Talent Shortage:** As the veteran generation of RPG programmers
-  retires, finding developers who can interpret and maintain column-specific
-  code is becoming incredibly difficult.
+  - **The Retiring Talent Pool:** The global pool of veteran RPG developers who
+  understand column-restricted specifications is rapidly shrinking due to
+  retirement. Finding new talent willing to learn archaic, column-dependent
+  syntax is nearly impossible.
 
-  - **Black-Box Legacy Systems:** Decades-old RPG applications often completely
-  lack internal code comments or up-to-date functional documentation, making any
-  minor modification highly risky and prone to regressions.
+  - **The "Black Box" Risk:** These foundational applications often lack
+  comments or accurate technical documentation. Because developers cannot easily
+  decipher what a 30-year-old Fixed-Format program is doing, making even small
+  functional updates carries a high risk of catastrophic system regression.
 
 solution: >+
-  This lab demonstrates how **IBM Bob** acts as an automated migration and
-  intelligence assistant to eliminate legacy code friction:
+  Deploying IBM Bob into the developer workspace provides an automated,
+  closed-loop modernization and documentation pipeline:
 
 
-  - **Automated Code Analysis & Documentation:** Bob crawls the rigid
-  fixed-format code block, understands its functional dependencies, variables,
-  and logic flow, and auto-generates a clear, readable text blueprint explaining
-  what the program does.
+  - **Automated Living Documentation:** IBM Bob reads the dense, column-specific
+  legacy code block and automatically extracts its functional logic, variables,
+  and business rules, generating clear, human-readable markdown descriptions.
+  This strips the "black box" mystery away from the application.
 
-  - **Fixed-to-Free Refactoring:** With simple conversational or command-driven
-  interactions, Bob automatically rewrites column-restricted declarations and
-  logic blocks into modern Free-Format RPG syntax (e.g., converting legacy
-  specifications into clean `/FREE` structures or fully free-form statements).
+  - **Syntax Transformation Engine:** With straightforward directional prompts,
+  Bob intelligently rewrites column-restricted specifications into modern
+  Free-Format RPG syntax (converting legacy formatting rules into clean,
+  free-form statements).
 
-  - **Syntax Validation:** The framework ensures that the refactored output
-  complies with modern compiler standards, making the newly modernized code
-  instantly accessible to the next generation of engineers.
+  - **Workspace-Native Refactoring:** Because Bob works natively inside the
+  developer’s active workspace, the transformation occurs in place, allowing
+  developers to instantly compile, review, and test the modernized code against
+  their existing IBM i environment.
 
 business-value: |+
-  - Preserves Core Business Logic
-  - Bridges the Generational Developer Gap
-  - Drastically Speeds Up Maintenance
-  - Boosts Enterprise Agility
+  - Preservation of Core IP
+  - Workforce Democratization
+  - Drastic Reduction in Technical Debt & Discovery Cost
+  - Future-Proofing for DevSecOps
 
 tech-stack:
   - IBM Bob
   - Red Hat Ansible
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab1-rpg-documentation-fixed-to-free.md
 ---
-This lab, `lab1-rpg-documentation-fixed-to-free.md`, provides hands-on instructions for using **IBM Bob** to modernize legacy RPG (Report Program Generator) source code on the IBM i platform. The lab focuses on two core capabilities: automatically parsing and generating comprehensive Markdown-based technical documentation for legacy RPG programs, and seamlessly refactoring older column-reliant **Fixed-Format RPG** code into modern, maintainable **Free-Format RPG** code directly inside a developer's workspace.
-
+This use case outlines how an enterprise IT organization uses **IBM Bob** to automate the syntax transformation and documentation of core legacy **RPG (Report Program Generator)** applications running on the IBM i platform. In this scenario, application developers leverage Bob within their localized development workspace to ingest ancient, column-specific **Fixed-Format RPG** source code. The AI agent acts as a specialized technical translator: it analyzes the code, produces human-readable markdown documentation detailing its functional logic, and automatically refactors the codebase into modern **Free-Format RPG syntax** without altering the underlying business rules.
