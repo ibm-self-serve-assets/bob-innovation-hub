@@ -5,11 +5,31 @@ asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Business
 domain: BFSI
-problem: '""'
-solution: '""'
-business-value: '""'
+problem: |-
+  Building multi-agent systems is complex and error-prone   
+  Requires deep watsonx Orchestrate ADK expertise   
+  Manual coding overhead for tools, agents, and configs   
+  Deployment and dependency management is cumbersome   
+  High effort to create and maintain documentation
+solution: |-
+  AI-assisted development for agentic systems   
+  Automated generation of tools, agents, and workflows   
+  Built-in ADK compliance and best practices   
+  One-click deployment automation with correct sequencing   
+  Auto generated comprehensive documentation
+business-value: >+
+  - 10× faster development (hours instead of weeks) 
+
+  - Reduced costs with minimal specialized skill dependency 
+
+  - Production-ready quality with zero rework 
+
+  - Reusable templates for future agentic projects • Faster time-to-market and
+  innovation velocity
+
 tech-stack:
   - IBM Bob
+architecture_diagram: /docs/diagrams/bob+wxO-Architecture.png
 demo: https://www.youtube.com/watch?v=KOnyKsYhORI
 slide_deck: /docs/slide_decks/Bob_wxO_asset_financial_planner_one_pager.pdf
 featured: 17
