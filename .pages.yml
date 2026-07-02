@@ -76,7 +76,7 @@ content:
         options:
          values: ["Learning", "Explore Bob"]
          multiple: false
-         placeholder: "Persona Type"
+         placeholder: "Resource Type"
       - name: duration
         label: "duration"
         type: string
@@ -88,7 +88,7 @@ content:
         options:
          values: ["Sales Foundation", "Tech Sales Intermediate"]
          multiple: false
-         placeholder: "Resource Type"
+         placeholder: "Persona Type"
       - name: link
         label: "Document Link"
         type: string
