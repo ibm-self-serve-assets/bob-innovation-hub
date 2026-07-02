@@ -12,13 +12,6 @@
       {% for skill in sorted_skills %}
         <div class="asset-card" data-slug="{{ skill.slug }}" data-title="{{ skill.title | downcase }}" data-content="{{ skill.content | strip_html | downcase }}" data-industry="{{ skill.industry | join: ' ' | downcase }}" data-team="{{ skill.team | downcase }}">
           <h3>{{ skill.title }}</h3>
-          <div class="badge-container">
-            {% if skill.industry %}
-              {% for ind in skill.industry %}
-                <cds-tag type="blue" size="sm">{{ ind }}</cds-tag>
-              {% endfor %}
-            {% endif %}
-          </div>
           <div class="card-body">{{ skill.content }}</div>
           {% if skill.link %}
             <div class="card-actions">

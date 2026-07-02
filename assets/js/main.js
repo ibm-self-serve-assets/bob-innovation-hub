@@ -35,11 +35,11 @@ themeToggle.addEventListener('click', () => {
 
 function updateThemeButton(theme) {
   if (theme === 'dark') {
-    themeIcon.textContent = '☀️';
-    themeText.textContent = 'Light';
-  } else {
     themeIcon.textContent = '🌙';
     themeText.textContent = 'Dark';
+  } else {
+    themeIcon.textContent = '☀️';
+    themeText.textContent = 'Light';
   }
 }
 
