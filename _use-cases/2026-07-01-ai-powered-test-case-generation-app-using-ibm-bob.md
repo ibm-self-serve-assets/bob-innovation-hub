@@ -5,10 +5,48 @@ asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
-problem: '""'
-solution: '""'
-business-value: |+
-  - ""
+problem: Organizations often rely on lengthy and complex technical
+  specifications to create test cases manually. This process is time-consuming,
+  error-prone, and requires significant effort from QA engineers to interpret
+  requirements accurately. As applications grow in complexity, manual test-case
+  creation delays release cycles, increases QA costs, and leads to inconsistent
+  test coverage.
+solution: The AI-Powered Test-Case Generation application, built using IBM Bob
+  and IBM [watsonx.ai](http://watsonx.ai), automates the transformation of
+  technical specifications into structured, high-quality test cases. By
+  leveraging Retrieval-Augmented Generation (RAG) and vector search, the
+  solution accurately understands requirements and generates feature-based test
+  cases along with executable test scripts in seconds. A centralized UI enables
+  engineers to review, manage, and execute generated test cases, significantly
+  reducing manual effort, Mean Time to Detect (MTTD), QA costs, and overall
+  testing time while improving consistency and accelerating software delivery.
+business-value: >+
+  - **Accelerates software delivery** by generating test cases in seconds
+  instead of hours or months.
+
+  - **Reduces QA costs** through automation of manual test-case creation.
+
+  - **Improves test quality and consistency** with AI-generated, standardized
+  test cases.
+
+  - **Minimizes human errors** by eliminating manual interpretation of technical
+  specifications.
+
+  - **Increases test coverage** through comprehensive, feature-based test
+  generation.
+
+  - **Reduces Mean Time to Detect (MTTD)** by enabling faster and more effective
+  testing.
+
+  - **Boosts QA engineer productivity** by allowing teams to focus on validation
+  rather than authoring test cases.
+
+  - **Enhances traceability and collaboration** with centralized test-case
+  management.
+
+  - **Supports scalable testing** for large and complex enterprise applications.
+
+  - **Enables faster release cycles** while maintaining higher software quality.
 
 tech-stack:
   - IBM Bob
