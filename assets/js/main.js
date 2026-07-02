@@ -231,7 +231,8 @@ function renderUcDetail(uc) {
   const archBody  = document.getElementById('ucArchBody');
   const archBtn   = document.getElementById('ucArchBtn');
   if (uc.architecture_diagram) {
-    archBody.innerHTML = `<img src="${uc.architecture_diagram}" alt="Solution Architecture Diagram" class="uc-arch-img">`;
+    const _archBase = 'https://raw.githubusercontent.com/ibm-self-serve-assets/bob-innovation-hub/refs/heads/main';
+    archBody.innerHTML = `<img src="${_archBase}${uc.architecture_diagram}" alt="Solution Architecture Diagram" class="uc-arch-img">`;
     archBlock.style.display = 'block';
     // Reset collapsed state on each navigation
     archBtn.classList.remove('open');
