@@ -559,6 +559,14 @@ document.addEventListener('cds-tabs-selected', e => {
 
   const hash = SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/';
   if (window.location.hash !== hash) history.pushState(null, '', hash);
+
+  // GA4 virtual page view for sub-tab switch
+  if (typeof gtag === 'function') {
+    gtag('event', 'page_view', {
+      page_title: subSectionId,
+      page_location: window.location.origin + window.location.pathname + hash
+    });
+  }
 });
 
 // ─── Hidden .sub-tabs fallback (unchanged logic) ─────────────────────────────
@@ -586,6 +594,14 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
 
     const hash = SECTION_TO_ROUTE[subSection] || SECTION_TO_ROUTE[sectionId] || '#/';
     if (window.location.hash !== hash) history.pushState(null, '', hash);
+
+    // GA4 virtual page view for sub-tab switch
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_view', {
+        page_title: subSection,
+        page_location: window.location.origin + window.location.pathname + hash
+      });
+    }
   });
 });
 
