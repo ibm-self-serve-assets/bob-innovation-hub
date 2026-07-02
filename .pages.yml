@@ -138,7 +138,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Data", "Automation", "Security", "Modernization","BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment", "Retail"]
+         values: ["Data", "Automation", "Security", "Modernization","BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment", "Retail", "Manufacturing"]
          multiple: false
          placeholder: "Select Domain"
       - name: body
