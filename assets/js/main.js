@@ -169,6 +169,14 @@ function navigateToUcDetail(ucId) {
 
   const hash = '#/use-cases/' + encodeURIComponent(ucId);
   if (window.location.hash !== hash) history.pushState(null, '', hash);
+
+  // GA4 virtual page view
+  if (typeof gtag === 'function') {
+    gtag('event', 'page_view', {
+      page_title: 'use-case: ' + ucId,
+      page_location: window.location.origin + window.location.pathname + hash
+    });
+  }
 }
 
 function renderUcDetail(uc) {
@@ -477,6 +485,17 @@ function activateSection(sectionId, subSectionId, pushRoute) {
       ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
       : (SECTION_TO_ROUTE[sectionId] || '#/');
     if (window.location.hash !== hash) history.pushState(null, '', hash);
+  }
+
+  // GA4 virtual page view
+  if (typeof gtag === 'function') {
+    const hash = subSectionId
+      ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
+      : (SECTION_TO_ROUTE[sectionId] || '#/');
+    gtag('event', 'page_view', {
+      page_title: subSectionId || sectionId,
+      page_location: window.location.origin + window.location.pathname + hash
+    });
   }
 }
 
