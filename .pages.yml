@@ -74,13 +74,21 @@ content:
         type: select
         required: true
         options:
-         values: ["Learning", "Explore Bob"]
+         values: ["Sales Foundation", "Tech Sales Intermediate"]
          multiple: false
          placeholder: "Resource Type"
       - name: duration
         label: "duration"
         type: string
         required: false
+      - name: persona
+        label: "Persona"
+        type: select
+        required: true
+        options:
+         values: ["Learning", "Explore Bob"]
+         multiple: false
+         placeholder: "Resource Type"
       - name: link
         label: "Document Link"
         type: string
