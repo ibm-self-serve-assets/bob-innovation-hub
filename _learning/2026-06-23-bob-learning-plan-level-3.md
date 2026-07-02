@@ -3,6 +3,7 @@ id: 3563c042-3829-4097-87e6-f483679418b9
 title: Bob Learning Plan - Level 3
 type: Learning
 duration: 4 hours
+persona: Tech Sales Intermediate
 link: https://learn.ibm.com/course/view.php?id=18804
 featured: 3
 ---
