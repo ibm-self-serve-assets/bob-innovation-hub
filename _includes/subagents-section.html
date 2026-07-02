@@ -12,11 +12,7 @@
       {% for agent in sorted_subagents %}
         <div class="asset-card" data-slug="{{ agent.slug }}" data-title="{{ agent.title | downcase }}" data-content="{{ agent.content | strip_html | downcase }}">
           <h3>{{ agent.title }}</h3>
-          <div class="badge-container">
-            {% if agent.team %}
-              <cds-tag type="blue" size="sm">{{ agent.team }}</cds-tag>
-            {% endif %}
-          </div>
+          
           <div class="card-body">{{ agent.content }}</div>
           {% if agent.link %}
             <div class="card-actions">
