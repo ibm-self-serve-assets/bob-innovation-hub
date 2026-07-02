@@ -1,7 +1,7 @@
 ---
 id: 20e886ff-b086-4623-9243-c85902c6c093
 title: Smarter Procurement & Inventory Management with Bob, Maximo & OMS Integration
-asset-owner: ssnarasi@in.ibm.com
+asset-owner: sujamoha@in.ibm.com
 team: Service Engineering
 type: Business
 domain: SupplyChain
