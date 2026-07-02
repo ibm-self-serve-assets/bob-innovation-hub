@@ -1,8 +1,18 @@
 ---
+id: ea3ebd62-0896-4b31-9959-9c5fef0377ef
 title: Bob + Maximo (Java to python modernization app)
+asset-owner: sujamoha@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Modernization
+problem: '""'
+solution: '""'
+business-value: |+
+  - ""
+
+tech-stack:
+  - IBM Bob
+  - Maximo
 demo: https://www.youtube.com/watch?v=ZD-PbxxTOz0
 slide_deck: /docs/slide_decks/Bob_Maximo_one_pager.pdf
 featured: 12
