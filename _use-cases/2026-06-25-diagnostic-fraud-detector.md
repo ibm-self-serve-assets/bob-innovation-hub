@@ -1,8 +1,17 @@
 ---
+id: 4dc92aba-8596-4b5e-8607-f1c9ae0f58da
 title: Diagnostic Fraud Detector
+asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
-type: Technical
-domain: Data
+type: Business
+domain: Healthcare
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
+  - watsonx Orchestrate
+  - IBM Confluent
 demo: https://www.youtube.com/watch?v=FAu7bGX6RGg
 slide_deck: /docs/slide_decks/diagnostic_fraud_detection.PDF
 ---
