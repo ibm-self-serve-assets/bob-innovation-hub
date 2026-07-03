@@ -173,7 +173,7 @@ function navigateToUcDetail(ucId) {
   // GA4 virtual page view
   if (typeof gtag === 'function') {
     gtag('event', 'page_view', {
-      page_title: 'use-case: ' + ucId,
+      page_title: ucId ? 'use-case: ' + ucId : 'use-case-detail',
       page_location: window.location.origin + window.location.pathname + hash
     });
   }
@@ -493,7 +493,7 @@ function activateSection(sectionId, subSectionId, pushRoute) {
       ? (SECTION_TO_ROUTE[subSectionId] || SECTION_TO_ROUTE[sectionId] || '#/')
       : (SECTION_TO_ROUTE[sectionId] || '#/');
     gtag('event', 'page_view', {
-      page_title: subSectionId || sectionId,
+      page_title: subSectionId || sectionId || 'introduction',
       page_location: window.location.origin + window.location.pathname + hash
     });
   }
@@ -563,7 +563,7 @@ document.addEventListener('cds-tabs-selected', e => {
   // GA4 virtual page view for sub-tab switch
   if (typeof gtag === 'function') {
     gtag('event', 'page_view', {
-      page_title: subSectionId,
+      page_title: subSectionId || sectionId || 'unknown',
       page_location: window.location.origin + window.location.pathname + hash
     });
   }
@@ -598,7 +598,7 @@ document.querySelectorAll('.sub-tab').forEach(tab => {
     // GA4 virtual page view for sub-tab switch
     if (typeof gtag === 'function') {
       gtag('event', 'page_view', {
-        page_title: subSection,
+        page_title: subSection || sectionId || 'unknown',
         page_location: window.location.origin + window.location.pathname + hash
       });
     }
