@@ -763,6 +763,136 @@ section#main_content { width: 100% !important; float: none !important; padding: 
   font-weight: 600;
 }
 
+/* ── Use-Cases filter bar ────────────────────────────────────── */
+.uc-type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cds-spacing-02);
+  margin-bottom: var(--cds-spacing-04);
+}
+
+.uc-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--cds-spacing-05);
+  margin-bottom: var(--cds-spacing-05);
+}
+
+.uc-filter-bar .domain-filter {
+  margin-bottom: 0;
+}
+
+/* ── Products multi-select dropdown ─────────────────────────── */
+.uc-products-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--cds-spacing-02);
+  margin-left: var(--cds-spacing-05);
+  padding-left: var(--cds-spacing-05);
+  border-left: 1px solid var(--cds-border-subtle-01);
+}
+
+.uc-products-dropdown {
+  position: relative;
+}
+
+.uc-products-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cds-spacing-02);
+  height: 1.5rem;
+  padding: 0 var(--cds-spacing-04);
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle-01);
+  border-radius: 0.75rem;
+  color: var(--cds-text-secondary);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+
+.uc-products-toggle:hover {
+  background: var(--cds-layer-hover-01);
+  color: var(--cds-text-primary);
+  border-color: var(--cds-border-strong-01);
+}
+
+.uc-products-toggle[aria-expanded="true"] {
+  background: var(--cds-layer-hover-01);
+  color: var(--cds-text-primary);
+  border-color: var(--cds-border-strong-01);
+}
+
+.uc-products-chevron {
+  flex-shrink: 0;
+  color: currentColor;
+  transition: transform 0.15s;
+}
+
+.uc-products-toggle[aria-expanded="true"] .uc-products-chevron {
+  transform: rotate(180deg);
+}
+
+.uc-products-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle-01);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 200;
+  padding: var(--cds-spacing-02) 0;
+}
+
+.uc-product-option {
+  display: flex;
+  align-items: center;
+  gap: var(--cds-spacing-03);
+  width: 100%;
+  padding: var(--cds-spacing-02) var(--cds-spacing-04);
+  font-size: 0.8125rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: transparent;
+  border: none;
+  color: var(--cds-text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.uc-product-option:hover {
+  background: var(--cds-layer-hover-01);
+}
+
+.uc-product-option[aria-selected="true"] {
+  background: var(--cds-layer-selected-01);
+  font-weight: 600;
+}
+
+/* cds-checkbox inside product dropdown — pointer-events off so the
+   button's own click handler drives checked state */
+.uc-product-check {
+  pointer-events: none;
+  display: block;
+}
+
+[data-theme="dark"] .uc-product-check {
+  --cds-icon-inverse: #000000;
+}
+
+[data-theme="dark"] .uc-products-menu {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
 /* ── Sidebar sub-item indent ────────────────────────────────── */
 .sidebar-button.sub-item {
   padding-left: var(--cds-spacing-09);

@@ -1,66 +1,54 @@
-<!-- Use-Cases Section (tabbed: Technical / Business) -->
+<!-- Use-Cases Section (unified with filter pills) -->
 <div id="use-cases-section" class="content-section">
   <h2 class="section-title">Use-Cases</h2>
   <p class="section-description">Discover how IBM Bob solves complex problems through our technical and industry use cases, interactive labs, and product demos. You can leverage these templates as a foundation to build upon and quickly achieve your specific goals.</p>
 
-  <!-- Carbon Tabs — sub-section navigation -->
-  <cds-tabs value="business-use-cases" id="use-cases-tabs">
-    <cds-tab id="tab-business-use-cases"  value="business-use-cases"  data-sub-section="business-use-cases">Business Use-cases</cds-tab>
-    <cds-tab id="tab-technical-use-cases" value="technical-use-cases" data-sub-section="technical-use-cases">Technical Use-cases</cds-tab>
-  </cds-tabs>
+  <!-- Type filter pills + Products dropdown (same row) -->
+  <div class="uc-type-filter" id="uc-type-filter" role="group" aria-label="Filter by type">
+    <span class="domain-filter-label">Type:</span>
+    <button class="domain-pill active" data-uc-type="">All</button>
+    <button class="domain-pill" data-uc-type="business">Business</button>
+    <button class="domain-pill" data-uc-type="technical">Technical</button>
 
-  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
-  <div class="sub-tabs" style="display:none;" role="tablist">
-    <button class="sub-tab active" data-sub-section="business-use-cases" role="tab" aria-selected="true">Business Use-cases</button>
-    <button class="sub-tab"        data-sub-section="technical-use-cases" role="tab" aria-selected="false">Technical Use-cases</button>
-  </div>
-
-  <!-- Technical Use-cases -->
-  <div id="technical-use-cases-sub" class="sub-section">
-    <!-- Domain filter -->
-    <div class="domain-filter" data-sub-section="technical-use-cases" role="group" aria-label="Filter by domain">
-      <span class="domain-filter-label">Domain:</span>
-      <button class="domain-pill active" data-domain="">All</button>
-      {% assign tech_domains = site.use-cases | where: "type", "Technical" | map: "domain" | uniq | sort %}
-      {% for d in tech_domains %}
-        {% if d != "" and d != nil %}
-          <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
-        {% endif %}
-      {% endfor %}
-    </div>
-    <div id="technical-use-cases-container" class="cards-grid">
-      {% assign _tc_all = site.use-cases | where: "type", "Technical" %}
-      {% assign _tc_feat = _tc_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _tc_se = _tc_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
-      {% assign _tc_other = _tc_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
-      {% assign technical_cases = _tc_feat | concat: _tc_se | concat: _tc_other %}
-      {% if technical_cases.size > 0 %}
-        {% for usecase in technical_cases %}
-            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
-            <h3>{{ usecase.title }}</h3>
-            <div class="badge-container">
-              {% if usecase.domain %}
-                <cds-tag type="blue" size="sm">{{ usecase.domain }}</cds-tag>
-              {% endif %}
-              <cds-tag type="teal" size="sm">Technical</cds-tag>
-            </div>
-            <div class="card-body">{{ usecase.content }}</div>
-            
-          </div>
-        {% endfor %}
-      {% else %}
-        <div class="empty-state">
-          <p>No technical use cases found. Add use cases with <code>type: Technical</code> to populate this section.</p>
+    <!-- Products multi-select dropdown -->
+    <div class="uc-products-filter" id="uc-products-filter">
+      <span class="domain-filter-label">Products:</span>
+      <div class="uc-products-dropdown" id="uc-products-dropdown">
+        <button class="uc-products-toggle" id="uc-products-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span id="uc-products-label">All Products</span>
+          <svg class="uc-products-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="uc-products-menu" id="uc-products-menu" role="listbox" aria-multiselectable="true" aria-label="Filter by product" style="display:none;">
+          {% assign all_tech_items = "" %}
+          {% for uc in site.use-cases %}
+            {% if uc.tech-stack %}
+              {% for p in uc.tech-stack %}
+                {% unless p == "IBM Bob" or p == "" or p == nil %}
+                  {% assign all_tech_items = all_tech_items | append: p | append: "|||" %}
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+          {% assign product_list = all_tech_items | split: "|||" | uniq | sort %}
+          {% for p in product_list %}
+            {% if p != "" %}
+              <button class="uc-product-option" role="option" aria-selected="false" data-product="{{ p | downcase }}">
+                <cds-checkbox class="uc-product-check" label-text="{{ p }}" tabindex="-1"></cds-checkbox>
+              </button>
+            {% endif %}
+          {% endfor %}
         </div>
-      {% endif %}
+      </div>
     </div>
-    <div id="technical-use-cases-pagination" class="pagination"></div>
   </div>
 
-  <!-- Business Use-cases -->
-  <div id="business-use-cases-sub" class="sub-section active">
-    <!-- Industry filter -->
-    <div class="domain-filter" data-sub-section="business-use-cases" role="group" aria-label="Filter by industry">
+  <!-- Secondary filter bar: Industry (Business only) / Domain (Technical only) -->
+  <div class="uc-filter-bar" id="uc-filter-bar">
+
+    <!-- Industry filter — shown for Business type -->
+    <div class="domain-filter uc-industry-filter" id="uc-industry-filter" data-section="use-cases" role="group" aria-label="Filter by industry" style="display:none;">
       <span class="domain-filter-label">Industry:</span>
       <button class="domain-pill active" data-domain="">All</button>
       {% assign biz_domains = site.use-cases | where: "type", "Business" | map: "domain" | uniq | sort %}
@@ -70,32 +58,70 @@
         {% endif %}
       {% endfor %}
     </div>
-    <div id="business-use-cases-container" class="cards-grid">
-      {% assign _bc_all = site.use-cases | where: "type", "Business" %}
-      {% assign _bc_feat = _bc_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _bc_se = _bc_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
-      {% assign _bc_other = _bc_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
-      {% assign business_cases = _bc_feat | concat: _bc_se | concat: _bc_other %}
-      {% if business_cases.size > 0 %}
-        {% for usecase in business_cases %}
-            <div class="asset-card uc-card-clickable" data-slug="{{ usecase.slug }}" data-uc-id="{{ usecase.slug }}" data-title="{{ usecase.title | downcase }}" data-content="{{ usecase.content | strip_html | downcase }}" data-domain="{{ usecase.domain | downcase }}" data-team="{{ usecase.team | downcase }}">
-            <h3>{{ usecase.title }}</h3>
-            <div class="badge-container">
-              {% if usecase.domain %}
-                <cds-tag type="purple" size="sm">{{ usecase.domain }}</cds-tag>
-              {% endif %}
-              <cds-tag type="magenta" size="sm">Business</cds-tag>
-            </div>
-            <div class="card-body">{{ usecase.content }}</div>
-          </div>
-        {% endfor %}
-      {% else %}
-        <div class="empty-state">
-          <p>No business use cases found. Add use cases with <code>type: Business</code> to populate this section.</p>
-        </div>
-      {% endif %}
+
+    <!-- Domain filter — shown for Technical type -->
+    <div class="domain-filter uc-domain-filter" id="uc-domain-filter" data-section="use-cases" role="group" aria-label="Filter by domain" style="display:none;">
+      <span class="domain-filter-label">Domain:</span>
+      <button class="domain-pill active" data-domain="">All</button>
+      {% assign tech_domains = site.use-cases | where: "type", "Technical" | map: "domain" | uniq | sort %}
+      {% for d in tech_domains %}
+        {% if d != "" and d != nil %}
+          <button class="domain-pill" data-domain="{{ d | downcase }}">{{ d }}</button>
+        {% endif %}
+      {% endfor %}
     </div>
-    <div id="business-use-cases-pagination" class="pagination"></div>
   </div>
 
+  <!-- Unified card grid -->
+  <div id="use-cases-container" class="cards-grid">
+    {% assign _uc_all = site.use-cases %}
+    {% assign _uc_feat = _uc_all | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _uc_se   = _uc_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+    {% assign _uc_other = _uc_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+    {% assign all_use_cases = _uc_feat | concat: _uc_se | concat: _uc_other %}
+    {% if all_use_cases.size > 0 %}
+      {% for usecase in all_use_cases %}
+        {% assign uc_type_lc = usecase.type | downcase %}
+        {% assign uc_products_str = "" %}
+        {% if usecase.tech-stack %}
+          {% for p in usecase.tech-stack %}
+            {% assign uc_products_str = uc_products_str | append: p | append: "," %}
+          {% endfor %}
+        {% endif %}
+        <div class="asset-card uc-card-clickable"
+             data-slug="{{ usecase.slug }}"
+             data-uc-id="{{ usecase.slug }}"
+             data-title="{{ usecase.title | downcase }}"
+             data-content="{{ usecase.content | strip_html | downcase }}"
+             data-domain="{{ usecase.domain | downcase }}"
+             data-team="{{ usecase.team | downcase }}"
+             data-uc-type="{{ uc_type_lc }}"
+             data-products="{{ uc_products_str | downcase }}">
+          <h3>{{ usecase.title }}</h3>
+          <div class="badge-container">
+            {% if usecase.domain %}
+              <cds-tag type="{% if uc_type_lc == 'business' %}purple{% else %}blue{% endif %}" size="sm">{{ usecase.domain }}</cds-tag>
+            {% endif %}
+            {% if uc_type_lc == 'business' %}
+              <cds-tag type="magenta" size="sm">Business</cds-tag>
+            {% else %}
+              <cds-tag type="teal" size="sm">Technical</cds-tag>
+            {% endif %}
+          </div>
+          <div class="card-body">{{ usecase.content }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <p>No use cases found. Add use cases to populate this section.</p>
+      </div>
+    {% endif %}
+  </div>
+  <div id="use-cases-pagination" class="pagination"></div>
+
+  <!-- Legacy hidden sub-tabs (routing compatibility) -->
+  <div class="sub-tabs" style="display:none;" role="tablist">
+    <button class="sub-tab active" data-sub-section="business-use-cases" role="tab" aria-selected="true">Business Use-cases</button>
+    <button class="sub-tab"        data-sub-section="technical-use-cases" role="tab" aria-selected="false">Technical Use-cases</button>
+  </div>
 </div>

@@ -54,22 +54,8 @@ sections:
     description: "Discover how IBM Bob solves complex problems through our technical and industry use cases, interactive labs, and product demos. You can leverage these templates as a foundation to build upon and quickly achieve your specific goals."
     icon: "" #📋
     show_search: true
-    type: collection-tabbed
-    sub_sections:
-      - id: business-use-cases
-        title: Business Use-cases
-        icon: "" #💼
-        collection: use-cases
-        filter_key: type
-        filter_value: business
-      - id: technical-use-cases
-        title: Technical Use-cases
-        icon: "" #🔧
-        collection: use-cases
-        filter_key: type
-        filter_value: technical
-    link_text: View Use Case
-    empty_message: No use cases found. Add new use cases from your Pages CMS manager to populate this deck.
+    type: custom
+    include_file: use-cases-section.html
 
   - id: skills
     title: Skills

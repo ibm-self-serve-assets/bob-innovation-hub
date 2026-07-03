@@ -45,7 +45,7 @@ function updateThemeButton(theme) {
 
 // ─── Section / routing config ─────────────────────────────────────────────────
 const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'subagents', 'case-studies', 'bob-community'];
-const SUB_TAB_SECTIONS = ['use-cases', 'modes', 'documentation', 'learning-resources'];
+const SUB_TAB_SECTIONS = ['modes', 'documentation', 'learning-resources'];
 
 const ROUTE_MAP = {
   '':                         { section: 'introduction' },
@@ -53,9 +53,9 @@ const ROUTE_MAP = {
   '/learning-resources':                { section: 'learning-resources', subSection: 'learning-path' },
   '/learning-resources/learning-path':  { section: 'learning-resources', subSection: 'learning-path' },
   '/learning-resources/explore-bob':    { section: 'learning-resources', subSection: 'explore-bob' },
-  '/use-cases':               { section: 'use-cases', subSection: 'business-use-cases' },
-  '/use-cases/technical':     { section: 'use-cases', subSection: 'technical-use-cases' },
-  '/use-cases/business':      { section: 'use-cases', subSection: 'business-use-cases' },
+  '/use-cases':               { section: 'use-cases' },
+  '/use-cases/technical':     { section: 'use-cases', ucType: 'technical' },
+  '/use-cases/business':      { section: 'use-cases', ucType: 'business' },
   '/demos':                   { section: 'demos' },
   '/labs':                    { section: 'labs' },
   '/modes':                   { section: 'modes', subSection: 'custom-modes' },
@@ -77,8 +77,6 @@ const SECTION_TO_ROUTE = {
   'learning-path':             '#/learning-resources/learning-path',
   'explore-bob':               '#/learning-resources/explore-bob',
   'use-cases':            '#/use-cases',
-  'technical-use-cases':  '#/use-cases/technical',
-  'business-use-cases':   '#/use-cases/business',
   'demos':                '#/demos',
   'labs':                 '#/labs',
   'modes':                '#/modes',
@@ -144,17 +142,9 @@ function inlineMd(text) {
     .replace(/\*(.+?)\*/g, '<em>$1</em>');
 }
 
-// Track which sub-section we came from so Back returns correctly
-let _ucReturnSubSection = 'business-use-cases';
-
 function navigateToUcDetail(ucId) {
   const uc = findUcById(ucId);
   if (!uc) return;
-
-  // Remember which tab we came from (business or technical)
-  const useCasesSectionEl = document.getElementById('use-cases-section');
-  const activeSubTab = useCasesSectionEl && useCasesSectionEl.querySelector('.sub-tab.active');
-  if (activeSubTab) _ucReturnSubSection = activeSubTab.dataset.subSection;
 
   renderUcDetail(uc);
 
@@ -658,8 +648,7 @@ let currentPage = {
   'custom-modes': 1,
   'premium-modes': 1,
   demos: 1,
-  'technical-use-cases': 1,
-  'business-use-cases': 1,
+  'use-cases': 1,
   modes: 1,
   skills: 1,
   'learning-resources': 1,
@@ -673,6 +662,11 @@ let currentPage = {
   'case-studies': 1,
   'bob-community': 1,
 };
+
+// ─── Use-Cases filter state ────────────────────────────────────────────────────
+let activeUcType     = '';   // '' | 'business' | 'technical'
+let activeUcDomain   = '';   // domain pill value for industry/domain filter
+let activeUcProducts = [];   // array of selected product strings (lowercased)
 
 function filterAndPaginate(section) {
   const container = document.getElementById(`${section}-container`);
@@ -692,6 +686,18 @@ function filterAndPaginate(section) {
     const domain   = card.dataset.domain   || '';
     const matchesSearch = `${title} ${content} ${industry} ${language} ${domain}`.includes(searchTerm);
     const matchesDomain = !domainFilter || domain === domainFilter;
+
+    // Extra filters for unified use-cases section
+    if (section === 'use-cases') {
+      const ucType  = card.dataset.ucType || '';
+      const products = card.dataset.products || '';
+      const matchesType    = !activeUcType    || ucType === activeUcType;
+      const matchesDomainUc = !activeUcDomain || domain === activeUcDomain;
+      const matchesProducts = activeUcProducts.length === 0
+        || activeUcProducts.every(p => products.includes(p));
+      return matchesSearch && matchesType && matchesDomainUc && matchesProducts;
+    }
+
     return matchesSearch && matchesDomain;
   });
 
@@ -783,7 +789,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','use-cases','modes','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
@@ -945,7 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backBtn = document.getElementById('ucBackBtn');
   if (backBtn) {
     backBtn.addEventListener('click', () => {
-      activateSection('use-cases', _ucReturnSubSection, true);
+      activateSection('use-cases', null, true);
       repaginateAll();
     });
   }
@@ -973,11 +979,116 @@ document.addEventListener('DOMContentLoaded', () => {
 
   injectShareButtons();
 
+  // ─── Use-Cases type filter pills ──────────────────────────────
+  const ucTypeFilter = document.getElementById('uc-type-filter');
+  if (ucTypeFilter) {
+    ucTypeFilter.addEventListener('click', e => {
+      const pill = e.target.closest('.domain-pill[data-uc-type]');
+      if (!pill) return;
+      const type = pill.dataset.ucType;
+      ucTypeFilter.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeUcType   = type;
+      activeUcDomain = '';  // reset domain when type changes
+      currentPage['use-cases'] = 1;
+
+      // Show/hide industry and domain filter bars
+      const industryBar = document.getElementById('uc-industry-filter');
+      const domainBar   = document.getElementById('uc-domain-filter');
+      if (industryBar) {
+        industryBar.style.display = type === 'business' ? '' : 'none';
+        if (industryBar.style.display !== 'none') {
+          industryBar.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+          const allPill = industryBar.querySelector('.domain-pill[data-domain=""]');
+          if (allPill) allPill.classList.add('active');
+        }
+      }
+      if (domainBar) {
+        domainBar.style.display = type === 'technical' ? '' : 'none';
+        if (domainBar.style.display !== 'none') {
+          domainBar.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+          const allPill = domainBar.querySelector('.domain-pill[data-domain=""]');
+          if (allPill) allPill.classList.add('active');
+        }
+      }
+
+      filterAndPaginate('use-cases');
+    });
+  }
+
+  // ─── Use-Cases industry/domain filter pills ────────────────────
+  ['uc-industry-filter', 'uc-domain-filter'].forEach(barId => {
+    const bar = document.getElementById(barId);
+    if (!bar) return;
+    bar.addEventListener('click', e => {
+      const pill = e.target.closest('.domain-pill[data-domain]');
+      if (!pill) return;
+      bar.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeUcDomain = pill.dataset.domain;
+      currentPage['use-cases'] = 1;
+      filterAndPaginate('use-cases');
+    });
+  });
+
+  // ─── Use-Cases products multi-select dropdown ──────────────────
+  const productsToggle = document.getElementById('uc-products-toggle');
+  const productsMenu   = document.getElementById('uc-products-menu');
+
+  if (productsToggle && productsMenu) {
+    productsToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = productsMenu.style.display !== 'none';
+      productsMenu.style.display = isOpen ? 'none' : 'block';
+      productsToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    productsMenu.addEventListener('click', e => {
+      const opt = e.target.closest('.uc-product-option');
+      if (!opt) return;
+      const product = opt.dataset.product;
+      const selected = opt.getAttribute('aria-selected') === 'true';
+      const cb = opt.querySelector('cds-checkbox');
+      if (selected) {
+        opt.setAttribute('aria-selected', 'false');
+        if (cb) cb.checked = false;
+        activeUcProducts = activeUcProducts.filter(p => p !== product);
+      } else {
+        opt.setAttribute('aria-selected', 'true');
+        if (cb) cb.checked = true;
+        activeUcProducts.push(product);
+      }
+      // Update toggle label
+      const label = document.getElementById('uc-products-label');
+      if (label) {
+        label.textContent = activeUcProducts.length === 0
+          ? 'All Products'
+          : activeUcProducts.length === 1
+            ? (productsMenu.querySelector(`[data-product="${activeUcProducts[0]}"] cds-checkbox`)?.getAttribute('label-text') || '1 selected')
+            : `${activeUcProducts.length} selected`;
+      }
+      currentPage['use-cases'] = 1;
+      filterAndPaginate('use-cases');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      productsMenu.style.display = 'none';
+      productsToggle.setAttribute('aria-expanded', 'false');
+    });
+    productsMenu.addEventListener('click', e => e.stopPropagation());
+  }
+
   const resolved = resolveHash(window.location.hash);
   if (resolved.section === 'use-case-detail') {
     navigateToUcDetail(resolved.ucId);
   } else {
     activateSection(resolved.section, resolved.subSection || null, false);
+    // Apply ucType filter from URL if present
+    if (resolved.section === 'use-cases' && resolved.ucType) {
+      const pill = document.querySelector(`#uc-type-filter .domain-pill[data-uc-type="${resolved.ucType}"]`);
+      if (pill) pill.click();
+    }
     if (resolved.query) setSearchValue(resolved.query);
     repaginateAll();
     if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);
@@ -991,6 +1102,10 @@ window.addEventListener('hashchange', () => {
     navigateToUcDetail(resolved.ucId);
   } else {
     activateSection(resolved.section, resolved.subSection || null, false);
+    if (resolved.section === 'use-cases' && resolved.ucType) {
+      const pill = document.querySelector(`#uc-type-filter .domain-pill[data-uc-type="${resolved.ucType}"]`);
+      if (pill) pill.click();
+    }
     setSearchValue(resolved.query || '');
     repaginateAll();
     if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);
