@@ -45,26 +45,7 @@
               <cds-tag type="teal" size="sm">Technical</cds-tag>
             </div>
             <div class="card-body">{{ usecase.content }}</div>
-            <div class="card-actions">
-              {% if usecase.link %}
-                <cds-link href="{{ usecase.link }}" target="_blank" rel="noopener noreferrer">View Use Case</cds-link>
-              {% endif %}
-              {% if usecase.demo %}
-                <cds-link href="{{ usecase.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
-              {% endif %}
-              {% if usecase.mode %}
-                <cds-link href="{{ usecase.mode }}" target="_blank" rel="noopener noreferrer">View Mode</cds-link>
-              {% endif %}
-              {% if usecase.lab %}
-                <cds-link href="{{ usecase.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
-              {% endif %}
-              {% if usecase.skill %}
-                <cds-link href="{{ usecase.skill }}" target="_blank" rel="noopener noreferrer">View Skill</cds-link>
-              {% endif %}
-              {% if usecase.slide_deck %}
-                <cds-link href="https://github.com/ibm-self-serve-assets/bob-innovation-hub/blob/main{{ usecase.slide_deck }}" target="_blank" rel="noopener noreferrer">View Slide Deck</cds-link>
-              {% endif %}
-            </div>
+            
           </div>
         {% endfor %}
       {% else %}
