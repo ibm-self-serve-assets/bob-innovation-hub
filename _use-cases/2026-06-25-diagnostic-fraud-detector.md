@@ -1,13 +1,30 @@
 ---
 id: 4dc92aba-8596-4b5e-8607-f1c9ae0f58da
 title: Diagnostic Fraud Detector
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: poholkar@in.ibm.com
 team: Service Engineering
 type: Business
 domain: Healthcare
-problem: '""'
-solution: '""'
-business-value: '""'
+problem: Millions of patients are exposed to fake diagnostic reports,
+  unnecessary tests, and fraudulent referral practices, with no reliable way to
+  verify diagnostic authenticity in real time. This results in incorrect
+  diagnoses, higher healthcare costs, delayed treatment, and increased patient
+  risk.
+solution: Healthcare diagnostic fraud is increasingly putting patients at risk
+  through fake or manipulated lab reports, unnecessary diagnostic tests, and
+  referral kickback schemes. Patients currently have no reliable way to verify
+  the authenticity of diagnostic results in real time, leading to incorrect
+  diagnoses, delayed treatment, increased healthcare costs, and potential harm.
+business-value: |+
+  - Reduces diagnostic fraud
+  - Protects patients
+  - Lowers healthcare costs
+  - Improves diagnostic trust
+  - Enables real-time fraud detection
+  - Supports regulatory compliance
+  - Enhances operational efficiency
+  - Scalable event-driven architecture
+
 tech-stack:
   - IBM Bob
   - watsonx Orchestrate
