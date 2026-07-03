@@ -3,7 +3,7 @@ id: 80c7bef4-ff33-4eac-907f-5f8a76ae004a
 title: "Bob for iSeries: Use Bob to understand legacy iSeries code structure,
   business rules, and program flow"
 asset-owner: Brunda.Reddy@ibm.com
-team: Other
+team: Service Engineering
 type: Technical
 domain: Modernization
 problem: >+
