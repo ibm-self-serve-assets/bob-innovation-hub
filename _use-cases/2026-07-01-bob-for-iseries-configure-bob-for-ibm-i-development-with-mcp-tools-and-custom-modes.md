@@ -2,7 +2,7 @@
 id: 51fca191-9257-4988-a36c-fec162ae1c1f
 title: "Bob for iSeries: Configure Bob for IBM i development with MCP tools and
   custom modes"
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Brunda.Reddy@ibm.com
 team: Other
 type: Technical
 domain: Modernization
