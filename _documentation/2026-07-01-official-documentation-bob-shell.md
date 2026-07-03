@@ -1,6 +1,6 @@
 ---
 id: dce48379-3468-4584-a84f-b631e3562ced
-title: Official Documentation - Bob Shell
+title: Product Documentation - Bob Shell
 type: Product Documentation
 link: https://bob.ibm.com/docs/shell
 featured: 2
