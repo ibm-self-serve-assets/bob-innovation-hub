@@ -38,7 +38,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Official Documentation", "Pricing Plan"]
+         values: ["Product Documentation", "Pricing Plan"]
          multiple: false
          placeholder: "Resource Type"
       - name: link

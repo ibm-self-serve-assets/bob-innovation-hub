@@ -1,7 +1,7 @@
 ---
 id: f6e3766c-2d8c-47a4-a536-536cfb08c1a4
 title: Official Documentation - Bob IDE
-type: Official Documentation
+type: Product Documentation
 link: https://bob.ibm.com/docs/ide
 featured: 1
 ---

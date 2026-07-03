@@ -16,11 +16,11 @@ sections:
     show_search: true
     type: collection-tabbed
     sub_sections:
-      - id: official-documentation
-        title: Official Documentation
+      - id: product-documentation
+        title: Product Documentation
         collection: documentation
         filter_key: type
-        filter_value: "Official Documentation"
+        filter_value: "Product Documentation"
       - id: pricing-plan
         title: Pricing Plan
         collection: documentation

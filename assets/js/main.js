@@ -62,8 +62,8 @@ const ROUTE_MAP = {
   '/modes/premium':           { section: 'modes', subSection: 'premium-modes' },
   '/modes/custom':            { section: 'modes', subSection: 'custom-modes' },
   '/skills':                  { section: 'skills' },
-  '/documentation':                            { section: 'documentation', subSection: 'official-documentation' },
-  '/documentation/official-documentation':     { section: 'documentation', subSection: 'official-documentation' },
+  '/documentation':                            { section: 'documentation', subSection: 'product-documentation' },
+  '/documentation/product-documentation':      { section: 'documentation', subSection: 'product-documentation' },
   '/documentation/pricing-plan':               { section: 'documentation', subSection: 'pricing-plan' },
   '/mcp':                     { section: 'mcp' },
   '/subagents':               { section: 'subagents' },
@@ -86,7 +86,7 @@ const SECTION_TO_ROUTE = {
   'custom-modes':         '#/modes/custom',
   'skills':               '#/skills',
   'documentation':                    '#/documentation',
-  'official-documentation':           '#/documentation/official-documentation',
+  'product-documentation':            '#/documentation/product-documentation',
   'pricing-plan':                     '#/documentation/pricing-plan',
   'mcp':                  '#/mcp',
   'subagents':            '#/subagents',
@@ -666,7 +666,7 @@ let currentPage = {
   'learning-path': 1,
   'explore-bob': 1,
   documentation: 1,
-  'official-documentation': 1,
+  'product-documentation': 1,
   'pricing-plan': 1,
   mcp: 1,
   subagents: 1,
@@ -783,7 +783,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','official-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','technical-use-cases','business-use-cases','modes','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
