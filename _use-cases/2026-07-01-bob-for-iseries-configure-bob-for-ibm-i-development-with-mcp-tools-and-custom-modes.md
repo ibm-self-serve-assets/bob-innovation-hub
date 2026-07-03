@@ -3,7 +3,7 @@ id: 51fca191-9257-4988-a36c-fec162ae1c1f
 title: "Bob for iSeries: Configure Bob for IBM i development with MCP tools and
   custom modes"
 asset-owner: Brunda.Reddy@ibm.com
-team: Other
+team: Service Engineering
 type: Technical
 domain: Modernization
 problem: >+
