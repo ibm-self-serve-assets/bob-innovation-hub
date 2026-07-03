@@ -4,18 +4,18 @@ title: " Build Agentic AI-powered Financial Planner Efficiently using IBM Bob"
 asset-owner: ranjan.kumar.jena@ibm.com
 team: Service Engineering
 type: Business
-domain: Automation
+domain: BFSI
 problem: |-
-  Building multi-agent systems is complex and error-prone   
-  Requires deep watsonx Orchestrate ADK expertise   
-  Manual coding overhead for tools, agents, and configs   
-  Deployment and dependency management is cumbersome   
+  Building multi-agent systems is complex and error-prone  
+  Requires deep watsonx Orchestrate ADK expertise  
+  Manual coding overhead for tools, agents, and configs  
+  Deployment and dependency management is cumbersome  
   High effort to create and maintain documentation
 solution: |-
-  AI-assisted development for agentic systems   
-  Automated generation of tools, agents, and workflows   
-  Built-in ADK compliance and best practices   
-  One-click deployment automation with correct sequencing   
+  AI-assisted development for agentic systems  
+  Automated generation of tools, agents, and workflows  
+  Built-in ADK compliance and best practices  
+  One-click deployment automation with correct sequencing  
   Auto generated comprehensive documentation
 business-value: >+
   - 10× faster development (hours instead of weeks) 
