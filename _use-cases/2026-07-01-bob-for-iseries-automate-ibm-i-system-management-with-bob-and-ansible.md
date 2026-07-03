@@ -1,7 +1,7 @@
 ---
 id: a91efd00-0321-4f94-96a9-c550867c85e4
 title: "Bob for iSeries: Automate IBM i system management with Bob & ansible"
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Brunda.Reddy@ibm.com
 team: Other
 type: Technical
 domain: Modernization
