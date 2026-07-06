@@ -200,7 +200,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: skills
     label: "Bob Skills"
     type: collection
@@ -240,7 +240,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: mcp
     label: "MCP"
     type: collection
@@ -268,7 +268,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: subagents
     label: "Bob Subagents"
     type: collection
@@ -308,7 +308,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: modes
     label: "Bob Modes"
     type: collection
@@ -356,7 +356,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: case-studies
     label: "Case Studies"
     type: collection
@@ -390,7 +390,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: bob_community
     label: "Bob Community"
     type: collection
@@ -418,6 +418,6 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
 
 # Made with Bob
