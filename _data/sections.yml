@@ -57,6 +57,16 @@ sections:
     type: custom
     include_file: use-cases-section.html
 
+  - id: premium-packages
+    title: Premium Packages
+    description: "Explore premium packages designed for legacy modernization and specialized enterprise scenarios."
+    icon: "" #⭐
+    show_search: true
+    type: collection
+    collection: premium_packages
+    link_text: View Package
+    empty_message: No premium packages found. Add packages from your Pages CMS manager to populate this section.
+
   - id: skills
     title: Skills
     description: "Accelerate your workflow with Skills—reusable instruction sets that teach Bob how to deliver consistent results for specialized tasks. Use them as an immediate starting point to quickly build your own custom use cases."
@@ -87,21 +97,11 @@ sections:
 
   - id: modes
     title: Modes
-    description: "Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Explore premium modes designed for legacy modernization, or leverage custom modes for specialized scenarios. These custom modes serve as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements."
+    description: "Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Leverage custom modes for specialized scenarios as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements."
     icon: "" #🤖
     show_search: true
-    type: collection-tabbed
-    sub_sections:
-      - id: custom-modes
-        title: Custom Modes
-        icon: "" #🤖
-        collection: modes
-      - id: premium-modes
-        title: Premium Modes
-        icon: "" #⭐
-        collection: modes
-        filter_key: premium
-        filter_value: true
+    type: collection
+    collection: modes
     link_text: View on GitHub
     empty_message: No modes found. Use Pages CMS to add initial configurations.
 

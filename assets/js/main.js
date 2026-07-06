@@ -44,8 +44,8 @@ function updateThemeButton(theme) {
 }
 
 // ─── Section / routing config ─────────────────────────────────────────────────
-const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'skills', 'learning-resources', 'documentation', 'mcp', 'subagents', 'case-studies', 'bob-community'];
-const SUB_TAB_SECTIONS = ['modes', 'documentation', 'learning-resources'];
+const SEARCH_SECTIONS  = ['use-cases', 'demos', 'labs', 'modes', 'premium-packages', 'skills', 'learning-resources', 'documentation', 'mcp', 'subagents', 'case-studies', 'bob-community'];
+const SUB_TAB_SECTIONS = ['documentation', 'learning-resources'];
 
 const ROUTE_MAP = {
   '':                         { section: 'introduction' },
@@ -58,9 +58,8 @@ const ROUTE_MAP = {
   '/use-cases/business':      { section: 'use-cases', ucType: 'business' },
   '/demos':                   { section: 'demos' },
   '/labs':                    { section: 'labs' },
-  '/modes':                   { section: 'modes', subSection: 'custom-modes' },
-  '/modes/premium':           { section: 'modes', subSection: 'premium-modes' },
-  '/modes/custom':            { section: 'modes', subSection: 'custom-modes' },
+  '/modes':                   { section: 'modes' },
+  '/premium-packages':        { section: 'premium-packages' },
   '/skills':                  { section: 'skills' },
   '/documentation':                            { section: 'documentation', subSection: 'product-documentation' },
   '/documentation/product-documentation':      { section: 'documentation', subSection: 'product-documentation' },
@@ -80,8 +79,7 @@ const SECTION_TO_ROUTE = {
   'demos':                '#/demos',
   'labs':                 '#/labs',
   'modes':                '#/modes',
-  'premium-modes':        '#/modes/premium',
-  'custom-modes':         '#/modes/custom',
+  'premium-packages':     '#/premium-packages',
   'skills':               '#/skills',
   'documentation':                    '#/documentation',
   'product-documentation':            '#/documentation/product-documentation',
@@ -645,11 +643,10 @@ function getItemsPerPage() {
 
 let currentPage = {
   labs: 1,
-  'custom-modes': 1,
-  'premium-modes': 1,
   demos: 1,
   'use-cases': 1,
   modes: 1,
+  'premium-packages': 1,
   skills: 1,
   'learning-resources': 1,
   'learning-path': 1,
@@ -789,7 +786,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','custom-modes','premium-modes','demos','use-cases','modes','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','demos','use-cases','modes','premium-packages','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));

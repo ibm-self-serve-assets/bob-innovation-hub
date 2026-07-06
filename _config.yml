@@ -26,3 +26,5 @@ collections:
     output: false
   bob_community:
     output: false
+  premium_packages:
+    output: false

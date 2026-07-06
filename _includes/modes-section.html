@@ -1,95 +1,44 @@
-<!-- Modes Section (tabbed: Premium Modes / Custom Modes) -->
+<!-- Modes Section -->
 <div id="modes-section" class="content-section">
   <h2 class="section-title">Modes</h2>
-  <p class="section-description">Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Explore premium modes designed for legacy modernization, or leverage custom modes for specialized scenarios. These custom modes serve as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements.</p>
+  <p class="section-description">Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Leverage custom modes for specialized scenarios as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements.</p>
 
-  <!-- Carbon Tabs — sub-section navigation -->
-  <cds-tabs value="custom-modes" id="modes-tabs">
-    <cds-tab id="tab-custom-modes"  value="custom-modes"  data-sub-section="custom-modes">Custom Modes</cds-tab>
-    <cds-tab id="tab-premium-modes" value="premium-modes" data-sub-section="premium-modes">Premium Modes</cds-tab>
-  </cds-tabs>
-
-  <!-- Legacy .sub-tabs for JS compatibility (hidden) -->
-  <div class="sub-tabs" style="display:none;" role="tablist">
-    <button class="sub-tab"        data-sub-section="premium-modes" role="tab" aria-selected="false">Premium Modes</button>
-    <button class="sub-tab active" data-sub-section="custom-modes"  role="tab" aria-selected="true">Custom Modes</button>
-  </div>
-
-  <!-- Premium Modes -->
-  <div id="premium-modes-sub" class="sub-section">
-    <div id="premium-modes-container" class="cards-grid">
-      {% assign _pm_all = site.modes | where: "type", "Premium" %}
-      {% assign _pm_feat = _pm_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _pm_se = _pm_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
-      {% assign _pm_other = _pm_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
-      {% assign premium_modes = _pm_feat | concat: _pm_se | concat: _pm_other %}
-      {% if premium_modes.size > 0 %}
-        {% for mode in premium_modes %}
-          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
-            <h3>{{ mode.title }}</h3>
-            <div class="badge-container">
-              <cds-tag type="warm-gray" size="sm">Premium</cds-tag>
-            </div>
-            <div class="card-body">{{ mode.content }}</div>
-            <div class="card-actions">
-              {% if mode.link %}
-                <cds-link href="{{ mode.link }}" target="_blank" rel="noopener noreferrer">View</cds-link>
-              {% endif %}
-              {% if mode.demo %}
-                <cds-link href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
-              {% endif %}
-              {% if mode.lab %}
-                <cds-link href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
-              {% endif %}
-            </div>
+  <div id="modes-container" class="cards-grid">
+    {% assign _cm_all = site.modes | where: "type", "Custom" %}
+    {% assign _cm_feat = _cm_all | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _cm_se = _cm_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
+    {% assign _cm_other = _cm_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
+    {% assign custom_modes = _cm_feat | concat: _cm_se | concat: _cm_other %}
+    {% if custom_modes.size > 0 %}
+      {% for mode in custom_modes %}
+        <div class="asset-card"
+             data-slug="{{ mode.slug }}"
+             data-title="{{ mode.title | downcase }}"
+             data-content="{{ mode.content | strip_html | downcase }}"
+             data-industry="{{ mode.industry | join: ' ' | downcase }}"
+             data-team="{{ mode.team | downcase }}">
+          <h3>{{ mode.title }}</h3>
+          
+          <div class="card-body">{{ mode.content }}</div>
+          <div class="card-actions">
+            {% if mode.link %}
+              <cds-link href="{{ mode.link }}" target="_blank" rel="noopener noreferrer">View on GitHub</cds-link>
+            {% endif %}
+            {% if mode.demo %}
+              <cds-link href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
+            {% endif %}
+            {% if mode.lab %}
+              <cds-link href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
+            {% endif %}
           </div>
-        {% endfor %}
-      {% else %}
-        <div class="empty-state">
-          <p>No premium modes available yet. Add modes with <code>type: Premium</code> to populate this section.</p>
         </div>
-      {% endif %}
-    </div>
-    <div id="premium-modes-pagination" class="pagination"></div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <p>No custom modes found. Add modes with <code>type: Custom</code> to populate this section.</p>
+      </div>
+    {% endif %}
   </div>
-
-  <!-- Custom Modes -->
-  <div id="custom-modes-sub" class="sub-section active">
-    <div id="custom-modes-container" class="cards-grid">
-      {% assign _cm_all = site.modes | where: "type", "Custom" %}
-      {% assign _cm_feat = _cm_all | where_exp: "item", "item.featured" | sort: "featured" %}
-      {% assign _cm_se = _cm_all | where_exp: "item", "item.featured == nil" | where: "team", "Service Engineering" %}
-      {% assign _cm_other = _cm_all | where_exp: "item", "item.featured == nil" | where_exp: "item", "item.team != 'Service Engineering'" %}
-      {% assign custom_modes = _cm_feat | concat: _cm_se | concat: _cm_other %}
-      {% if custom_modes.size > 0 %}
-        {% for mode in custom_modes %}
-          <div class="asset-card" data-slug="{{ mode.slug }}" data-title="{{ mode.title | downcase }}" data-content="{{ mode.content | strip_html | downcase }}" data-industry="{{ mode.industry | join: ' ' | downcase }}" data-team="{{ mode.team | downcase }}">
-            <h3>{{ mode.title }}</h3>
-            <div class="badge-container">
-              <cds-tag type="green" size="sm">Custom</cds-tag>
-
-            </div>
-            <div class="card-body">{{ mode.content }}</div>
-            <div class="card-actions">
-              {% if mode.link %}
-                <cds-link href="{{ mode.link }}" target="_blank" rel="noopener noreferrer">View on GitHub</cds-link>
-              {% endif %}
-              {% if mode.demo %}
-                <cds-link href="{{ mode.demo }}" target="_blank" rel="noopener noreferrer">View Demo</cds-link>
-              {% endif %}
-              {% if mode.lab %}
-                <cds-link href="{{ mode.lab }}" target="_blank" rel="noopener noreferrer">View Lab</cds-link>
-              {% endif %}
-            </div>
-          </div>
-        {% endfor %}
-      {% else %}
-        <div class="empty-state">
-          <p>No custom modes found. Add modes with <code>type: Custom</code> to populate this section.</p>
-        </div>
-      {% endif %}
-    </div>
-    <div id="custom-modes-pagination" class="pagination"></div>
-  </div>
+  <div id="modes-pagination" class="pagination"></div>
 
 </div>

@@ -1,0 +1,34 @@
+<!-- Premium Packages Section -->
+<div id="premium-packages-section" class="content-section">
+  <h2 class="section-title">Premium Packages</h2>
+  <p class="section-description">Explore premium packages designed for legacy modernization and specialized enterprise scenarios.</p>
+
+  <div id="premium-packages-container" class="cards-grid">
+    {% assign _pp_all = site.premium_packages %}
+    {% assign _pp_feat = _pp_all | where_exp: "item", "item.featured" | sort: "featured" %}
+    {% assign _pp_other = _pp_all | where_exp: "item", "item.featured == nil" %}
+    {% assign premium_packages = _pp_feat | concat: _pp_other %}
+    {% if premium_packages.size > 0 %}
+      {% for pkg in premium_packages %}
+        <div class="asset-card"
+             data-slug="{{ pkg.slug }}"
+             data-title="{{ pkg.title | downcase }}"
+             data-content="{{ pkg.content | strip_html | downcase }}">
+          <h3>{{ pkg.title }}</h3>
+          <div class="card-body">{{ pkg.content }}</div>
+          <div class="card-actions">
+            {% if pkg.link %}
+              <cds-link href="{{ pkg.link }}" target="_blank" rel="noopener noreferrer">View Package</cds-link>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <p>No premium packages found. Add packages from your Pages CMS manager to populate this section.</p>
+      </div>
+    {% endif %}
+  </div>
+  <div id="premium-packages-pagination" class="pagination"></div>
+
+</div>
