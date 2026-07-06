@@ -37,27 +37,27 @@ solution: This solution delivers a **First-of-a-Kind (FOAK) AI-powered
   asset-intensive industries such as manufacturing, utilities, transportation,
   and logistics.
 business-value: >+
-  - **Accelerate Procurement and Fulfillment**  
+  - Accelerate Procurement and Fulfillment  
 
   Automates the end-to-end material replenishment process, reducing procurement
   cycle times and ensuring timely availability of critical spare parts.
 
-  - **Reduce Asset Downtime**  
+  - Reduce Asset Downtime  
 
   Enables intelligent, real-time order orchestration to ensure maintenance teams
   receive the right parts at the right time, improving asset availability.
 
-  - **Increase Operational Efficiency**  
+  - Increase Operational Efficiency  
 
   Eliminates manual data entry and point-to-point integrations, reducing errors
   while improving productivity through AI-powered automation.
 
-  - **Improve Supply Chain Visibility and Governance**  
+  - Improve Supply Chain Visibility and Governance  
 
   Provides end-to-end tracking of maintenance requests, inventory, procurement,
   and fulfillment with complete auditability across Maximo and Sterling OMS.
 
-  - **Accelerate Digital Transformation**  
+  - Accelerate Digital Transformation  
 
   Delivers a reusable, AI-powered integration blueprint using IBM BoB and MCP,
   reducing implementation effort and enabling faster modernization for
