@@ -60,5 +60,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-0-discover-the-samco-application
+featured: 28
 ---
 This use case outlines how a cross-functional enterprise IT team (comprising architects, newly hired developers, and product owners) uses **IBM Bob** to perform automated, comprehensive code discovery and application mapping on **SAMCO**—a massive, monolithic, and undocumented legacy business application running on the IBM i platform. Instead of spending weeks manually tracing control flows or deciphering complex source physical files (`QSYS.LIB`), developers task the AI agent with reading the entire codebase. Bob ingests the legacy structures, reverse-engineers the system's operational architecture, and builds an exhaustive functional profile of the SAMCO application natively within the workspace.
