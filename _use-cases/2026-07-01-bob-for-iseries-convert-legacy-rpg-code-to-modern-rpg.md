@@ -1,8 +1,8 @@
 ---
 id: c6462ca8-58e7-49ce-af35-564cd107b962
 title: "Bob for iSeries: Convert legacy RPG code to modern RPG"
-asset-owner: Brunda.Reddy@ibm.com
-team: Service Engineering
+asset-owner: benoit.marolleau@fr.ibm.com
+team: Other
 type: Technical
 domain: Modernization
 problem: >+
