@@ -58,5 +58,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-3-convert-rla-to-sql
+featured: 27
 ---
 This use case outlines how an enterprise database and application development team utilizes **IBM Bob** to automate the migration of database access logic from archaic **Record-Level Access (RLA)** commands—such as legacy RPG operations like `CHAIN`, `SETLL`, `READE`, or native logical file overrides—into modern, standardized **Embedded SQL** statements. Developers leverage the AI agent within their local workspace to ingest legacy data-access layers, automatically analyze the underlying relational pathways, and systematically refactor the application to use standardized SQL queries that execute natively against the advanced Db2 for i query engine.
