@@ -56,5 +56,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-1-rpg-fixed-to-free-conversion
+featured: 25
 ---
 This use case outlines the foundational setup, preparation, and pilot phase executed by an enterprise IT department adopting **IBM Bob** to drive large-scale, automated application modernization initiatives on the IBM i platform. It details how engineering teams establish a standardized workspace sandbox, configure essential local environment tooling (such as Visual Studio Code extensions for IBM i or Rational Developer for i), and execute their first benchmark validation test using Lab 1: RPG Fixed-to-Free Conversion. By systematically proving out the toolchain on a controlled set of legacy column-specific Fixed-Format RPG source members, the organization validates the AI agent's accuracy and establishes a repeatable blueprint for company-wide code modernization.
