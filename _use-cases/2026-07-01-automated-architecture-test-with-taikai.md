@@ -1,7 +1,7 @@
 ---
 id: 0c3afe7f-b5c3-4c00-acc4-e6192eb4eb9b
 title: Automated architecture test with Taikai
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Automation
