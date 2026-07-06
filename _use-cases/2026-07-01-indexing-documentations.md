@@ -1,7 +1,7 @@
 ---
 id: 4f86f60a-b198-4f2d-93f0-0a22ddab6dba
 title: Indexing documentations
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Automation
