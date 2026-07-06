@@ -41,5 +41,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/IBM/bob-demo/tree/main/using-java-skills
+featured: 13
 ---
 The "Using Java with Skills" module demonstrates how to configure and execute enterprise workflows in **IBM Bob** (an AI-first software engineering IDE) by combining **Skills** with custom **Java** logic. While basic Bob skills use Markdown and shell scripts to define playbooks, this advanced use case highlights how developers can write robust, compiled Java classes to act as the specialized execution backend or tooling mechanism for a skill. It showcases a project structure where an AI agent dynamically leverages native Java tools to orchestrate precise codebase manipulations, environment checks, or automated transformations.
