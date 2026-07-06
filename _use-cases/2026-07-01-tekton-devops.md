@@ -53,5 +53,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/IBM/bob-demo/tree/main/tekton-devops
+featured: 52
 ---
 The `tekton-devops` use case demonstrates how **IBM Bob** (an AI-powered Software Development Lifecycle partner) automates the generation of enterprise-grade CI/CD pipeline manifests. Specifically, this demo showcases how developers or platform engineers can use natural language prompts in tandem with an AI-orchestration framework (via an `AGENTS.md` context blueprint) to automatically output structurally valid Kubernetes-native **Tekton pipelines and task manifests** tailored for a specific codebase.
