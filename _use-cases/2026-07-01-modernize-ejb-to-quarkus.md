@@ -63,5 +63,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/IBM/bob-demo/tree/main/modernize-ejb-to-quarkus
+featured: 12
 ---
 This use case showcases an automated, AI-driven migration of a legacy Enterprise Java (Jakarta EE/Java EE) application utilizing Enterprise JavaBeans (EJBs)—specifically stateless and stateful session beans—into a lightweight, cloud-native **Quarkus** application. Leveraging **IBM Bob** (an AI partner for the Software Development Lifecycle) combined with deterministic migration rules, the demo walks through scanning legacy enterprise source code, refactoring the EJB container dependencies, mapping the business logic to contemporary standards (such as CDI, RESTful APIs, and externalized state mechanisms like Redis), and automatically rewriting the application while maintaining absolute functional parity.
