@@ -63,6 +63,6 @@ tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=fpoO_603duw
 lab: https://github.com/ibm-self-serve-assets/ui-modernization-lab
-featured: 4
+featured: 39
 ---
 This use case outlines the structural presentation-layer transformation of **WealthPlan**, a secure, multi-role wealth management platform utilized by Business Managers, Wealth Managers, and end-customers. Rather than initiating a high-risk, full-stack rewrite of core financial services, this use case demonstrates an in-place presentation-layer migration. It moves the application from a legacy, server-rendered presentation layer (Java, Spring Boot, JSP, and Bootstrap) to a decoupled, high-performance architecture driven by a modern **React** frontend and IBM's enterprise-grade **Carbon Design System**. To accelerate execution and lower delivery risk, the migration leverages specialized AI-driven software agents (**Bob IDE / Carbon Builder skills**) and targets a cloud-native deployment on **Red Hat OpenShift**.
