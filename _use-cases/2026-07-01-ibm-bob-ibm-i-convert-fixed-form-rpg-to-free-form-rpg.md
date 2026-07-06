@@ -1,7 +1,7 @@
 ---
 id: 186a2394-1f43-4e1c-8713-b54c404abe9a
 title: IBM Bob- IBM i Convert fixed form RPG to free form RPG
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: benoit.marolleau@fr.ibm.com
 team: Other
 type: Technical
 domain: Modernization
