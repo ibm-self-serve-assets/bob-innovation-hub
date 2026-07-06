@@ -1,7 +1,7 @@
 ---
 id: 386682ab-72f9-4f04-bbcb-6deb1cefe517
 title: Modernize EJB to Quarkus
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Modernization
