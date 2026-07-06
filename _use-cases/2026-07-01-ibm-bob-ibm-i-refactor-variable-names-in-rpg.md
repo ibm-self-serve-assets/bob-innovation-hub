@@ -57,5 +57,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=4wtDCmVpi5k
+featured: 33
 ---
 This use case demonstrates how an application developer utilizes **IBM Bob** to autonomously refactor old, cryptic variable names within a legacy RPG program to make the codebase modern and easily readable. In this scenario, the developer is working with a typical enterprise IBM i application that features a hybrid mix of classic Fixed-Format and modern Free-Format RPG specifications. The developer instructs Bob to pinpoint, analyze, and rename internal program variables—transforming short, ambiguous characters into clear, human-readable terms—without altering the underlying business logic or breaking links to external database fields.
