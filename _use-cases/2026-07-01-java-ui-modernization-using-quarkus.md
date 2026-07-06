@@ -64,5 +64,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=gqZG_afyQyg
+featured: 11
 ---
 This use case demonstrates how an automated AI assistant named "Bob" modernizes a legacy, dated Java Enterprise Edition (Java EE) application. Specifically, the tool takes an older Taskboard application built with a traditional Java server-side UI framework (like JSF or Struts) and fully migrates it into a modern, decoupled web application featuring a high-performance Java backend and a reactive frontend.
