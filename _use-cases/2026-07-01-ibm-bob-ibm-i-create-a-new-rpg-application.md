@@ -1,7 +1,7 @@
 ---
 id: 73bec31e-6d4c-4e0f-84a9-2edc2fca7c9f
 title: IBM Bob - IBM i Create a New RPG Application
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: benoit.marolleau@fr.ibm.com
 team: Other
 type: Technical
 domain: Modernization
