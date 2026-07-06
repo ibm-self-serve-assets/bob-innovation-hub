@@ -27,5 +27,6 @@ tech-stack:
   - Maximo
 architecture_diagram: /docs/diagrams/Arch.jpg
 lab: https://github.com/ibm-self-serve-assets/Bob-driven-Integration-for-Maximo-via-MCP
+featured: 61
 ---
 See how to use Model Context Protocol (MCP) to interact with IBM Maximo for job plan management.
