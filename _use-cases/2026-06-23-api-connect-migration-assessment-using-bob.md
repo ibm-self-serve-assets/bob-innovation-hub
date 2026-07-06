@@ -1,8 +1,16 @@
 ---
+id: 95e16501-cbae-4b95-aaf8-4407f6c2fbd8
 title: API Connect Migration Assessment using Bob
+asset-owner: Ranjan.Kumar.Jena@ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
+problem: '""'
+solution: '""'
+business-value: '""'
+tech-stack:
+  - IBM Bob
+  - IBM API Connect
 demo: https://www.youtube.com/watch?v=70x5dIv8qj8
 slide_deck: /docs/slide_decks/BOB_API Connect_Migration_Assessment.pdf
 featured: 18
