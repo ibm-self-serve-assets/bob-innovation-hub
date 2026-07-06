@@ -47,5 +47,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=55qvXvBXdCA
+featured: 56
 ---
 This use case demonstrates how an AI development assistant named "Bob" can ingest vulnerability reports from dynamic security testing tools—specifically OWASP ZAP—to autonomously analyze, implement, and verify security fixes within a live application environment.
