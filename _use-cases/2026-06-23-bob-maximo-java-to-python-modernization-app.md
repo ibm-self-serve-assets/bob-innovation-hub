@@ -10,17 +10,17 @@ problem: >-
   and SLA conditions.  
 
   Manual responsibility mapping to Maximo launch points is slow and dependent on
-  SME knowledge.   
+  SME knowledge.  
 
   Regression testing across scenarios, statuses, and related records requires
   heavy manual effort. Documentation, traceability, and repeatable test assets
   are often missing in legacy customizations
 solution: >-
   Bob automatically discovers and analyzes legacy Maximo Java customizations
-  from any source (like Cloud Object Storage, Git, ..)   
+  from any source (like Cloud Object Storage, Git, ..)  
 
   Modular Python automation scripts are generated with consistent coding
-  patterns   
+  patterns  
 
   Test plans, YAML scenarios, seed data, and API runners are produced alongside
   the scripts
@@ -43,6 +43,6 @@ tech-stack:
 architecture_diagram: /docs/diagrams/bob-maximo-architecture.png
 demo: https://www.youtube.com/watch?v=ZD-PbxxTOz0
 slide_deck: /docs/slide_decks/Bob_Maximo_one_pager.pdf
-featured: 12
+featured: 65
 ---
 Bob is an intelligent automation solution designed to modernize and streamline legacy IBM Maximo customizations. It automatically discovers and analyzes Java-based custom code stored in IBM Cloud Object Storage (COS), eliminating the need for manual assessment. Based on this analysis, Bob generates modular, production-ready Python automation scripts that follow consistent and standardized coding practices. Beyond code generation, Bob accelerates the testing lifecycle by producing comprehensive test assets alongside the scripts. This includes detailed test plans, YAML-based test scenarios, seed data, and API runners, enabling faster validation and deployment. By combining code intelligence with automated testing support, Bob significantly reduces modernization effort, improves code quality, and enhances overall development efficiency.
