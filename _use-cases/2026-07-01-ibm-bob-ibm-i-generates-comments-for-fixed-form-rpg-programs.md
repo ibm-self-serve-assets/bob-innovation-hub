@@ -1,7 +1,7 @@
 ---
 id: 93dc1001-c77d-44db-8eca-285b2890e6f3
 title: IBM Bob - IBM i Generates Comments for Fixed Form RPG Programs
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: benoit.marolleau@fr.ibm.com
 team: Other
 type: Technical
 domain: Modernization
