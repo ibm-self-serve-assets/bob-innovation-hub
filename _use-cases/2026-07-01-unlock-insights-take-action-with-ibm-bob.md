@@ -60,5 +60,6 @@ tech-stack:
   - IBM Bob
   - Instana
 demo: https://www.youtube.com/watch?v=yNiOlF95eKQ
+featured: 42
 ---
 IBM Bob is an AI-powered assistant configured as a performance analyst (using a dedicated "performance insights mode"). It acts as a collaborative partner for developers, performance analysts, and application architects by consuming raw observability data (such as latency charts from tools like Instana), architecture diagrams, and workspace source code. The platform automatically processes these multimodal inputs to diagnose system issues, pinpoint precise roots of failures, and model future state optimizations.
