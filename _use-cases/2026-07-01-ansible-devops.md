@@ -1,7 +1,7 @@
 ---
 id: 6bfa8d45-720b-43cd-8101-7d746284d31e
 title: Ansible DevOps
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Automation
