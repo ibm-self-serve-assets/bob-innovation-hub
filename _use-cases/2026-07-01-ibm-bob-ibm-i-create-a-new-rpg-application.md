@@ -67,5 +67,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=GacBr38qbjU
+featured: 30
 ---
 This use case demonstrates how an enterprise development team utilizes **IBM Bob** to engineer a complete, multi-tier **Student Management Application** from scratch natively on the IBM i platform. Instead of forcing separate teams to spend weeks hand-coding standalone layers, a single engineer leverages Bob as an autonomous full-stack partner. The AI agent takes high-level application specifications and systematically builds out every tier of the software lifecycle: generating a comprehensive structural design document, spinning up the foundational Db2 database layers, coding modern Free-Format RPG business logic, building a Python Flask REST API middleware tier, and delivering a responsive web-based HTML5 frontend
