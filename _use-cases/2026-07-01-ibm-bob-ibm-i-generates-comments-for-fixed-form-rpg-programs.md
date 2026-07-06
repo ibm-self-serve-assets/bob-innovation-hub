@@ -59,5 +59,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=JIB47ne0w8M
+featured: 32
 ---
 This use case outlines how an application developer or maintenance engineer uses **IBM Bob** to automatically analyze and insert meaningful, human-readable documentation directly inside legacy **Fixed-Format RPG** source files. In this scenario, the developer directs Bob to scan a completely undocumented, column-specific RPG/RPG II program inside their local development workspace. Operating line-by-line, Bob functions as a code analysis partner, breaking down archaic variable definitions, input/output sections, and procedural indicators to inject descriptive context comments inline without modifying the operational mechanics of the code.
