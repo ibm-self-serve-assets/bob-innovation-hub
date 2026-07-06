@@ -1,7 +1,7 @@
 ---
 id: 128044db-6ef1-40cb-a844-84acf5ea0154
 title: " IBM Bob for watsonx Orchestrate: Create MCP Tools and Agents"
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Ahmed.Azraq@ibm.com
 team: Other
 type: Technical
 domain: Automation
