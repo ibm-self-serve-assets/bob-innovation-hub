@@ -51,5 +51,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/flight400-demo
+featured: 28
 ---
 The `flight400-demo` is a baseline application and architectural template designed to illustrate the progressive modernization of legacy applications on the **IBM i (AS/400)** platform. Centered around a mock flight booking/management system, this repository serves as a hands-on proof of concept (PoC). It showcases how monolithic RPGLE code and DB2 for i databases can seamlessly interface with modern DevOps build tools (such as "Bob" / Better Object Builder), CI/CD pipelines, and microservices/web components without forcing a risky or costly total platform rip-and-replace.
