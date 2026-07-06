@@ -57,5 +57,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=ojjinfQ2HLc
+featured: 29
 ---
 This use case demonstrates how an enterprise development team utilizes **IBM Bob** to handle advanced **Fixed-Format to Free-Format RPG conversion** on the IBM i platform, specifically addressing complex, deprecated code structures like **Output Specifications (O-Specs)**. Instead of executing a simple text-string replacement, the developer gives Bob architectural rules on how to modernly refactor the old layout. The AI agent reads the heritage code, extracts the archaic, embedded output printing configurations, isolates them into standalone modern **Print Files**, and automatically converts the main program logic line-by-line into clean, readable, fully Free-Format RPG syntax.
