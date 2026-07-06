@@ -51,5 +51,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=ULEJQwgzieg
+featured: 31
 ---
 This use case outlines how an enterprise IT department utilizes **IBM Bob** to autonomously extract, map, and document the complete functional architecture of an exceptionally old, large-scale **RPG II / RPG III (RPG/36) Enterprise Resource Planning (ERP)** application running on the IBM i platform. Instead of relying on manual code reviews to track decades of legacy systems, developers instruct Bob to scan the entire workspace—including Control Language (CL) programs, physical and logical files, printer overrides, DDS schemas, panel groups, and massive volumes of legacy RPG code. Working as an advanced repository intelligence agent, Bob builds an operational blueprint of the software, generating an exhaustive documentation package containing high-level executive summaries, library mappings, data flows, and structural business rule diagrams.
