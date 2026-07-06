@@ -1,8 +1,8 @@
 ---
 id: 7b556c5c-944c-4ed6-b845-dc31510c22b0
 title: "Bob for iSeries: Create a modern web UI using React and Carbon Design System"
-asset-owner: Brunda.Reddy@ibm.com
-team: Service Engineering
+asset-owner: benoit.marolleau@fr.ibm.com
+team: Other
 type: Technical
 domain: Modernization
 problem: >+
