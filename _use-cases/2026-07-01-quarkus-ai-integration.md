@@ -1,7 +1,7 @@
 ---
 id: 38ef5042-fbd7-4844-a8a6-b35bc0600715
 title: "Quarkus AI integration "
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Modernization
