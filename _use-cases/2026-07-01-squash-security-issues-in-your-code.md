@@ -35,5 +35,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=T4A04Jsxogs
+featured: 57
 ---
 This use case outlines the process of using an AI coding assistant (referred to as "Bob") to automatically audit, identify, and remediate security vulnerabilities within an open-source Node.js application's dependencies and source code.
