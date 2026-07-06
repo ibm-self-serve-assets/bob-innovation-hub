@@ -98,7 +98,7 @@ content:
         type: number
         options:
           min: 1
-          max: 50
+          max: 200
   - name: use-cases
     label: "Bob Usecases"
     type: collection
