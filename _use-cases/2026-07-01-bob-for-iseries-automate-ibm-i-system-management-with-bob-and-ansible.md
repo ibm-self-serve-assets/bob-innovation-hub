@@ -56,5 +56,6 @@ tech-stack:
   - IBM Bob
   - Red Hat Ansible
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab1-rpg-documentation-fixed-to-free.md
+featured: 23
 ---
 This use case outlines how an enterprise IT organization uses **IBM Bob** to automate the syntax transformation and documentation of core legacy **RPG (Report Program Generator)** applications running on the IBM i platform. In this scenario, application developers leverage Bob within their localized development workspace to ingest ancient, column-specific **Fixed-Format RPG** source code. The AI agent acts as a specialized technical translator: it analyzes the code, produces human-readable markdown documentation detailing its functional logic, and automatically refactors the codebase into modern **Free-Format RPG syntax** without altering the underlying business rules.
