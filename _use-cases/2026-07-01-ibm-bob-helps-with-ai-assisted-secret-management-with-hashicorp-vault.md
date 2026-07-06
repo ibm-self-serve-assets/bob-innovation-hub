@@ -1,7 +1,7 @@
 ---
 id: d71bcefa-0a54-4aad-97b7-7c45cf75de94
 title: IBM Bob helps with AI-Assisted Secret Management with Hashicorp Vault
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Ahmed.Azraq@ibm.com
 team: Other
 type: Technical
 domain: Automation
