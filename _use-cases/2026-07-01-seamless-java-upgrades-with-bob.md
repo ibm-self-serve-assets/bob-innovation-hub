@@ -52,6 +52,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=Qwl0Za2cXWw&list=PL-aWPAFzESisgAF1DDTx1az4gsi9jWmFc
+featured: 40
 ---
 This use case focuses on automating the end-to-end process of upgrading and modernizing Java applications to the latest versions using an AI-driven tool called "Bob." Bob leverages a systematic three-phase methodology—**Analyze, Transform, and Validate**—combining static code analysis, automated migration recipes, and agentic subtasks to safely upgrade the source code, build configurations, and framework dependencies.
 
