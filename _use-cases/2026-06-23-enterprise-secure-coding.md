@@ -60,6 +60,6 @@ architecture_diagram: /docs/diagrams/architecture.png
 demo: https://www.youtube.com/watch?v=unBYDNKAPyw
 lab: https://github.com/ibm-self-serve-assets/bob-secure-coding-lab
 slide_deck: /docs/slide_decks/Enterprise Secure Coding.pdf
-featured: 5
+featured: 58
 ---
 This use case outlines an automated, "secure-by-design" development workflow that integrates AI-driven coding assistants into enterprise software development without compromising security. It demonstrates how an enterprise can orchestrate **IBM Bob** (an AI coding assistant running in a specialized "Secure Coding" custom mode) to automatically scan repositories, detect vulnerabilities such as hardcoded secrets, and safely remediate them. This entire operational lifecycle is governed by an **IBM Model Context Protocol (MCP) Gateway** to intercept and authorize tool actions, while utilizing **HashiCorp Vault** to store and provision just-in-time, least-privilege credentials.
