@@ -1,7 +1,7 @@
 ---
 id: 1f9b4c32-9f1e-4b26-b7bd-94d701ba055e
 title: Maximo Job Plan Management via MCP
-asset-owner: sujamoha@in.ibm.com,priya_vasudevan@in.ibm.com
+asset-owner: sujamoha@in.ibm.com,priya_vasudevan@in.ibm.com, Sai.Manjunath@ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
