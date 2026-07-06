@@ -52,6 +52,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab00_ibm-bob-ibmi-labs.md#lab-2-build-a-simple-article-list
+featured: 26
 ---
 This use case demonstrates how a development team uses **IBM Bob** to quickly prototype and build standard data-driven business applications—specifically a web-based **Article/Product List display**—that interacts directly with foundational IBM i backend data structures. Instead of writing boilerplate database access code and data mapping functions by hand, developers use Bob to interpret raw data layouts, generate modern display logic, and assemble the microservices or UI components needed to serve a clean, scannable item catalog to end users.
 
