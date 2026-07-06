@@ -1,7 +1,7 @@
 ---
 id: 9e258eba-de67-4aae-9a37-3574ed09a6a6
 title: IBM Bob- IBM i Refactor Variable names in RPG
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: benoit.marolleau@fr.ibm.com
 team: Other
 type: Technical
 domain: Modernization
