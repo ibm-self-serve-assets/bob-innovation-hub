@@ -61,6 +61,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
 lab: https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab4-ibmi-mcp-mode.md
+featured: 24
 ---
 This use case outlines how an enterprise software engineering team utilizes **IBM Bob** configured in **MCP (Model Context Protocol) Mode** to automate the reverse-engineering, analysis, and architectural modernization of legacy monolithic IBM i applications (such as COBOL or RPGLE programs). By deploying a dedicated MCP server acting as a secure real-time gateway, an autonomous AI agent is given safe, read-only operational context directly into the live IBM i partition. Instead of working on disconnected code snippets, the AI operates as an intelligent co-developer that can actively cross-reference active source files, system object descriptions (`*PGM`, `*FILE`), live Db2 schema catalogs, and program error logs to orchestrate a systematic step-by-step application transformation.
 
