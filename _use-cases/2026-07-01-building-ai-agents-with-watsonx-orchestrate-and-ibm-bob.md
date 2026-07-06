@@ -1,7 +1,7 @@
 ---
 id: 6d531015-1967-4ced-9b18-1cb987f0b984
 title: Building AI Agents with watsonx Orchestrate and IBM Bob
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: jukka.juselius@fi.ibm.com
 team: Other
 type: Technical
 domain: Automation
