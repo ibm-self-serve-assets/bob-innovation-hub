@@ -1,7 +1,7 @@
 ---
 id: 531fcae8-6810-4ebf-a263-7cf3b5802c9f
 title: Tekton DevOps
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Automation
