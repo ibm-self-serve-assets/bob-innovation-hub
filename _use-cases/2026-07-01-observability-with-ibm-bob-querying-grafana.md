@@ -52,5 +52,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://www.youtube.com/watch?v=R1SI4fovqWg
+featured: 41
 ---
 The use case demonstrates how developers can leverage **IBM Bob**, an AI assistant, integrated with **Grafana** using a Model Context Protocol (MCP) server. Instead of navigating separate monitoring and logging dashboards, developers can interact with Bob via natural language within their existing development environment to query application metrics, look up active incidents, fetch logs, and interpret observability data.
