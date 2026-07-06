@@ -1,7 +1,7 @@
 ---
 id: baf84fc3-4b9a-4563-83da-b27e8494bd05
 title: Legacy to MCP
-asset-owner: anand.awasthi@in.ibm.com
+asset-owner: Markus.Eisele@ibm.com
 team: Other
 type: Technical
 domain: Automation
