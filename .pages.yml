@@ -201,6 +201,34 @@ content:
         options:
           min: 1
           max: 200
+  - name: premium_packages
+    label: "Premium Pacakages"
+    type: collection
+    path: _premium_packages
+    fields:
+      - name: id
+        label: "ID (auto-generated)"
+        type: uuid
+        options:
+          editable: false
+      - name: title
+        label: "Pacakage Name"
+        type: string
+        required: true
+      - name: body
+        label: "Package Description"
+        type: rich-text
+        required: true
+      - name: link
+        label: "Package Link"
+        type: string
+        required: true
+      - name: featured
+        label: Featured(Skip this field)
+        type: number
+        options:
+          min: 1
+          max: 200
   - name: skills
     label: "Bob Skills"
     type: collection
