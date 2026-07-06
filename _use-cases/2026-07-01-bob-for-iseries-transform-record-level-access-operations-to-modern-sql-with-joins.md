@@ -2,8 +2,8 @@
 id: 85090862-0703-4910-aea5-168c11a67bd0
 title: "Bob for iSeries: Transform record-level access operations to modern SQL
   with JOINs"
-asset-owner: Brunda.Reddy@ibm.com
-team: Service Engineering
+asset-owner: benoit.marolleau@fr.ibm.com
+team: Other
 type: Technical
 domain: Modernization
 problem: >+
