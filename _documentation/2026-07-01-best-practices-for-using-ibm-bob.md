@@ -5,8 +5,7 @@ type: Product Documentation
 link: https://bob.ibm.com/docs/ide/getting-started/best-practices
 featured: 3
 ---
-Follow these guidelines to get the most out of your experience with Bob.
-
+- Follow the guidelines to get the most out of your experience with Bob.
 - Learn the Mode Selection Strategy for most effective workflow
 - Learn Workflow Optimization best practices
 - Learn to effectively manage the Context Window
