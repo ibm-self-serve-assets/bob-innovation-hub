@@ -58,5 +58,6 @@ tech-stack:
   - IBM Bob
   - Red Hat Ansible
 lab: https://github.com/IBM/bob-demo/tree/main/ansible-devops
+featured: 51
 ---
 This use case demonstrates how an Infrastructure and Operations (I&O) team uses **IBM Bob** alongside **Bob Shell** to automate the creation and deployment of Infrastructure as Code (IaC) configuration manifests. In this scenario, an operations engineer uses a localized terminal interface to hand off raw architectural specifications, application layouts, or infrastructure requirements to an intelligent, agentic workflow. IBM Bob ingests these local blueprint documents, reasons through the specified dependencies, and dynamically synthesizes production-ready **Ansible Playbooks and Tasks** (e.g., configuring an enterprise HTTP web server) right inside the deployment workspace, removing the need for manual script compilation.
