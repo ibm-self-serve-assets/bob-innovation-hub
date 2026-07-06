@@ -22,5 +22,6 @@ tech-stack:
   - Maximo
 lab: https://github.com/ibm-self-serve-assets/UI-Modernisation-Lab-MREF
 slide_deck: /docs/slide_decks/UI_Modernisation_Lab_MREF.pdf
+featured: 63
 ---
 An interactive web application that visualizes IBM TRIRIGA location data on an interactive map with advanced filtering and statistics. Part of the IBM UI Modernisation Lab initiative.
