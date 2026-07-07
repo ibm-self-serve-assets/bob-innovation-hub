@@ -162,7 +162,7 @@ content:
         type: select
         required: true
         options:
-         values: ["Apptio", "Cloud Sync", "Cloudability", "Concert", "Concert for Z", "Db2 Analytics Accelerator", "Data Gate for watsonx", "Guardium", "IBM API Connect", "IBM App Connect", "IBM Bob", "IBM Confluent", "IBM MQ", "IBM Network Intelligence", "Instana", "JSphere Suite for Java", "Kubecost", "Maximo", "NS1 Connect", "Planning Analytics", "Red Hat Ansible", "Red Hat OpenShift", "SevOne", "Terraform", "Turbonomic", "Vault", "Verify", "watsonx Assistant for Z", "watsonx Orchestrate", "watsonx.data", "watsonx.data (OpenRAG)", "watsonx.data integration", "watsonx.data intelligence", "watsonx.governance", "webMethods Hybrid Integration", "zSecure Compliance", "IBM Sterling"]
+         values: ["Apptio", "Cloud Sync", "Cloudability", "Concert", "Concert for Z", "Db2 Analytics Accelerator", "Data Gate for watsonx", "Guardium", "IBM API Connect", "IBM App Connect", "IBM Bob", "IBM Confluent", "IBM MQ", "IBM Network Intelligence", "Instana", "JSphere Suite for Java", "Kubecost", "Maximo", "NS1 Connect", "Planning Analytics", "Red Hat Ansible", "Red Hat OpenShift", "SevOne", "Terraform", "Turbonomic", "Vault", "Verify", "watsonx Assistant for Z", "watsonx Orchestrate", "watsonx.data", "watsonx.data (OpenRAG)", "watsonx.data integration", "watsonx.data intelligence", "watsonx.governance", "webMethods Hybrid Integration", "zSecure Compliance", "IBM Sterling", "Sterling OMS", "Sterling B2Bi", "Sterling CD"]
          multiple: true
          placeholder: "Select Products"
       - name: architecture_diagram
