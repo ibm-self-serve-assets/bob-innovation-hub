@@ -5,9 +5,29 @@ asset-owner: Ranjan.Kumar.Jena@ibm.com
 team: Service Engineering
 type: Technical
 domain: Automation
-problem: '""'
-solution: '""'
-business-value: '""'
+problem: Organizations migrating APIs from IBM API Connect v5 to v10 face
+  significant challenges due to the manual effort required to analyze API
+  definitions, policies, assemblies, and backend dependencies. This process is
+  often slow, inconsistent, and error-prone, making it difficult to accurately
+  estimate migration complexity, identify compatibility issues, and develop a
+  reliable migration plan. As a result, migration projects experience increased
+  risk, higher costs, and longer delivery timelines.
+solution: IBM Bob automates the API migration assessment process by analyzing
+  API Connect v5 assets and generating a comprehensive migration readiness
+  report. It evaluates migration complexity, identifies API-specific challenges
+  and risks, provides step-by-step migration recommendations aligned with API
+  Connect v10 best practices, compares v5 and v10 implementations, suggests code
+  refactoring where required, and highlights common migration pitfalls. This
+  AI-assisted assessment enables organizations to plan and execute migrations
+  with greater speed, consistency, and confidence.
+business-value: |+
+  - Accelerates API migration assessment and planning.
+  - Reduces manual effort and operational overhead.
+  - Improves developer productivity through AI-assisted analysis.
+  - Enables faster and more informed migration decisions.
+  - Reduces migration risks by identifying issues early.
+  - Improves migration quality and consistency across projects.
+
 tech-stack:
   - IBM Bob
   - IBM API Connect
