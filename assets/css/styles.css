@@ -1234,6 +1234,11 @@ cds-link { font-size: inherit; }
   font-family: 'IBM Plex Sans', sans-serif;
 }
 .uc-side-card--value .uc-side-card-title { color: var(--cds-interactive); }
+.uc-side-card-desc {
+  font-size: 0.75rem;
+  color: var(--cds-text-secondary);
+  margin: calc(-1 * var(--cds-spacing-02)) 0 var(--cds-spacing-04) 0;
+}
 
 .uc-value-list {
   list-style: none;
