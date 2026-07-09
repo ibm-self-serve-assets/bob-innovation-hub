@@ -5,9 +5,18 @@ asset-owner: ssnarasi@in.ibm.com
 team: Service Engineering
 type: Business
 domain: Retail
-problem: '""'
-solution: '""'
-business-value: '""'
+problem: Requirement of updating certain required details of leases with-in
+  Maximo Real Estate and Facilities tool to avoid error in the data and
+  improvise the quality of information available to the business
+solution: This solution is aimed at helping technical and business team to
+  evaluate the components made available and implement the solution to automate
+  the workflow and processes with Maximo MREF tool to update repeated /
+  duplicate data across the leases to improvise the quality and reporting
+  outcome of the Leases
+business-value: With this took, we are looking for improvisation of processes by
+  40% to the business and maintain a real good value of the data within the tool
+  so that business personas can improvise their operations and decision making
+  capabilities
 tech-stack:
   - IBM Bob
   - Maximo
