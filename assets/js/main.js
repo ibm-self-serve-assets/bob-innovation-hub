@@ -805,16 +805,36 @@ function parseHash(hash) {
   if (qIdx === -1) {
     let path = raw;
     if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
-    return { path, query: '' };
+    return { path, query: '', params: new URLSearchParams() };
   }
   let path = raw.slice(0, qIdx);
   if (path !== '/' && path.endsWith('/')) path = path.slice(0, -1);
   const params = new URLSearchParams(raw.slice(qIdx + 1));
-  return { path, query: params.get('q') || '' };
+  return { path, query: params.get('q') || '', params };
 }
 
 function buildHash(routeKey, query) {
   return query ? routeKey + '?q=' + encodeURIComponent(query) : routeKey;
+}
+
+// Build the #/use-cases hash with all active filter state encoded as query params
+function buildUcHash() {
+  const base = '#/use-cases';
+  const p = new URLSearchParams();
+  if (activeUcType)              p.set('type',    activeUcType);
+  if (activeUcDomain)            p.set('domain',  activeUcDomain);
+  if (activeUcProducts.length)   p.set('products', activeUcProducts.join(','));
+  if (activeUcPremium)           p.set('premium', activeUcPremium);
+  const qs = p.toString();
+  return qs ? base + '?' + qs : base;
+}
+
+// Push current UC filter state into the URL without triggering hashchange
+function updateUcHash() {
+  const newHash = buildUcHash();
+  if (window.location.hash !== newHash) {
+    history.replaceState(null, '', newHash);
+  }
 }
 
 function currentRouteKey() {
@@ -838,13 +858,21 @@ function highlightCard(slug) {
 }
 
 function resolveHash(hash) {
-  const { path, query } = parseHash(hash);
+  const { path, query, params } = parseHash(hash);
   // Detect /use-cases/:id detail route
   const ucDetailMatch = path.match(/^\/use-cases\/(.+)$/);
   if (ucDetailMatch && !ROUTE_MAP[path]) {
     return { section: 'use-case-detail', ucId: decodeURIComponent(ucDetailMatch[1]), query };
   }
-  return { ...(ROUTE_MAP[path] || ROUTE_MAP['/']), query };
+  const resolved = { ...(ROUTE_MAP[path] || ROUTE_MAP['/']), query };
+  // Merge UC filter query params (query-param approach takes precedence over path-based ucType)
+  if (resolved.section === 'use-cases') {
+    if (params.get('type'))     resolved.ucType      = params.get('type');
+    if (params.get('domain'))   resolved.ucDomain    = params.get('domain');
+    if (params.get('products')) resolved.ucProducts  = params.get('products').split(',').filter(Boolean);
+    if (params.get('premium'))  resolved.ucPremium   = params.get('premium');
+  }
+  return resolved;
 }
 
 // ─── Share buttons ────────────────────────────────────────────────────────────
@@ -923,6 +951,70 @@ function fallbackCopy(text, callback) {
   callback();
 }
 
+// ─── Apply UC filters from a resolved route object ───────────────────────────
+function applyUcFiltersFromResolved(resolved) {
+  // Reset all UC filter state first
+  activeUcType     = resolved.ucType     || '';
+  activeUcDomain   = resolved.ucDomain   || '';
+  activeUcProducts = resolved.ucProducts || [];
+  activeUcPremium  = resolved.ucPremium  || '';
+
+  // Sync type pills
+  const ucTypeFilter = document.getElementById('uc-type-filter');
+  if (ucTypeFilter) {
+    ucTypeFilter.querySelectorAll('.domain-pill[data-uc-type]').forEach(p => {
+      p.classList.toggle('active', p.dataset.ucType === activeUcType);
+    });
+  }
+
+  // Show/hide industry vs domain bar
+  const industryBar = document.getElementById('uc-industry-filter');
+  const domainBar   = document.getElementById('uc-domain-filter');
+  if (industryBar) industryBar.style.display = activeUcType === 'business'  ? '' : 'none';
+  if (domainBar)   domainBar.style.display   = activeUcType === 'technical' ? '' : 'none';
+
+  // Sync industry/domain pills
+  ['uc-industry-filter', 'uc-domain-filter'].forEach(barId => {
+    const bar = document.getElementById(barId);
+    if (!bar) return;
+    bar.querySelectorAll('.domain-pill[data-domain]').forEach(p => {
+      p.classList.toggle('active', p.dataset.domain === activeUcDomain);
+    });
+  });
+
+  // Sync products dropdown
+  const productsMenu = document.getElementById('uc-products-menu');
+  const productsLabel = document.getElementById('uc-products-label');
+  if (productsMenu) {
+    productsMenu.querySelectorAll('.uc-product-option[data-product]').forEach(opt => {
+      const selected = activeUcProducts.includes(opt.dataset.product);
+      opt.setAttribute('aria-selected', String(selected));
+      const cb = opt.querySelector('cds-checkbox');
+      if (cb) cb.checked = selected;
+    });
+  }
+  if (productsLabel) {
+    productsLabel.textContent = activeUcProducts.length === 0
+      ? 'All Products'
+      : activeUcProducts.length === 1
+        ? (productsMenu?.querySelector(`[data-product="${activeUcProducts[0]}"] cds-checkbox`)?.getAttribute('label-text') || '1 selected')
+        : `${activeUcProducts.length} selected`;
+  }
+
+  // Sync premium dropdown
+  const premiumMenu  = document.getElementById('uc-premium-menu');
+  const premiumLabel = document.getElementById('uc-premium-label');
+  if (premiumMenu) {
+    premiumMenu.querySelectorAll('.uc-product-option[data-premium]').forEach(opt => {
+      opt.setAttribute('aria-selected', String(opt.dataset.premium === activeUcPremium));
+    });
+  }
+  if (premiumLabel) {
+    const activeOpt = premiumMenu?.querySelector(`.uc-product-option[data-premium="${activeUcPremium}"]`);
+    premiumLabel.textContent = activeUcPremium && activeOpt ? activeOpt.textContent.trim() : 'All';
+  }
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   // Domain filter pills
@@ -999,6 +1091,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const premiumMenu = document.getElementById('uc-premium-menu');
       if (premiumMenu) premiumMenu.querySelectorAll('.uc-product-option').forEach(o => o.setAttribute('aria-selected', 'false'));
       currentPage['use-cases'] = 1;
+      updateUcHash();
 
       // Show/hide industry and domain filter bars
       const industryBar = document.getElementById('uc-industry-filter');
@@ -1035,6 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.classList.add('active');
       activeUcDomain = pill.dataset.domain;
       currentPage['use-cases'] = 1;
+      updateUcHash();
       filterAndPaginate('use-cases');
     });
   });
@@ -1067,6 +1161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const label = document.getElementById('uc-premium-label');
       if (label) label.textContent = activeUcPremium ? opt.textContent.trim() : 'All';
       currentPage['use-cases'] = 1;
+      updateUcHash();
       filterAndPaginate('use-cases');
     });
 
@@ -1115,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : `${activeUcProducts.length} selected`;
       }
       currentPage['use-cases'] = 1;
+      updateUcHash();
       filterAndPaginate('use-cases');
     });
 
@@ -1131,11 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navigateToUcDetail(resolved.ucId);
   } else {
     activateSection(resolved.section, resolved.subSection || null, false);
-    // Apply ucType filter from URL if present
-    if (resolved.section === 'use-cases' && resolved.ucType) {
-      const pill = document.querySelector(`#uc-type-filter .domain-pill[data-uc-type="${resolved.ucType}"]`);
-      if (pill) pill.click();
-    }
+    if (resolved.section === 'use-cases') applyUcFiltersFromResolved(resolved);
     if (resolved.query) setSearchValue(resolved.query);
     repaginateAll();
     if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);
@@ -1149,10 +1241,7 @@ window.addEventListener('hashchange', () => {
     navigateToUcDetail(resolved.ucId);
   } else {
     activateSection(resolved.section, resolved.subSection || null, false);
-    if (resolved.section === 'use-cases' && resolved.ucType) {
-      const pill = document.querySelector(`#uc-type-filter .domain-pill[data-uc-type="${resolved.ucType}"]`);
-      if (pill) pill.click();
-    }
+    if (resolved.section === 'use-cases') applyUcFiltersFromResolved(resolved);
     setSearchValue(resolved.query || '');
     repaginateAll();
     if (resolved.query) setTimeout(() => highlightCard(resolved.query), 50);

@@ -10,6 +10,7 @@
     {% assign premium_packages = _pp_feat | concat: _pp_other %}
     {% if premium_packages.size > 0 %}
       {% for pkg in premium_packages %}
+        {% assign uc_filter = pkg.title | remove: "IBM Bob Premium Package for " | downcase | uri_escape %}
         <div class="asset-card"
              data-slug="{{ pkg.slug }}"
              data-title="{{ pkg.title | downcase }}"
@@ -20,6 +21,7 @@
             {% if pkg.link %}
               <cds-link href="{{ pkg.link }}" target="_blank" rel="noopener noreferrer">View Package</cds-link>
             {% endif %}
+            <cds-link href="/#/use-cases?premium={{ uc_filter }}">View Use Cases</cds-link>
           </div>
         </div>
       {% endfor %}
