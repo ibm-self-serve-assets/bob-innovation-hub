@@ -68,6 +68,7 @@ const ROUTE_MAP = {
   '/subagents':               { section: 'subagents' },
   '/case-studies':            { section: 'case-studies' },
   '/bob-community':           { section: 'bob-community' },
+  '/contact-us':              { section: 'contact-us' },
 };
 
 const SECTION_TO_ROUTE = {
@@ -88,6 +89,7 @@ const SECTION_TO_ROUTE = {
   'subagents':            '#/subagents',
   'case-studies':         '#/case-studies',
   'bob-community':        '#/bob-community',
+  'contact-us':           '#/contact-us',
 };
 
 // ─── Use-Case Detail ──────────────────────────────────────────────────────────
@@ -658,12 +660,14 @@ let currentPage = {
   subagents: 1,
   'case-studies': 1,
   'bob-community': 1,
+  'contact-us': 1,
 };
 
 // ─── Use-Cases filter state ────────────────────────────────────────────────────
 let activeUcType     = '';   // '' | 'business' | 'technical'
 let activeUcDomain   = '';   // domain pill value for industry/domain filter
 let activeUcProducts = [];   // array of selected product strings (lowercased)
+let activeUcPremium  = '';   // selected premium package (lowercased), '' = all
 
 function filterAndPaginate(section) {
   const container = document.getElementById(`${section}-container`);
@@ -688,11 +692,13 @@ function filterAndPaginate(section) {
     if (section === 'use-cases') {
       const ucType  = card.dataset.ucType || '';
       const products = card.dataset.products || '';
+      const premiumPkg = card.dataset.premiumPackage || '';
       const matchesType    = !activeUcType    || ucType === activeUcType;
       const matchesDomainUc = !activeUcDomain || domain === activeUcDomain;
       const matchesProducts = activeUcProducts.length === 0
         || activeUcProducts.every(p => products.includes(p));
-      return matchesSearch && matchesType && matchesDomainUc && matchesProducts;
+      const matchesPremium = !activeUcPremium || premiumPkg === activeUcPremium;
+      return matchesSearch && matchesType && matchesDomainUc && matchesProducts && matchesPremium;
     }
 
     return matchesSearch && matchesDomain;
@@ -786,7 +792,7 @@ function changePage(section, newPage) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-const ALL_PAGINATED_SECTIONS = ['labs','demos','use-cases','modes','premium-packages','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community'];
+const ALL_PAGINATED_SECTIONS = ['labs','demos','use-cases','modes','premium-packages','skills','learning-path','explore-bob','product-documentation','pricing-plan','mcp','subagents','case-studies','bob-community','contact-us'];
 
 function repaginateAll() {
   ALL_PAGINATED_SECTIONS.forEach(s => filterAndPaginate(s));
@@ -985,8 +991,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = pill.dataset.ucType;
       ucTypeFilter.querySelectorAll('.domain-pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      activeUcType   = type;
-      activeUcDomain = '';  // reset domain when type changes
+      activeUcType    = type;
+      activeUcDomain  = '';  // reset domain when type changes
+      activeUcPremium = '';  // reset premium package when type changes
+      const premiumLabel = document.getElementById('uc-premium-label');
+      if (premiumLabel) premiumLabel.textContent = 'All';
+      const premiumMenu = document.getElementById('uc-premium-menu');
+      if (premiumMenu) premiumMenu.querySelectorAll('.uc-product-option').forEach(o => o.setAttribute('aria-selected', 'false'));
       currentPage['use-cases'] = 1;
 
       // Show/hide industry and domain filter bars
@@ -1027,6 +1038,45 @@ document.addEventListener('DOMContentLoaded', () => {
       filterAndPaginate('use-cases');
     });
   });
+
+  // ─── Use-Cases premium package single-select dropdown ─────────
+  const premiumToggle = document.getElementById('uc-premium-toggle');
+  const premiumMenu   = document.getElementById('uc-premium-menu');
+
+  if (premiumToggle && premiumMenu) {
+    premiumToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = premiumMenu.style.display !== 'none';
+      premiumMenu.style.display = isOpen ? 'none' : 'block';
+      premiumToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    premiumMenu.addEventListener('click', e => {
+      const opt = e.target.closest('.uc-product-option');
+      if (!opt) return;
+      const pkg = opt.dataset.premium;
+      const alreadySelected = opt.getAttribute('aria-selected') === 'true';
+      // deselect all options first (single-select)
+      premiumMenu.querySelectorAll('.uc-product-option').forEach(o => o.setAttribute('aria-selected', 'false'));
+      if (alreadySelected) {
+        activeUcPremium = '';
+      } else {
+        opt.setAttribute('aria-selected', 'true');
+        activeUcPremium = pkg;
+      }
+      const label = document.getElementById('uc-premium-label');
+      if (label) label.textContent = activeUcPremium ? opt.textContent.trim() : 'All';
+      currentPage['use-cases'] = 1;
+      filterAndPaginate('use-cases');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      premiumMenu.style.display = 'none';
+      premiumToggle.setAttribute('aria-expanded', 'false');
+    });
+    premiumMenu.addEventListener('click', e => e.stopPropagation());
+  }
 
   // ─── Use-Cases products multi-select dropdown ──────────────────
   const productsToggle = document.getElementById('uc-products-toggle');

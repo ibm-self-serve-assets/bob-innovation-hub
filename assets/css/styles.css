@@ -42,9 +42,17 @@
   /* Borders */
   --cds-border-subtle-00:        #e0e0e0;
   --cds-border-subtle-01:        #c6c6c6;
+  --cds-border-strong:           #8d8d8d;
   --cds-border-strong-01:        #8d8d8d;
   --cds-border-interactive:      #0f62fe;
   --cds-border-disabled:         #c6c6c6;
+
+  /* Field tokens (used by cds-text-input / cds-textarea internals) */
+  --cds-field:                   #f4f4f4;
+  --cds-field-01:                #f4f4f4;
+  --cds-field-02:                #ffffff;
+  --cds-field-hover:             #e8e8e8;
+  --cds-field-hover-01:          #e8e8e8;
 
   /* Brand / Interactive */
   --cds-interactive:             #0f62fe;
@@ -124,9 +132,17 @@
 
   --cds-border-subtle-00:        #525252;
   --cds-border-subtle-01:        #6f6f6f;
+  --cds-border-strong:           #8d8d8d;
   --cds-border-strong-01:        #8d8d8d;
   --cds-border-interactive:      #4589ff;
   --cds-border-disabled:         #525252;
+
+  /* Field tokens (dark) */
+  --cds-field:                   #262626;
+  --cds-field-01:                #262626;
+  --cds-field-02:                #393939;
+  --cds-field-hover:             #333333;
+  --cds-field-hover-01:         #333333;
 
   --cds-interactive:             #4589ff;
   --cds-focus:                   #ffffff;

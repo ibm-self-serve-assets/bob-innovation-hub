@@ -125,6 +125,13 @@ sections:
     link_text: View Resource
     empty_message: No community resources found. Add resources from your Pages CMS manager to populate this section.
 
+  - id: contact-us
+    title: Contact Us
+    icon: "" #✉️
+    show_search: false
+    type: custom
+    include_file: contact-us-section.html
+
   #- id: bob101
   #  title: Additional Resources
   #  icon: "" #📘

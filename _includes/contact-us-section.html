@@ -1,0 +1,256 @@
+<!-- Contact Us Section -->
+<div id="contact-us-section" class="content-section">
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-description">Have a question, suggestion, or want to get in touch with the Service Engineering team? Fill in the form below and we'll get back to you.</p>
+
+  <div class="contact-form-wrapper">
+    <div class="contact-form-card">
+
+      <!-- Name -->
+      <cds-form-item>
+        <cds-text-input
+          id="contact-name"
+          label="Name"
+          placeholder="Your full name"
+          autocomplete="name">
+        </cds-text-input>
+      </cds-form-item>
+
+      <!-- Email -->
+      <cds-form-item>
+        <cds-text-input
+          id="contact-email"
+          label="Email"
+          type="email"
+          placeholder="you@example.com"
+          autocomplete="email">
+        </cds-text-input>
+      </cds-form-item>
+
+      <!-- Role -->
+      <cds-form-item>
+        <cds-text-input
+          id="contact-role"
+          label="Role"
+          placeholder="e.g. Software Engineer, Consultant…"
+          autocomplete="organization-title">
+        </cds-text-input>
+      </cds-form-item>
+
+      <!-- Message -->
+      <cds-form-item>
+        <cds-textarea
+          id="contact-message"
+          label="Message"
+          placeholder="Tell us how we can help…"
+          rows="5">
+        </cds-textarea>
+      </cds-form-item>
+
+      <!-- Actions -->
+      <div class="contact-form-actions">
+        <cds-button id="contactSubmitBtn" kind="primary">Send Message</cds-button>
+      </div>
+
+      <!-- Success inline notification -->
+      <cds-inline-notification
+        id="contact-success"
+        kind="success"
+        title="Message received."
+        subtitle="Thank you! We'll get back to you soon."
+        style="margin-top: 1rem;"
+        hide-close-button="false">
+      </cds-inline-notification>
+
+      <!-- Error inline notification -->
+      <cds-inline-notification
+        id="contact-error"
+        kind="error"
+        title="Failed to send."
+        subtitle="Something went wrong. Please try again."
+        style="margin-top: 1rem;"
+        hide-close-button="false">
+      </cds-inline-notification>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-form-wrapper {
+    padding: 0.5rem 0 2rem;
+  }
+
+  .contact-form-card {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background-color: var(--cds-layer-01);
+    border: 1px solid var(--cds-border-subtle-00);
+    padding: 1.5rem;
+  }
+
+  .contact-form-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  cds-inline-notification:not([open]) {
+    display: none !important;
+  }
+
+  cds-inline-notification[open] {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+  }
+</style>
+
+<script>
+  (function () {
+    function getVal(el) {
+      return el ? (el.value !== undefined ? el.value : (el.getAttribute('value') || '')).trim() : '';
+    }
+
+    function initContactForm() {
+      var btn       = document.getElementById('contactSubmitBtn');
+      var nameEl    = document.getElementById('contact-name');
+      var emailEl   = document.getElementById('contact-email');
+      var roleEl    = document.getElementById('contact-role');
+      var messageEl = document.getElementById('contact-message');
+      if (!btn) return;
+
+      /* Hide notifications on init */
+      var successEl = document.getElementById('contact-success');
+      var errEl     = document.getElementById('contact-error');
+      if (successEl) successEl.open = false;
+      if (errEl)     errEl.open     = false;
+
+      /* Start disabled — enabled only when every field has content */
+      btn.setAttribute('disabled', '');
+
+      function checkAllFilled() {
+        var allFilled = getVal(nameEl) && getVal(emailEl) && getVal(roleEl) && getVal(messageEl);
+        if (allFilled) {
+          btn.removeAttribute('disabled');
+        } else {
+          btn.setAttribute('disabled', '');
+        }
+      }
+
+      /* cds-text-input / cds-textarea fire 'input' events on their host element */
+      [nameEl, emailEl, roleEl, messageEl].forEach(function (el) {
+        if (el) el.addEventListener('input', checkAllFilled);
+      });
+
+      btn.addEventListener('click', function () {
+        var name    = getVal(nameEl);
+        var email   = getVal(emailEl);
+        var role    = getVal(roleEl);
+        var message = getVal(messageEl);
+
+        /* Console log all inputs */
+        console.log('Contact Form Submission:', { name: name, email: email, role: role, message: message });
+
+        /* Inline validation via Carbon invalid state */
+        var valid = true;
+        if (!name) {
+          nameEl.setAttribute('invalid', ''); nameEl.setAttribute('invalid-text', 'Name is required.'); valid = false;
+        } else { nameEl.removeAttribute('invalid'); }
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailEl.setAttribute('invalid', ''); emailEl.setAttribute('invalid-text', email ? 'Please enter a valid email address.' : 'Email is required.'); valid = false;
+        } else { emailEl.removeAttribute('invalid'); }
+
+        if (!message) {
+          messageEl.setAttribute('invalid', ''); messageEl.setAttribute('invalid-text', 'Message is required.'); valid = false;
+        } else { messageEl.removeAttribute('invalid'); }
+
+        if (!valid) return;
+
+        /* ── Sender routing based on email domain ─────────────────────────── */
+        var CONTACT_LIST = {
+          'amol.dhondse@in.ibm.com':     ['Accenture', 'Infosys', 'LTIMindtree'],
+          'dmanchik@in.ibm.com':         ['Deloitte', 'Wipro', 'HCLTech'],
+          'gjayasee@in.ibm.com':         ['Cognizant', 'Mphasis', 'NTT'],
+          'sarang.tripathy@in.ibm.com':  ['TCS', 'Capgemini', 'KPMG'],
+          'sumeet_kapoor@in.ibm.com':    ['EY', 'Tech Mahindra'],
+        };
+
+        /* Extract the domain from the sender's email, e.g. "accenture.com" */
+        var emailDomain = email.split('@')[1] || '';
+
+        /* Find the IBM contact whose account list contains a name that appears
+           as a substring inside the domain (case-insensitive).
+           e.g. domain "accenture.com" matches "Accenture" → amol.dhondse@in.ibm.com */
+        var emailFrom = null;
+        Object.keys(CONTACT_LIST).forEach(function (sender) {
+          if (emailFrom) return; // already matched
+          CONTACT_LIST[sender].forEach(function (account) {
+            /* match with and without spaces, e.g. "Tech Mahindra" → "techmahindra" */
+            var accountNorm = account.toLowerCase().replace(/\s+/g, '');
+            var domainNorm  = emailDomain.toLowerCase().replace(/\s+/g, '');
+            if (domainNorm.indexOf(accountNorm) !== -1) {
+              emailFrom = sender;
+            }
+          });
+        });
+
+        /* Disable button immediately to prevent double-submit */
+        btn.setAttribute('disabled', '');
+
+        /* Build email payload */
+        var emailSubject = 'Bob Innovation Hub – Contact from ' + name;
+        var emailBody    =
+          '<b>Name:</b> '    + name    + '<br>' +
+          '<b>Email:</b> '   + email   + '<br>' +
+          '<b>Role:</b> '    + (role || '(not provided)') + '<br><br>' +
+          '<b>Message:</b><br>' + message.replace(/\n/g, '<br>');
+
+        var payload = {
+          emailTo:      [emailFrom],
+          emailFrom: "anand.awasthi@in.ibm.com" || '',
+          emailSubject: emailSubject,
+          emailBody:    emailBody,
+        };
+
+        console.log('Contact Form Submission – sending email:', payload);
+
+        fetch('https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email', {
+          method:  'POST',
+          headers: { 'accept': 'application/json', 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload),
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            console.log('Email sent successfully:', data);
+            var errEl     = document.getElementById('contact-error');
+            var successEl = document.getElementById('contact-success');
+            if (errEl)     errEl.open     = false;
+            if (successEl) successEl.open = true;
+          })
+          .catch(function (err) {
+            console.error('Email send failed:', err);
+            /* Re-enable so the user can retry */
+            btn.removeAttribute('disabled');
+            var successEl = document.getElementById('contact-success');
+            var errEl     = document.getElementById('contact-error');
+            if (successEl) successEl.open = false;
+            if (errEl)     errEl.open     = true;
+          });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initContactForm);
+    } else {
+      initContactForm();
+    }
+  })();
+</script>

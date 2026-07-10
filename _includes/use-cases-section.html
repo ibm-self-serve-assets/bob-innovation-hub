@@ -42,6 +42,33 @@
         </div>
       </div>
     </div>
+
+    <!-- Premium Package single-select dropdown -->
+    <div class="uc-products-filter" id="uc-premium-filter">
+      <span class="domain-filter-label">Premium Package:</span>
+      <div class="uc-products-dropdown" id="uc-premium-dropdown">
+        <button class="uc-products-toggle" id="uc-premium-toggle" aria-haspopup="listbox" aria-expanded="false">
+          <span id="uc-premium-label">All</span>
+          <svg class="uc-products-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="uc-products-menu" id="uc-premium-menu" role="listbox" aria-label="Filter by premium package" style="display:none;">
+          {% assign all_pkg_items = "" %}
+          {% for uc in site.use-cases %}
+            {% if uc.premium_package and uc.premium_package != "" %}
+              {% assign all_pkg_items = all_pkg_items | append: uc.premium_package | append: "|||" %}
+            {% endif %}
+          {% endfor %}
+          {% assign pkg_list = all_pkg_items | split: "|||" | uniq | sort %}
+          {% for pkg in pkg_list %}
+            {% if pkg != "" %}
+              <button class="uc-product-option" role="option" aria-selected="false" data-premium="{{ pkg | downcase }}">{{ pkg }}</button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Secondary filter bar: Industry (Business only) / Domain (Technical only) -->
@@ -96,7 +123,8 @@
              data-domain="{{ usecase.domain | downcase }}"
              data-team="{{ usecase.team | downcase }}"
              data-uc-type="{{ uc_type_lc }}"
-             data-products="{{ uc_products_str | downcase }}">
+             data-products="{{ uc_products_str | downcase }}"
+             data-premium-package="{{ usecase.premium_package | downcase }}">
           <h3>{{ usecase.title }}</h3>
           <div class="badge-container">
             {% if usecase.domain %}
