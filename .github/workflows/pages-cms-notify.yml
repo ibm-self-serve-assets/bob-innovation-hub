@@ -12,23 +12,42 @@ jobs:
     if: contains(github.event.head_commit.message, '(via Pages CMS)')
 
     steps:
+      - name: Build Pages CMS edit URL
+        id: cms_url
+        run: |
+          # Get the first modified/added file from the commit
+          FILES='${{ toJson(github.event.head_commit.modified) }}'
+          ADDED='${{ toJson(github.event.head_commit.added) }}'
+
+          # Pick first file from modified, fall back to added
+          FILE=$(echo "$FILES" | python3 -c "import sys,json; f=json.load(sys.stdin); print(f[0] if f else '')" 2>/dev/null || true)
+          if [ -z "$FILE" ]; then
+            FILE=$(echo "$ADDED" | python3 -c "import sys,json; f=json.load(sys.stdin); print(f[0] if f else '')" 2>/dev/null || true)
+          fi
+
+          if [ -n "$FILE" ]; then
+            # URL-encode the file path (replace / with %2F)
+            ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$FILE")
+            # Determine collection from path prefix
+            COLLECTION=$(echo "$FILE" | sed 's|^\([^/]*\)/.*|\1|' | sed 's|^_||')
+            CMS_URL="https://app.pagescms.org/ibm-self-serve-assets/bob-innovation-hub/main/collection/${COLLECTION}/edit/${ENCODED}"
+          else
+            CMS_URL="https://app.pagescms.org/ibm-self-serve-assets/bob-innovation-hub"
+          fi
+
+          echo "url=$CMS_URL" >> "$GITHUB_OUTPUT"
+          echo "file=$FILE" >> "$GITHUB_OUTPUT"
+
       - name: Send email notification
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          to: ${{ secrets.NOTIFY_EMAIL }}
-          from: "GitHub Actions <${{ secrets.MAIL_USERNAME }}>"
-          subject: "Content updated in bob-innovation-hub"
-          body: |
-            A content update was made via Pages CMS.
-
-            Repo:    ${{ github.repository }}
-            Branch:  ${{ github.ref_name }}
-            Author:  ${{ github.event.head_commit.author.name }} (${{ github.event.head_commit.author.email }})
-            Commit:  ${{ github.event.head_commit.id }}
-            Message: ${{ github.event.head_commit.message }}
-
-            View commit: ${{ github.event.head_commit.url }}
+        run: |
+          curl -X POST \
+            'https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "emailTo": ${{ toJson(fromJson(vars.NOTIFY_EMAIL_TO)) }},
+              "emailCC": ${{ toJson(fromJson(vars.NOTIFY_EMAIL_CC)) }},
+              "emailFrom": "${{ vars.NOTIFY_EMAIL_FROM }}",
+              "emailSubject": "Content updated in bob-innovation-hub",
+              "emailBody": "A content update was made via Pages CMS.\n\nRepo: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nAuthor: ${{ github.event.head_commit.author.name }} (${{ github.event.head_commit.author.email }})\nFile: ${{ steps.cms_url.outputs.file }}\nMessage: ${{ github.event.head_commit.message }}\n\nEdit in Pages CMS: ${{ steps.cms_url.outputs.url }}\n\nView commit: ${{ github.event.head_commit.url }}"
+            }'
