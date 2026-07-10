@@ -5,6 +5,7 @@ asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
 domain: Modernization
+premium_package: Java Modernization
 problem: >+
   Organizations maintaining mission-critical enterprise systems face severe
   operational friction due to technical debt in legacy Java frameworks (such as
