@@ -141,6 +141,14 @@ content:
          values: ["Data", "Automation", "Security", "Modernization","BFSI","Healthcare","SupplyChain","Transport & Logistics","Energy & Utilities","Travel","Entertainment", "Retail", "Manufacturing"]
          multiple: false
          placeholder: "Select Domain"
+      - name: premium_package
+        label: "Premium Package Used"
+        type: select
+        required: false
+        options:
+         values: ["Java Moderninzation", "i", "Z"]
+         multiple: false
+         placeholder: "Select Premium Package Used"
       - name: body
         label: "Use-case Description"
         type: rich-text
