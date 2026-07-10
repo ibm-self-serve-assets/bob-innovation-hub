@@ -48,35 +48,36 @@ jobs:
           CMS_FILE: ${{ steps.cms_url.outputs.file }}
           CMS_URL: ${{ steps.cms_url.outputs.url }}
         run: |
-          python3 - <<'EOF'
-          import json, os, urllib.request
+          cat > /tmp/send_email.py << 'PYEOF'
+import json, os, urllib.request
 
-          body = (
-            "A content update was made via Pages CMS.\n\n"
-            f"Repo:    {os.environ['COMMIT_REPO']}\n"
-            f"Branch:  {os.environ['COMMIT_BRANCH']}\n"
-            f"Author:  {os.environ['COMMIT_AUTHOR']} ({os.environ['COMMIT_EMAIL']})\n"
-            f"File:    {os.environ['CMS_FILE']}\n"
-            f"Message: {os.environ['COMMIT_MSG']}\n\n"
-            f"Edit in Pages CMS: {os.environ['CMS_URL']}\n\n"
-            f"View commit: {os.environ['COMMIT_URL']}"
-          )
+body = (
+  "A content update was made via Pages CMS.\n\n"
+  f"Repo:    {os.environ['COMMIT_REPO']}\n"
+  f"Branch:  {os.environ['COMMIT_BRANCH']}\n"
+  f"Author:  {os.environ['COMMIT_AUTHOR']} ({os.environ['COMMIT_EMAIL']})\n"
+  f"File:    {os.environ['CMS_FILE']}\n"
+  f"Message: {os.environ['COMMIT_MSG']}\n\n"
+  f"Edit in Pages CMS: {os.environ['CMS_URL']}\n\n"
+  f"View commit: {os.environ['COMMIT_URL']}"
+)
 
-          payload = {
-            "emailTo":      json.loads(os.environ['EMAIL_TO']),
-            "emailCC":      json.loads(os.environ['EMAIL_CC']),
-            "emailFrom":    os.environ['EMAIL_FROM'],
-            "emailSubject": "Content updated in bob-innovation-hub",
-            "emailBody":    body,
-          }
+payload = {
+  "emailTo":      json.loads(os.environ['EMAIL_TO']),
+  "emailCC":      json.loads(os.environ['EMAIL_CC']),
+  "emailFrom":    os.environ['EMAIL_FROM'],
+  "emailSubject": "Content updated in bob-innovation-hub",
+  "emailBody":    body,
+}
 
-          data = json.dumps(payload).encode()
-          req = urllib.request.Request(
-            "https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email",
-            data=data,
-            headers={"Content-Type": "application/json", "accept": "application/json"},
-            method="POST",
-          )
-          with urllib.request.urlopen(req) as resp:
-            print(resp.status, resp.read().decode())
-          EOF
+data = json.dumps(payload).encode()
+req = urllib.request.Request(
+  "https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email",
+  data=data,
+  headers={"Content-Type": "application/json", "accept": "application/json"},
+  method="POST",
+)
+with urllib.request.urlopen(req) as resp:
+  print(resp.status, resp.read().decode())
+PYEOF
+          python3 /tmp/send_email.py
