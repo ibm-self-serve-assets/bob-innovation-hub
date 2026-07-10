@@ -36,9 +36,8 @@ jobs:
 
       - name: Send email notification
         env:
-          EMAIL_TO: ${{ vars.NOTIFY_EMAIL_TO }}
-          EMAIL_CC: ${{ vars.NOTIFY_EMAIL_CC }}
-          EMAIL_FROM: ${{ vars.NOTIFY_EMAIL_FROM }}
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
           COMMIT_REPO: ${{ github.repository }}
           COMMIT_BRANCH: ${{ github.ref_name }}
           COMMIT_AUTHOR: ${{ github.event.head_commit.author.name }}
@@ -48,4 +47,45 @@ jobs:
           CMS_FILE: ${{ steps.cms_url.outputs.file }}
           CMS_URL: ${{ steps.cms_url.outputs.url }}
         run: |
-          echo "aW1wb3J0IGpzb24sIG9zLCB1cmxsaWIucmVxdWVzdAoKYm9keSA9ICgKICAiQSBjb250ZW50IHVwZGF0ZSB3YXMgbWFkZSB2aWEgUGFnZXMgQ01TLgoKIgogIGYiUmVwbzogICAge29zLmVudmlyb25bJ0NPTU1JVF9SRVBPJ119CiIKICBmIkJyYW5jaDogIHtvcy5lbnZpcm9uWydDT01NSVRfQlJBTkNIJ119CiIKICBmIkF1dGhvcjogIHtvcy5lbnZpcm9uWydDT01NSVRfQVVUSE9SJ119ICh7b3MuZW52aXJvblsnQ09NTUlUX0VNQUlMJ119KQoiCiAgZiJGaWxlOiAgICB7b3MuZW52aXJvblsnQ01TX0ZJTEUnXX0KIgogIGYiTWVzc2FnZToge29zLmVudmlyb25bJ0NPTU1JVF9NU0cnXX0KCiIKICBmIkVkaXQgaW4gUGFnZXMgQ01TOiB7b3MuZW52aXJvblsnQ01TX1VSTCddfQoKIgogIGYiVmlldyBjb21taXQ6IHtvcy5lbnZpcm9uWydDT01NSVRfVVJMJ119IgopCgpwYXlsb2FkID0gewogICJlbWFpbFRvIjogICAgICBqc29uLmxvYWRzKG9zLmVudmlyb25bJ0VNQUlMX1RPJ10pLAogICJlbWFpbENDIjogICAgICBqc29uLmxvYWRzKG9zLmVudmlyb25bJ0VNQUlMX0NDJ10pLAogICJlbWFpbEZyb20iOiAgICBvcy5lbnZpcm9uWydFTUFJTF9GUk9NJ10sCiAgImVtYWlsU3ViamVjdCI6ICJDb250ZW50IHVwZGF0ZWQgaW4gYm9iLWlubm92YXRpb24taHViIiwKICAiZW1haWxCb2R5IjogICAgYm9keSwKfQoKZGF0YSA9IGpzb24uZHVtcHMocGF5bG9hZCkuZW5jb2RlKCkKcmVxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdCgKICAiaHR0cHM6Ly9lbWFpbC1zZXJ2aWNlLjF5ZWV3ampnbjE2OS51cy1lYXN0LmNvZGVlbmdpbmUuYXBwZG9tYWluLmNsb3VkL3NlbmQtZW1haWwiLAogIGRhdGE9ZGF0YSwKICBoZWFkZXJzPXsiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24iLCAiYWNjZXB0IjogImFwcGxpY2F0aW9uL2pzb24ifSwKICBtZXRob2Q9IlBPU1QiLAopCndpdGggdXJsbGliLnJlcXVlc3QudXJsb3BlbihyZXEpIGFzIHJlc3A6CiAgcHJpbnQocmVzcC5zdGF0dXMsIHJlc3AucmVhZCgpLmRlY29kZSgpKQo=" | base64 -d | python3
+          python3 - << 'EOF'
+import json, os, urllib.request
+
+# NOTIFY_TO is a comma-separated string e.g. "a@ibm.com, b@ibm.com"
+to_list = [e.strip() for e in os.environ.get("NOTIFY_TO", "").split(",") if e.strip()]
+
+body = "\n".join([
+    "A content update was made via Pages CMS.",
+    "",
+    "Repo:    " + os.environ.get("COMMIT_REPO", ""),
+    "Branch:  " + os.environ.get("COMMIT_BRANCH", ""),
+    "Author:  " + os.environ.get("COMMIT_AUTHOR", "") + " (" + os.environ.get("COMMIT_EMAIL", "") + ")",
+    "File:    " + os.environ.get("CMS_FILE", ""),
+    "Message: " + os.environ.get("COMMIT_MSG", ""),
+    "",
+    "Edit in Pages CMS: " + os.environ.get("CMS_URL", ""),
+    "",
+    "View commit: " + os.environ.get("COMMIT_URL", ""),
+])
+
+payload = {
+    "emailTo":      to_list,
+    "emailCC":      [],
+    "emailFrom":    os.environ.get("MAIL_USERNAME", ""),
+    "emailSubject": "Content updated in bob-innovation-hub",
+    "emailBody":    body,
+}
+
+data = json.dumps(payload).encode()
+req = urllib.request.Request(
+    "https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email",
+    data=data,
+    headers={"Content-Type": "application/json", "accept": "application/json"},
+    method="POST",
+)
+try:
+    with urllib.request.urlopen(req) as resp:
+        print(resp.status, resp.read().decode())
+except urllib.error.HTTPError as e:
+    print("HTTP Error:", e.code, e.read().decode())
+    raise
+EOF
