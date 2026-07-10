@@ -146,7 +146,7 @@ content:
         type: select
         required: false
         options:
-         values: ["Java Moderninzation", "i", "Z"]
+         values: ["Java Modernization", "i", "Z"]
          multiple: false
          placeholder: "Select Premium Package Used"
       - name: body
