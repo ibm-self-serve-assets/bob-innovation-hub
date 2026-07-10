@@ -5,6 +5,7 @@ asset-owner: benoit.marolleau@fr.ibm.com
 team: Other
 type: Technical
 domain: Modernization
+premium_package: i
 problem: >+
   Enterprises relying on core business applications running on IBM i struggle
   with compounding technical debt, developer bottlenecks, and architectural
