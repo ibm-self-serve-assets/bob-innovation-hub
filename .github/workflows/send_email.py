@@ -1,4 +1,4 @@
-import json, os, urllib.request
+import json, os, urllib.request, urllib.error, sys
 
 # NOTIFY_TO is a comma-separated string e.g. "a@ibm.com, b@ibm.com"
 to_list = [e.strip() for e in os.environ.get("NOTIFY_TO", "").split(",") if e.strip()]
@@ -25,6 +25,8 @@ payload = {
     "emailBody":    body,
 }
 
+print("Sending payload:", json.dumps(payload, indent=2), flush=True)
+
 data = json.dumps(payload).encode()
 req = urllib.request.Request(
     "https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email",
@@ -34,7 +36,10 @@ req = urllib.request.Request(
 )
 try:
     with urllib.request.urlopen(req) as resp:
-        print(resp.status, resp.read().decode())
+        print(resp.status, resp.read().decode(), flush=True)
 except urllib.error.HTTPError as e:
-    print("HTTP Error:", e.code, e.read().decode())
-    raise
+    print("HTTP Error:", e.code, e.read().decode(), flush=True)
+    sys.exit(1)
+except urllib.error.URLError as e:
+    print("URL Error:", e.reason, flush=True)
+    sys.exit(1)
