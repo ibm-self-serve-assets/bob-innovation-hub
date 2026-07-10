@@ -1,6 +1,6 @@
 ---
 id: f31d90fe-d56e-4e6e-8a70-114228f44d9f
-title: Test Email
+title: Test Email 2
 link: gnvgngnvnvnvnn
 ---
 fhhhfhfhhh
