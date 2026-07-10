@@ -135,6 +135,9 @@
             {% else %}
               <cds-tag type="teal" size="sm">Technical</cds-tag>
             {% endif %}
+            {% if usecase.premium_package and usecase.premium_package != "" %}
+              <cds-tag type="gold" size="sm">⭐ {{ usecase.premium_package }}</cds-tag>
+            {% endif %}
           </div>
           <div class="card-body">{{ usecase.content }}</div>
         </div>
