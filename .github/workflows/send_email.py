@@ -1,7 +1,12 @@
 import json, os, urllib.request, urllib.error, sys
 
-# NOTIFY_TO is a comma-separated string e.g. "a@ibm.com, b@ibm.com"
-to_list = [e.strip() for e in os.environ.get("NOTIFY_TO", "").split(",") if e.strip()]
+# Read from NOTIFY_EMAIL secret (comma-separated); fall back to hardcoded list
+# if the secret is empty (GitHub Actions blanks secrets containing commas in env vars)
+notify_email = os.environ.get("NOTIFY_EMAIL", "").strip()
+if notify_email:
+    to_list = [e.strip() for e in notify_email.split(",") if e.strip()]
+else:
+    to_list = ["anand.awasthi@in.ibm.com", "suyash.gupte2@ibm.com"]
 
 body = "\n".join([
     "A content update was made via Pages CMS.",
