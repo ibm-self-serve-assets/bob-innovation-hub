@@ -48,36 +48,4 @@ jobs:
           CMS_FILE: ${{ steps.cms_url.outputs.file }}
           CMS_URL: ${{ steps.cms_url.outputs.url }}
         run: |
-          cat > /tmp/send_email.py << 'PYEOF'
-import json, os, urllib.request
-
-body = (
-  "A content update was made via Pages CMS.\n\n"
-  f"Repo:    {os.environ['COMMIT_REPO']}\n"
-  f"Branch:  {os.environ['COMMIT_BRANCH']}\n"
-  f"Author:  {os.environ['COMMIT_AUTHOR']} ({os.environ['COMMIT_EMAIL']})\n"
-  f"File:    {os.environ['CMS_FILE']}\n"
-  f"Message: {os.environ['COMMIT_MSG']}\n\n"
-  f"Edit in Pages CMS: {os.environ['CMS_URL']}\n\n"
-  f"View commit: {os.environ['COMMIT_URL']}"
-)
-
-payload = {
-  "emailTo":      json.loads(os.environ['EMAIL_TO']),
-  "emailCC":      json.loads(os.environ['EMAIL_CC']),
-  "emailFrom":    os.environ['EMAIL_FROM'],
-  "emailSubject": "Content updated in bob-innovation-hub",
-  "emailBody":    body,
-}
-
-data = json.dumps(payload).encode()
-req = urllib.request.Request(
-  "https://email-service.1yeewjjgn169.us-east.codeengine.appdomain.cloud/send-email",
-  data=data,
-  headers={"Content-Type": "application/json", "accept": "application/json"},
-  method="POST",
-)
-with urllib.request.urlopen(req) as resp:
-  print(resp.status, resp.read().decode())
-PYEOF
-          python3 /tmp/send_email.py
+          echo "aW1wb3J0IGpzb24sIG9zLCB1cmxsaWIucmVxdWVzdAoKYm9keSA9ICgKICAiQSBjb250ZW50IHVwZGF0ZSB3YXMgbWFkZSB2aWEgUGFnZXMgQ01TLgoKIgogIGYiUmVwbzogICAge29zLmVudmlyb25bJ0NPTU1JVF9SRVBPJ119CiIKICBmIkJyYW5jaDogIHtvcy5lbnZpcm9uWydDT01NSVRfQlJBTkNIJ119CiIKICBmIkF1dGhvcjogIHtvcy5lbnZpcm9uWydDT01NSVRfQVVUSE9SJ119ICh7b3MuZW52aXJvblsnQ09NTUlUX0VNQUlMJ119KQoiCiAgZiJGaWxlOiAgICB7b3MuZW52aXJvblsnQ01TX0ZJTEUnXX0KIgogIGYiTWVzc2FnZToge29zLmVudmlyb25bJ0NPTU1JVF9NU0cnXX0KCiIKICBmIkVkaXQgaW4gUGFnZXMgQ01TOiB7b3MuZW52aXJvblsnQ01TX1VSTCddfQoKIgogIGYiVmlldyBjb21taXQ6IHtvcy5lbnZpcm9uWydDT01NSVRfVVJMJ119IgopCgpwYXlsb2FkID0gewogICJlbWFpbFRvIjogICAgICBqc29uLmxvYWRzKG9zLmVudmlyb25bJ0VNQUlMX1RPJ10pLAogICJlbWFpbENDIjogICAgICBqc29uLmxvYWRzKG9zLmVudmlyb25bJ0VNQUlMX0NDJ10pLAogICJlbWFpbEZyb20iOiAgICBvcy5lbnZpcm9uWydFTUFJTF9GUk9NJ10sCiAgImVtYWlsU3ViamVjdCI6ICJDb250ZW50IHVwZGF0ZWQgaW4gYm9iLWlubm92YXRpb24taHViIiwKICAiZW1haWxCb2R5IjogICAgYm9keSwKfQoKZGF0YSA9IGpzb24uZHVtcHMocGF5bG9hZCkuZW5jb2RlKCkKcmVxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdCgKICAiaHR0cHM6Ly9lbWFpbC1zZXJ2aWNlLjF5ZWV3ampnbjE2OS51cy1lYXN0LmNvZGVlbmdpbmUuYXBwZG9tYWluLmNsb3VkL3NlbmQtZW1haWwiLAogIGRhdGE9ZGF0YSwKICBoZWFkZXJzPXsiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24iLCAiYWNjZXB0IjogImFwcGxpY2F0aW9uL2pzb24ifSwKICBtZXRob2Q9IlBPU1QiLAopCndpdGggdXJsbGliLnJlcXVlc3QudXJsb3BlbihyZXEpIGFzIHJlc3A6CiAgcHJpbnQocmVzcC5zdGF0dXMsIHJlc3AucmVhZCgpLmRlY29kZSgpKQo=" | base64 -d | python3
