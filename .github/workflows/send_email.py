@@ -1,4 +1,4 @@
-import json, os, urllib.request, urllib.error, sys
+import json, os, re, urllib.parse, urllib.request, urllib.error, sys
 
 # Read from NOTIFY_EMAIL secret (comma-separated); fall back to hardcoded list
 # if the secret is empty (GitHub Actions blanks secrets containing commas in env vars)
@@ -8,9 +8,26 @@ if notify_email:
 else:
     to_list = ["anand.awasthi@in.ibm.com", "suyash.gupte2@ibm.com"]
 
-cms_url    = os.environ.get("CMS_URL", "")
+# Build CMS edit URL from the commit message
+# Pages CMS always writes: "Update _collection/file.md (via Pages CMS)"
+commit_msg = os.environ.get("COMMIT_MSG", "")
 commit_url = os.environ.get("COMMIT_URL", "")
-cms_file   = os.environ.get("CMS_FILE", "")
+
+m = re.search(r'(?:Update|Create|Delete)\s+(\S+\.md)', commit_msg)
+cms_file = m.group(1) if m else ""
+
+if cms_file:
+    encoded    = urllib.parse.quote(cms_file, safe="")
+    collection = re.sub(r"^_", "", cms_file.split("/")[0])
+    cms_url    = (
+        "https://app.pagescms.org/ibm-self-serve-assets/bob-innovation-hub"
+        f"/main/collection/{collection}/edit/{encoded}"
+    )
+else:
+    cms_url = "https://app.pagescms.org/ibm-self-serve-assets/bob-innovation-hub"
+
+print(f"Detected file: {cms_file}", flush=True)
+print(f"CMS URL:       {cms_url}", flush=True)
 
 body = """<html><body style="font-family:sans-serif;font-size:14px;color:#1f2328;">
 <p>A content update was made via <strong>Pages CMS</strong>.</p>
@@ -26,12 +43,12 @@ body = """<html><body style="font-family:sans-serif;font-size:14px;color:#1f2328
   <a href="{commit_url}">&#128279; View commit</a>
 </p>
 </body></html>""".format(
-    repo    = os.environ.get("COMMIT_REPO", ""),
-    branch  = os.environ.get("COMMIT_BRANCH", ""),
-    author  = os.environ.get("COMMIT_AUTHOR", ""),
-    email   = os.environ.get("COMMIT_EMAIL", ""),
-    file    = cms_file if cms_file else "<em>unknown</em>",
-    message = os.environ.get("COMMIT_MSG", ""),
+    repo       = os.environ.get("COMMIT_REPO", ""),
+    branch     = os.environ.get("COMMIT_BRANCH", ""),
+    author     = os.environ.get("COMMIT_AUTHOR", ""),
+    email      = os.environ.get("COMMIT_EMAIL", ""),
+    file       = cms_file if cms_file else "<em>unknown</em>",
+    message    = commit_msg,
     cms_url    = cms_url,
     commit_url = commit_url,
 )
@@ -44,7 +61,7 @@ payload = {
     "emailBody":    body,
 }
 
-print("Sending payload:", json.dumps(payload, indent=2), flush=True)
+print("Sending to:", to_list, flush=True)
 
 data = json.dumps(payload).encode()
 req = urllib.request.Request(
