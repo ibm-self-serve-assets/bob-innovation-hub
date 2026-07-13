@@ -18,17 +18,17 @@ jobs:
       - name: Build Pages CMS edit URL
         id: cms_url
         run: |
-          FILES='${{ toJson(github.event.head_commit.modified) }}'
-          ADDED='${{ toJson(github.event.head_commit.added) }}'
-          REMOVED='${{ toJson(github.event.head_commit.removed) }}'
+          MSG='${{ github.event.head_commit.message }}'
 
-          FILE=$(echo "$FILES" | python3 -c "import sys,json; f=json.load(sys.stdin); print(f[0] if f else '')" 2>/dev/null || true)
-          if [ -z "$FILE" ]; then
-            FILE=$(echo "$ADDED" | python3 -c "import sys,json; f=json.load(sys.stdin); print(f[0] if f else '')" 2>/dev/null || true)
-          fi
-          if [ -z "$FILE" ]; then
-            FILE=$(echo "$REMOVED" | python3 -c "import sys,json; f=json.load(sys.stdin); print(f[0] if f else '')" 2>/dev/null || true)
-          fi
+          # Extract file path from commit message: "Update _foo/bar.md (via Pages CMS)"
+          FILE=$(echo "$MSG" | python3 -c "
+import sys, re
+msg = sys.stdin.read().strip()
+m = re.search(r'(?:Update|Create|Delete)\s+(\S+\.md)', msg)
+print(m.group(1) if m else '')
+")
+
+          echo "Detected file: $FILE"
 
           if [ -n "$FILE" ]; then
             ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$FILE")
