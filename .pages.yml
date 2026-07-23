@@ -195,6 +195,10 @@ content:
         label: "Skill Link"
         type: string
         required: false
+      - name: usecase-link
+        label: "Usecase Seismic Link"
+        type: string
+        required: false
       - name: slide_deck
         label: "Slide Deck(.pdf Only)"
         type: file
