@@ -29,7 +29,11 @@
             <div class="card-body">{{ doc.content }}</div>
             {% if doc.link %}
               <div class="card-actions">
-                <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+                {% if doc.link contains "ibm.seismic.com" %}
+                  <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View on Seismic</cds-link>
+                {% else %}
+                  <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+                {% endif %}
               </div>
             {% endif %}
           </div>
@@ -57,7 +61,11 @@
             <div class="card-body">{{ doc.content }}</div>
             {% if doc.link %}
               <div class="card-actions">
-                <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+                {% if doc.link contains "ibm.seismic.com" %}
+                  <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View on Seismic</cds-link>
+                {% else %}
+                  <cds-link href="{{ doc.link }}" target="_blank" rel="noopener noreferrer">View Document</cds-link>
+                {% endif %}
               </div>
             {% endif %}
           </div>
