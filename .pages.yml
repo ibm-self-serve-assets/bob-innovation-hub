@@ -45,6 +45,10 @@ content:
         label: "Documentation Link"
         type: string
         required: true
+      - name: seismic-link
+        label: "Seismic Link"
+        type: string
+        required: false
       - name: featured
         label: Featured(Skip this field)
         type: number
@@ -93,6 +97,10 @@ content:
         label: "Document Link"
         type: string
         required: true
+      - name: seismic-link
+        label: "Seismic Link"
+        type: string
+        required: false
       - name: featured
         label: Featured(Skip this field)
         type: number
