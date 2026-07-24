@@ -4,7 +4,7 @@ title: Bob- The EcoCoder
 asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Technical
-domain: Energy & Utilities
+domain: Automation
 problem: "Enterprises face three converging inefficiencies: legacy production
   code silently burns compute and carbon with no visibility on any ESG
   dashboard; AI code generators now ship functionally-correct-but-inefficient
