@@ -86,6 +86,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://ibm.seismic.com/Link/Content/DC6PPcWc6pQMbGFDHTG8cX269MTG
+featured: 34
 ---
 The **Java Unit Test Generation** workflow is part of IBM Bob's Java Premium Package — a suite of AI-driven modernization capabilities purpose-built for enterprise Java applications. This workflow delivers fully automated, production-grade unit test coverage for legacy Java codebases, removing the need for developers to write boilerplate test scaffolding by hand.
 
