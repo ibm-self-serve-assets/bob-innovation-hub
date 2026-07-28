@@ -63,5 +63,6 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://ibm.seismic.com/Link/Content/DCWqHpW738XqMGcT3mGPFDgDjVpV
+featured: 34
 ---
 This use case showcases the automated UI and architecture modernization of a legacy Java application using IBM Bob's UI Modernization workflow. The source system—a monolithic, server-rendered application built on Apache Struts 2 and running on IBM WebSphere—is transformed into a decoupled, modern two-tier architecture. The modernized system features a lightweight Jakarta EE REST API backend running on Open Liberty and a responsive Single Page Application (SPA) frontend built with React, TypeScript, Vite, and IBM’s Carbon Design System. The entire transformation, including code generation, build error resolution, routing, and end-to-end integration, is executed automatically within IBM Bob.
