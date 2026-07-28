@@ -6,7 +6,6 @@ asset-owner: ranjan.kumar.jena@ibm.com
 team: Service Engineering
 type: Technical
 domain: Modernization
-premium_package: Java Modernization
 problem: Many organizations continue to rely on decades-old Java monolithic
   applications built with legacy frameworks such as Struts and JSP. These
   applications are difficult to maintain, scale, and modernize, resulting in
