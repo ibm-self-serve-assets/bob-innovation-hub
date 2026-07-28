@@ -66,6 +66,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
 demo: https://ibm.seismic.com/Link/Content/DCCqJh3C2W4jh89MRhJRHGTfRc9j
+featured: 34
 ---
 The **IBM Bob Java Modernization Workflow (Java Upgrade Path)** provides an end-to-end, AI-driven automation process for upgrading legacy Java applications (e.g., legacy Java 8 applications using Struts 2 running on IBM WebSphere) to modern Java versions (such as Java 21) and updated runtime specifications like Jakarta EE 10.
 
