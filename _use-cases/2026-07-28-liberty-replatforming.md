@@ -92,5 +92,6 @@ business-value: >+
 tech-stack:
   - IBM Bob
 demo: https://ibm.seismic.com/Link/Content/DCfcbdM9pqXgBGWFJ6g6JBbTQd2B
+featured: 34
 ---
 IBM Bob's Java Modernization Premium Package demonstrates end-to-end automated replatforming of a legacy enterprise Java application — a Pharmacy Dashboard built on **Java 8, Struts 2 MVC, and IBM WebSphere Application Server Traditional** — to a modern, cloud-native stack running on **Java 21 and IBM WebSphere Liberty**, complete with a production-ready container image. The workflow is driven by the **Bob Unified Agent Harness** inside the IDE, augmented by output from the **Application Modernization Accelerator (AMA)**, and covers the full lifecycle: project analysis, automated code transformation via OpenRewrite recipes, AI-driven resolution of critical dependency violations, live local deployment validation, and a clean Git audit trail — all without a developer changing a single line of business logic.
