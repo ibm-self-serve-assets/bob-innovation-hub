@@ -57,6 +57,14 @@ sections:
     type: custom
     include_file: use-cases-section.html
 
+  - id: asset-studio
+    title: Asset Studio
+    description: "Asset Studio is a browser-based environment for discovering, previewing, and deploying IBM-validated assets purpose-built to accelerate your Bob projects."
+    icon: "" #🎨
+    show_search: false
+    type: custom
+    include_file: asset-studio-section.html
+
   - id: premium-packages
     title: Premium Packages
     description: "Explore premium packages designed for legacy modernization and specialized enterprise scenarios."
