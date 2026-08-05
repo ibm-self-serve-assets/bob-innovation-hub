@@ -1151,15 +1151,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const opt = e.target.closest('.uc-product-option');
       if (!opt) return;
       const pkg = opt.dataset.premium;
-      const alreadySelected = opt.getAttribute('aria-selected') === 'true';
-      // deselect all options first (single-select)
+      // deselect all options first (single-select), then select clicked one
       premiumMenu.querySelectorAll('.uc-product-option').forEach(o => o.setAttribute('aria-selected', 'false'));
-      if (alreadySelected) {
-        activeUcPremium = '';
-      } else {
-        opt.setAttribute('aria-selected', 'true');
-        activeUcPremium = pkg;
-      }
+      opt.setAttribute('aria-selected', 'true');
+      activeUcPremium = pkg;
       const label = document.getElementById('uc-premium-label');
       if (label) label.textContent = activeUcPremium ? opt.textContent.trim() : 'All';
       currentPage['use-cases'] = 1;

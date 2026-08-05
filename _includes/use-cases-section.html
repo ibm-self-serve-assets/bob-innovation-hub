@@ -60,6 +60,7 @@
           </svg>
         </button>
         <div class="uc-products-menu" id="uc-premium-menu" role="listbox" aria-label="Filter by premium package" style="display:none;">
+          <button class="uc-product-option" role="option" aria-selected="true" data-premium="">All</button>
           {% assign all_pkg_items = "" %}
           {% for uc in site.use-cases %}
             {% if uc.premium_package and uc.premium_package != "" %}
