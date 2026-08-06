@@ -1,6 +1,20 @@
 # Section Configuration for Bob Innovation Hub
 # Add new sections here to automatically include them in the navigation and content areas
 
+nav_groups:
+  - id: get-started
+    title: Getting Started
+    expanded: false
+  - id: explore-bob
+    title: Explore Bob
+    expanded: true
+  - id: extend-bob
+    title: Extend Bob
+    expanded: false
+  - id: community-support
+    title: Community & Support
+    expanded: false
+
 sections:
   - id: introduction
     title: Introduction
@@ -11,6 +25,7 @@ sections:
 
   - id: documentation
     title: Documentation
+    group: get-started
     description: "Browse official Bob documentation to get started, explore features, and find answers to common questions."
     icon: "" #📄
     show_search: true
@@ -31,6 +46,7 @@ sections:
 
   - id: learning-resources
     title: Learning Resources
+    group: get-started
     description: "Whether you are starting from scratch or looking to sharpen your skills, complete our curated learning plans to build your expertise and earn your Bob proficiency badges. Dive deep into technical tutorials designed for hands-on, immersive learning, and explore the core architectural components powering agentic solutions—including IBM MCP servers, MCP, A2A, and AI Gateways."
     icon: "" #🎓
     show_search: true
@@ -51,6 +67,7 @@ sections:
 
   - id: use-cases
     title: Use-Cases
+    group: explore-bob
     description: "Discover how IBM Bob solves complex problems through our technical and industry use cases, interactive labs, and product demos. You can leverage these templates as a foundation to build upon and quickly achieve your specific goals."
     icon: "" #📋
     show_search: true
@@ -59,6 +76,7 @@ sections:
 
   - id: asset-studio
     title: Asset Studio
+    group: explore-bob
     description: "Asset Studio is a browser-based environment for discovering, previewing, and deploying IBM-validated assets purpose-built to accelerate your Bob projects."
     icon: "" #🎨
     show_search: false
@@ -67,6 +85,7 @@ sections:
 
   - id: premium-packages
     title: Premium Packages
+    group: explore-bob
     description: "Explore premium packages designed for legacy modernization and specialized enterprise scenarios."
     icon: "" #⭐
     show_search: true
@@ -77,6 +96,7 @@ sections:
 
   - id: skills
     title: Skills
+    group: extend-bob
     description: "Accelerate your workflow with Skills—reusable instruction sets that teach Bob how to deliver consistent results for specialized tasks. Use them as an immediate starting point to quickly build your own custom use cases."
     icon: "" #🛠️
     show_search: true
@@ -85,6 +105,7 @@ sections:
 
   - id: mcp
     title: MCP
+    group: extend-bob
     description: "Explore Model Context Protocol (MCP) integrations and tools that extend Bob's capabilities."
     icon: "" #🔌
     show_search: true
@@ -95,6 +116,7 @@ sections:
 
   - id: subagents
     title: Subagents
+    group: extend-bob
     description: "Discover community-built subagents that extend Bob's capabilities for specialised tasks and workflows."
     icon: "" #🤖
     show_search: true
@@ -105,6 +127,7 @@ sections:
 
   - id: modes
     title: Modes
+    group: extend-bob
     description: "Modes are specialized personas that tailor Bob's behavior to your specific tasks, offering distinct capabilities and access levels to maximize your efficiency. Leverage custom modes for specialized scenarios as an adaptable foundation, allowing you to further personalize Bob to perfectly match your unique requirements."
     icon: "" #🤖
     show_search: true
@@ -115,6 +138,7 @@ sections:
 
   - id: case-studies
     title: Case Studies
+    group: community-support
     description: "Explore real-world case studies showcasing how Bob delivers value across industries."
     icon: "" #📊
     show_search: true
@@ -125,6 +149,7 @@ sections:
 
   - id: bob-community
     title: Bob Community
+    group: community-support
     description: "Connect with the Bob community—find collaboration channels, events, and resources to engage with fellow Bob users."
     icon: "" #👥
     show_search: true
@@ -135,6 +160,7 @@ sections:
 
   - id: contact-us
     title: Contact Us
+    group: community-support
     icon: "" #✉️
     show_search: false
     type: custom

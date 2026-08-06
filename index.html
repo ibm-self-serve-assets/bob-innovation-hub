@@ -41,13 +41,57 @@ title: Bob Innovation Hub
       </div>
     </div>
     <nav class="sidebar-nav">
+      {% assign groups_data = site.data.sections.nav_groups %}
+      {% assign prev_group = "" %}
       {% for section in site.data.sections.sections %}
-      <button class="sidebar-button {% if forloop.first %}active{% endif %}"
-              data-section="{{ section.id }}"
-              aria-label="{{ section.title }}">
-        <span>{{ section.title }}</span>
-      </button>
+        {% assign cur_group = section.group | default: "" %}
+
+        {% if cur_group == "" %}
+          {% comment %} Ungrouped — close any open group first {% endcomment %}
+          {% if prev_group != "" %}
+          </div>
+          {% endif %}
+          {% assign prev_group = "" %}
+          <button class="sidebar-button {% if forloop.first %}active{% endif %}"
+                  data-section="{{ section.id }}"
+                  aria-label="{{ section.title }}">
+            <span>{{ section.title }}</span>
+          </button>
+        {% elsif cur_group != prev_group %}
+          {% comment %} New group — close previous group if open {% endcomment %}
+          {% if prev_group != "" %}
+          </div>
+          {% endif %}
+          {% assign group_meta = groups_data | where: "id", cur_group | first %}
+          {% assign is_expanded = group_meta.expanded | default: false %}
+          <button class="nav-group-header {% if is_expanded %}open{% endif %}"
+                  data-group="{{ cur_group }}"
+                  aria-expanded="{{ is_expanded }}"
+                  aria-label="{{ group_meta.title }}">
+            <span>{{ group_meta.title }}</span>
+            <svg class="nav-group-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-group-children {% if is_expanded %}open{% endif %}">
+          {% assign prev_group = cur_group %}
+          <button class="sidebar-button sub-item"
+                  data-section="{{ section.id }}"
+                  aria-label="{{ section.title }}">
+            <span>{{ section.title }}</span>
+          </button>
+        {% else %}
+          {% comment %} Same group — just emit the child button {% endcomment %}
+          <button class="sidebar-button sub-item"
+                  data-section="{{ section.id }}"
+                  aria-label="{{ section.title }}">
+            <span>{{ section.title }}</span>
+          </button>
+        {% endif %}
       {% endfor %}
+      {% if prev_group != "" %}
+      </div>
+      {% endif %}
     </nav>
     <!-- Theme toggle inside sidebar footer -->
     <div class="sidebar-footer">

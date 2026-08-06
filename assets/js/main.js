@@ -408,6 +408,7 @@ function goToSlide(idx) {
 
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
 const sidebarButtons   = document.querySelectorAll('.sidebar-button');
+const navGroupHeaders  = document.querySelectorAll('.nav-group-header');
 const contentSections  = document.querySelectorAll('.content-section');
 const searchContainer  = document.getElementById('searchContainer') || document.querySelector('.search-container');
 
@@ -443,7 +444,19 @@ function activateSection(sectionId, subSectionId, pushRoute) {
   // Update sidebar button active state
   sidebarButtons.forEach(btn => btn.classList.remove('active'));
   const matchingBtn = document.querySelector(`.sidebar-button[data-section="${sectionId}"]`);
-  if (matchingBtn) matchingBtn.classList.add('active');
+  if (matchingBtn) {
+    matchingBtn.classList.add('active');
+    // Auto-expand the parent group if the button is inside one
+    const parentGroup = matchingBtn.closest('.nav-group-children');
+    if (parentGroup && !parentGroup.classList.contains('open')) {
+      parentGroup.classList.add('open');
+      const groupHeader = parentGroup.previousElementSibling;
+      if (groupHeader) {
+        groupHeader.classList.add('open');
+        groupHeader.setAttribute('aria-expanded', 'true');
+      }
+    }
+  }
 
   // Show correct content section
   contentSections.forEach(s => s.classList.remove('active'));
@@ -515,6 +528,17 @@ function activateSubSection(sectionEl, sectionId, subSectionId) {
 
   filterAndPaginate(subSectionId);
 }
+
+// ─── Nav group toggle ─────────────────────────────────────────────────────────
+navGroupHeaders.forEach(header => {
+  header.addEventListener('click', () => {
+    const children = header.nextElementSibling;
+    if (!children) return;
+    const isOpen = children.classList.toggle('open');
+    header.classList.toggle('open', isOpen);
+    header.setAttribute('aria-expanded', String(isOpen));
+  });
+});
 
 // ─── Side nav clicks ──────────────────────────────────────────────────────────
 sidebarButtons.forEach(button => {
