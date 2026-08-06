@@ -63,17 +63,16 @@ title: Bob Innovation Hub
           </div>
           {% endif %}
           {% assign group_meta = groups_data | where: "id", cur_group | first %}
-          {% assign is_expanded = group_meta.expanded | default: false %}
-          <button class="nav-group-header {% if is_expanded %}open{% endif %}"
+          <button class="nav-group-header {% if group_meta.expanded == true %}open{% endif %}"
                   data-group="{{ cur_group }}"
-                  aria-expanded="{{ is_expanded }}"
+                  aria-expanded="{% if group_meta.expanded == true %}true{% else %}false{% endif %}"
                   aria-label="{{ group_meta.title }}">
             <span>{{ group_meta.title }}</span>
             <svg class="nav-group-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
               <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          <div class="nav-group-children {% if is_expanded %}open{% endif %}">
+          <div class="nav-group-children {% if group_meta.expanded == true %}open{% endif %}">
           {% assign prev_group = cur_group %}
           <button class="sidebar-button sub-item"
                   data-section="{{ section.id }}"
