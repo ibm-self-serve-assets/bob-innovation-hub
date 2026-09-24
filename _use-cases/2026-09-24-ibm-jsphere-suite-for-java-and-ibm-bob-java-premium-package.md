@@ -30,17 +30,25 @@ solution: "IBM JSphere Suite for Java, paired with IBM Bob, provides an
   development. Library Support for Spring and Struts extends coverage beyond
   WAS-based estates, and IBM Bob is offered as a premium companion package."
 business-value: >+
-  - Dramatically reduced cost and time to modernize a Java application estate -
-  Reduced security exposure by moving off unsupported Java 8 or securing it in
-  the interim - Cloud-native enablement — unlocks containers, AI/ML integration,
-  improved DevOps workflows, and edge deployment - Deterministic, rule-based
-  migration backed by 106+ OpenRewrite recipes plus proprietary recipes,
-  reducing manual rework and risk - 40+ AI-assisted fixes for complex migration
-  issues when paired with agentic AI tools - Purpose-built on-ramp for the
-  largest at-risk segment — existing WebSphere Application Server (WAS)
-  customers - Flexible entry point — customers not yet ready to migrate can
-  secure Java 8 via IBM's Open-Source Library Support while they plan the next
-  step
+  - Dramatically reduced cost and time to modernize a Java application estate 
+
+  - Reduced security exposure by moving off unsupported Java 8 or securing it in
+  the interim cloud-native enablement 
+
+  - Unlocks containers, AI/ML integration, improved DevOps workflows, and edge
+  deployment 
+
+  - Deterministic, rule-based migration backed by 106+ OpenRewrite recipes plus
+  proprietary recipes, reducing manual rework and risk 
+
+  - 40+ AI-assisted fixes for complex migration issues when paired with agentic
+  AI tools 
+
+  - Purpose-built on-ramp for the largest at-risk segment existing WebSphere
+  Application Server (WAS) customers
+
+  - Flexible entry point for customers not yet ready to migrate can secure Java
+  8 via IBM's Open-Source Library Support while they plan the next step
 
 tech-stack:
   - IBM Bob
