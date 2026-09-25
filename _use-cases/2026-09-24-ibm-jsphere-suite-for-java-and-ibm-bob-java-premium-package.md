@@ -30,25 +30,19 @@ solution: "IBM JSphere Suite for Java, paired with IBM Bob, provides an
   development. Library Support for Spring and Struts extends coverage beyond
   WAS-based estates, and IBM Bob is offered as a premium companion package."
 business-value: >+
-  - Dramatically reduced cost and time to modernize a Java application estate 
+  - **Hybrid Agentic Automation:** Blending 100% precise OpenRewrite AST
+  transformations with targeted LLM reasoning for complex WebSphere
+  SPIs—lowering cost and eliminating hallucination risk.
 
-  - Reduced security exposure by moving off unsupported Java 8 or securing it in
-  the interim cloud-native enablement 
+  - **Native AMA Integration:** Direct ingestion of enterprise binary scans into
+  Bob's context window, converting architecture policies into IDE-level
+  execution.
 
-  - Unlocks containers, AI/ML integration, improved DevOps workflows, and edge
-  deployment 
+  - **Purpose-Built Workflows:** A standardized, repeatable pipeline across all
+  development teams.
 
-  - Deterministic, rule-based migration backed by 106+ OpenRewrite recipes plus
-  proprietary recipes, reducing manual rework and risk 
-
-  - 40+ AI-assisted fixes for complex migration issues when paired with agentic
-  AI tools 
-
-  - Purpose-built on-ramp for the largest at-risk segment existing WebSphere
-  Application Server (WAS) customers
-
-  - Flexible entry point for customers not yet ready to migrate can secure Java
-  8 via IBM's Open-Source Library Support while they plan the next step
+  - **Enterprise Multi-Model Governance:** Decoupled specialized models with
+  zero data retention for complete IP protection.
 
 tech-stack:
   - IBM Bob
@@ -56,4 +50,4 @@ tech-stack:
 demo: https://www.youtube.com/watch?v=SKFSqY1wfEE
 slide_deck: /docs/slide_decks/Java_modernization.pdf
 ---
-This case study describes IBM's approach to modernizing enterprise Java applications currently running on Java 8 or earlier — primarily targeting existing WebSphere Application Server (WAS) customers — using the automated scanning, refactoring, and AI-assisted migration tooling in IBM JSphere Suite for Java, together with IBM Bob.
+This use-case describes IBM's approach to modernizing enterprise legacy Java applications — primarily targeting existing WebSphere Application Server (WAS)/WebLogic/JBoss/Tomcat customers — using the automated scanning, refactoring, and AI-assisted migration tooling in IBM JSphere Suite for Java, together with IBM Bob.
