@@ -293,7 +293,7 @@ function renderUcDetail(uc) {
   if (uc.demo) {
     demoTab.style.display = 'inline-flex';
     document.getElementById('ucDemoSubtitle').textContent =
-      `Experience the ${uc.title} solution live. Follow the guided walkthrough below.`;
+      `Watch the ${uc.title} solution on Youtube.`;
     const ytId = getYouTubeId(uc.demo);
     const playerEl = document.getElementById('ucDemoPlayer');
     if (ytId) {
