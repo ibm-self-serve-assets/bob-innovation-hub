@@ -66,7 +66,7 @@ business-value: |+
 tech-stack:
   - IBM Bob
   - Red Hat OpenShift
-lab: https://github.com/ibm-self-serve-assets/java-modernization-lab
+lab: https://github.com/ibm-self-serve-assets/Java-Modernization-Bob-2.0
 featured: 35
 ---
 The **Java Modernization Lab** is a hands-on, end-to-end technical simulation designed to showcase the transformation of monolithic, legacy enterprise Java applications into cloud-native, modern architectures. The lab utilizes **IBM Bob**—an AI-driven enterprise transformation and software engineering platform—to guide developers through a complete Software Development Life Cycle (SDLC) modernization journey. Specifically, it takes a legacy **NetBanking** application built on an aging stack and progressively refactors, upgrades, and containerizes it for cloud deployment.
