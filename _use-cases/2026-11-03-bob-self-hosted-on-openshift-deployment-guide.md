@@ -1,7 +1,7 @@
 ---
 id: 81c66a11-8e59-42b0-ace6-fe2eefed385e
 title: Bob Self Hosted on OpenShift (Deployment Guide)
-asset-owner: Suyash.Gupte2@ibm.com
+asset-owner: gsolian@us.ibm.com
 team: Service Engineering
 type: Technical
 domain: Security
