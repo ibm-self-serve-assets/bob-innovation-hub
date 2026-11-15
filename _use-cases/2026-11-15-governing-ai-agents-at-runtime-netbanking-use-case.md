@@ -116,6 +116,7 @@ tech-stack:
 architecture_diagram: /docs/diagrams/Screenshot 2026-11-15 at 8.34.31 AM.png
 demo: https://www.youtube.com/watch?v=JvTH2la6mMs
 slide_deck: /docs/slide_decks/Agentic_Identity_Runtime_Governance.pdf
+featured: 3
 ---
 This use case demonstrates how Northbridge Bank, a retail bank, governs customer-facing AI agents inside its netbanking application. Customers bank by conversation: they check balances, review activity, send money, add payees, check limits, and ask for operations help. The agents are built on IBM watsonx Orchestrate (an assistant agent and an ops agent) and call banking tools through a FastAPI-based Governed Agent API on OpenShift.
 
