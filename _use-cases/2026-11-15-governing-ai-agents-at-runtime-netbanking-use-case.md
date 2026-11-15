@@ -121,4 +121,6 @@ featured: 3
 This use case demonstrates how Northbridge Bank, a retail bank, governs customer-facing AI agents inside its netbanking application. Customers bank by conversation: they check balances, review activity, send money, add payees, check limits, and ask for operations help. The agents are built on IBM watsonx Orchestrate (an assistant agent and an ops agent) and call banking tools through a FastAPI-based Governed Agent API on OpenShift.
 
 The demo runs the same two attack scenarios twice. The first run is ungoverned, using a shared static API key and a service-account identity. The second run is governed, with IBM Verify sign-in, IBM Agent Identity, a delegated token, an MCP Gateway, and HashiCorp Vault 2.2 Enterprise enforcing runtime policy. Human-in-the-loop (HITL) approval is also shown for above-threshold transfers, and the audit trail records both the user and the agent.  
-#This use-case & demo has been built with IBM Bob
+
+
+*This use-case & demo has been built with IBM Bob*
