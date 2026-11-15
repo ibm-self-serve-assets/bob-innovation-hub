@@ -4,7 +4,7 @@ title: Governing AI agents at runtime - NetBanking Use-Case
 asset-owner: anand.awasthi@in.ibm.com
 team: Service Engineering
 type: Business
-domain: Security
+domain: BFSI
 problem: >-
   Traditional banking controls were designed for human users and deterministic
   applications. They break down when an LLM-driven agent acts on a customer's
