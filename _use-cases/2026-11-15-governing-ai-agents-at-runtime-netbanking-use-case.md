@@ -111,6 +111,8 @@ tech-stack:
   - Vault
   - Verify
   - watsonx Orchestrate
+  - AuthMind
+  - IBM Agent Identity
 architecture_diagram: /docs/diagrams/Screenshot 2026-11-15 at 8.34.31 AM.png
 demo: https://www.youtube.com/watch?v=JvTH2la6mMs
 slide_deck: /docs/slide_decks/Agentic_Identity_Runtime_Governance.pdf
